@@ -5,7 +5,7 @@ import { login} from "../../../store/session";
 
 
 
-const LoginForm = ({ authenticated,}) => {
+const LoginForm = ({ authenticated,setAuthenticated}) => {
   const dispatch = useDispatch()
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
