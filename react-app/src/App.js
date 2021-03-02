@@ -11,9 +11,9 @@ import {useDispatch} from "react-redux"
 
 
 function App() {
+  const dispatch = useDispatch()
   const [authenticated, setAuthenticated] = useState(false);
   const [loaded, setLoaded] = useState(false);
-  const dispatch = useDispatch()
 
   useEffect(() => {
     (async() => {
@@ -53,6 +53,7 @@ function App() {
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
+    
   );
 }
 
