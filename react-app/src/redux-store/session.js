@@ -13,16 +13,16 @@ const removeSessionUser = ()=>({
     type:REMOVE_SESSION_USER
 })
 
-//Thunks(actions that return functions)
+//Thunks(action creator  that return functions)
 export const authenticate = () => async (dispatch) => {
   const res = await fetch("/api/auth/", {
     headers: {
       "Content-Type": "application/json",
     },
   });
-  const data =  await res.json();
-  if (!data.errors) dispatch(setSessionUser(user));
-  return data
+  const user =  await res.json();
+  if (!user.errors) dispatch(setSessionUser(user));
+  return user
 };
 
 
@@ -38,9 +38,9 @@ async(dispatch)=>{
       password
     })
     })
-    const data = await res.json()
-    if(!data.errors) dispatch(setSessionUser(user))
-  return data
+    const user = await res.json()
+    if(!user.errors) dispatch(setSessionUser(user))
+  return user
 };
 
 export const logout = () =>async (dispatch) => {
@@ -52,18 +52,16 @@ export const logout = () =>async (dispatch) => {
   dispatch(removeSessionUser()) 
   return response
 };
-export const signup = (user) => async (dispatch) => {
+export const signUp = (user) => async (dispatch) => {
   const { username, email, password } = user;
   const response = await fetch("/api/auth/signup", {
     method: "POST",
-    body: JSON.stringify({
-      username,
-      email,
-      password,
-    }),
+    body: JSON.stringify(
+      user)
   });
-    dispatch(setSessionUser(response.data.user));
-  return response;
+    const user = await response.json();
+    if (!user.errors) dispatch(setSessionUser(user));
+    return user;
 };
 
 // Reducer configuration
@@ -83,5 +81,5 @@ const reducer = (state={user: userTemplate}, {type, payload}) => {
     default:
       return state; }
 };
-
+export default reducer
 
