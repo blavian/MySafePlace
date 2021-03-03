@@ -8,7 +8,7 @@ import UsersList from "./components/UsersList";
 import User from "./components/User";
 import { authenticate } from "./redux-store/session"
 import {useDispatch} from "react-redux"
-
+import LandingPage from "./components/LandingPage"
 
 function App() {
   const dispatch = useDispatch()
