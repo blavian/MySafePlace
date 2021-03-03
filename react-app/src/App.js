@@ -9,6 +9,7 @@ import User from "./components/User";
 import { authenticate } from "./redux-store/session"
 import {useDispatch} from "react-redux"
 import LandingPage from "./components/LandingPage"
+import Footer from "./components/Footer"
 
 function App() {
   const dispatch = useDispatch()
@@ -55,6 +56,7 @@ function App() {
           <h1>My Home Page</h1>
         </ProtectedRoute>
       </Switch>
+      <Footer/>
     </BrowserRouter>
     
   );
