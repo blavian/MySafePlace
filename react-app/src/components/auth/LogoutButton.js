@@ -1,14 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { logout } from "../../redux-store/session"
-import styled from "styled-components"
+import Button from "../../styled/button"
 
-export const Button = styled.button`
-  background-color: #3b49df;
-  color: #ffff;
-  height:5em;
-  width:10em;
-`;
 
 
 const LogoutButton = ({setAuthenticated}) => {
