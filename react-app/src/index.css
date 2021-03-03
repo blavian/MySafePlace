@@ -4,11 +4,3 @@ body{
     font-family: Monaco;
 
 }
-.landing_page_image {
-    background-image: url("./images/self-esteem.jpg");
-    background-size: cover;
-    height: 60em;
-    color: #ffffff;
-    box-sizing: border-box;
-    margin: 0;
-}
