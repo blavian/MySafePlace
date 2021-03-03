@@ -1,9 +1,20 @@
 import React from "react"
 
 
+ import styled from "styled-components";
+ import img from "../images/self-esteem.jpg"
+
+ const MainImage = styled.div`
+   background-image: url(${img});
+   background-size: cover;
+   height: 60em;
+   box-sizing: border-box;
+   margin: 0;
+ `;
+
 function LandingPage(){
     return (
-        <h1>Welcome Home</h1>
+        <MainImage></MainImage>
         )
     }
 
