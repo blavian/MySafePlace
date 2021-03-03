@@ -52,7 +52,7 @@ export const logout = () =>async (dispatch) => {
   dispatch(removeSessionUser()) 
   return response
 };
-export const signUp = async (username, email, password) => {
+export const signUp =(username, email, password) => async(dispatch) => {
   const response = await fetch("/api/auth/signup", {
     method: "POST",
     headers: {
@@ -64,7 +64,9 @@ export const signUp = async (username, email, password) => {
       password,
     }),
   });
-  return await response.json();
+ const user = await response.json();
+ if (!user.errors) dispatch(setSessionUser(user));
+ return user;
 };
 
 // Reducer configuration
