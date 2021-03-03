@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const navTop = styled.div`
+export const Outer = styled.div`
   background-color: #ffff;
   display: flex;
   justify-content: space-between;
@@ -8,9 +8,13 @@ const navTop = styled.div`
   height: 6em;
   letter-spacing: 6px;
   text-transform: uppercase;
+  padding: 0 100px;
 `;
 
+  
+ 
 
 
 
-export default navTop
+
+
