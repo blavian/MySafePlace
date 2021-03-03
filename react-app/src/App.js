@@ -8,7 +8,7 @@ import UsersList from "./components/UsersList";
 import User from "./components/User";
 import { authenticate } from "./redux-store/session"
 import {useDispatch} from "react-redux"
-
+import LandingPage from "./components/LandingPage"
 
 function App() {
   const dispatch = useDispatch()
@@ -33,6 +33,9 @@ function App() {
     <BrowserRouter>
       <NavBar setAuthenticated={setAuthenticated} />
       <Switch>
+      <Route path="/" exact={true}>
+          <LandingPage />
+          </Route>
         <Route path="/login" exact={true}>
           <LoginForm
             authenticated={authenticated}
