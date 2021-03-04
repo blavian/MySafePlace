@@ -11,6 +11,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
 
+    # Private property get/set
     @property
     def password(self):
         return self.hashed_password
@@ -21,6 +22,14 @@ class User(db.Model, UserMixin):
 
     def check_password(self, password):
         return check_password_hash(self.password, password)
+    # Associations
+    _notebooks = db.relationship(
+        "Notebook", backref="users", cascade="all, delete-orphan")
+
+    # Association properties
+    @property
+    def notebooks(self):
+        return [x.to_dict() for x in self._notebooks]
 
     def to_dict(self):
         return {
@@ -30,11 +39,4 @@ class User(db.Model, UserMixin):
             "notebooks": self.notebooks,
         }
 
-    # Associations
-    _notebooks = db.relationship(
-        "Notebook", backref="users", cascade="all, delete-orphan")
-
-    # Association properties
-    @property
-    def notebooks(self):
-        return [x.to_dict() for x in self._notebooks]
+    
