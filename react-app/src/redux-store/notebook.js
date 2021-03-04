@@ -45,20 +45,28 @@ export const getNotebook = () =>async(dispatch)=>{
         },
     })
     if (response.ok){
-        let res = await response.json()
+        let data = await response.json()
+        console.log(data)
         dispatch(
-            setNotebook(res))
+            setNotebook(data.data))
     }
 }
 
 //NOTEBOOK INITIAL STATE 
-const initialState = []
+const initialState = {}
 const reducer =(state = initialState,action) => {
         let newState;
         switch (action.type) {
           case SET_NOTEBOOK:
-          newState = action.title
-          return newState
+
+           newState= {}
+           action.title.forEach((item)=>{
+               newState[item.id]={
+                   id:item.id,
+                   title:item.title
+               }
+            })
+            return newState
           default:
             return state;
         }

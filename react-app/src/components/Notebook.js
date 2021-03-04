@@ -5,14 +5,15 @@ import{getNotebook} from "../redux-store/notebook"
  const Notebook = () => {
    const dispatch = useDispatch();
    const currentNotebooks = useSelector((state) => {
-     return state.title;
+     return Object.values(state.notebook);
+     
    });
    useEffect(async () => {
      dispatch(getNotebook());
    }, [dispatch]);
    return (
      <div>
-       <p className="child"> Notebooks </p>
+       <p> Notebooks </p>
        {currentNotebooks &&
          currentNotebooks.map((notebook) => {
            return (
