@@ -1,4 +1,4 @@
-from flask import Blueprint,request
+from flask import Blueprint, request
 from flask_login import login_required, current_user
 
 from app.models import db, Notebook
@@ -6,7 +6,7 @@ from app.forms.notebook_form import NotebookForm
 
 notebook_routes = Blueprint('notebook', __name__)
 
-#Create a new Notebook
+# Create a new Notebook
 
 
 @notebook_routes.route('', methods=['POST'])
@@ -35,3 +35,15 @@ def new_notebook():
 
     # 7. Send 201 response to the user
     return {"message": "success", "data": notebook.to_dict()}, 201
+# Get all of the current user's notebooks
+
+
+@notebook_routes.route('')
+@login_required
+def get_notebooks():
+    # get the user from the session
+    user = current_user
+    # finds all of the user's notebooks based off of their userId
+    user_notebooks = Notebook.query.filter(Notebook.user_id == user.id)
+    # return list of all the notebooks
+    return {"message": "success", "data": [notebook.to_dict() for notebook in user_notebooks]}, 200
