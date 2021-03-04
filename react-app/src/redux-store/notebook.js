@@ -5,21 +5,21 @@ const UPDATE_NOTEBOOK = "UPDATE_NOTEBOOK"
 const DELETE_NOTEBOOK = "DELETE_NOTEBOOK"
 
 //Action Creator
-const createNotebookAction = (payload)=>({
+const createNotebookAction = (title)=>({
     type:CREATE_NOTEBOOK,
-    payload
+    title
 })
-const readNotebookAction = (payload)=>({
+const readNotebookAction = (title)=>({
     type:READ_NOTEBOOK,
-    payload
+    title
 })
-const updateNotebookAction = (payload)=>({
+const updateNotebookAction = (title)=>({
     type:UPDATE_NOTEBOOK,
-    payload
+    title
 })
-const DeleteNotebookAction = (payload)=>({
+const DeleteNotebookAction = (title)=>({
     type:DELETE_NOTEBOOK,
-    payload
+    title
 })
 
 //THUNKS
@@ -33,22 +33,20 @@ export const createNotebook =(title)=>async(dispatch)=>{
             title
         })
     })
-    const {data} = res.data
-    dispatch(createNotebookAction(data))
-    return data  
+    const title = await res.json()
+    dispatch(createNotebookAction(title))
+    return title  
 }
 
 //NOTEBOOK INITIAL STATE 
 const initialState = {
     title:[]
 }
-const reducer =(state = {notebook:initialState},{type,payload}
+const reducer =(state = {notebook:initialState},{type,title}
     )=>{
-        let stateCopy
         switch (type) {
           case CREATE_NOTEBOOK:
-            stateCopy = { title: { ...state.title } };
-            return stateCopy;
+          return {title:{...state.title,...title}}
           default:
             return state;
         }
