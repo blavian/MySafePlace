@@ -6,6 +6,7 @@ import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
+import Notebook from "./components/Notebook"
 import { authenticate } from "./redux-store/session"
 import {useDispatch} from "react-redux"
 import LandingPage from "./components/LandingPage"
@@ -53,7 +54,7 @@ function App() {
           <User />
         </ProtectedRoute>
         <ProtectedRoute path="/notebooks" exact={true} authenticated={authenticated}>
-          <h1>My Home Page</h1>
+          <Notebook />
         </ProtectedRoute>
       </Switch>
       <Footer/>
