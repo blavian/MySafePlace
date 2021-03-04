@@ -9,11 +9,11 @@ class Notebook(db.Model):
   user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
 
-def to_dict(self):
+  def to_dict(self):
     return {
         "id": self.id,
         "title": self.title,
-        "user_id":self.userId
+        "user_id":self.user_id
     }
     
  

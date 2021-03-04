@@ -30,13 +30,13 @@ class User(db.Model, UserMixin):
     @property
     def notebooks(self):
         return [x.to_dict() for x in self._notebooks]
-
+    # Scope
     def to_dict(self):
         return {
             "id": self.id,
             "username": self.username,
             "email": self.email,
-            "notebooks": self.notebooks,
+            "notebooks": self.notebooks
         }
 
     
