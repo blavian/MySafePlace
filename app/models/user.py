@@ -31,10 +31,11 @@ class User(db.Model, UserMixin):
     def notebooks(self):
         return [x.to_dict() for x in self._notebooks]
 
+
 def to_dict(self):
     return {
         "id": self.id,
         "username": self.username,
         "email": self.email,
-        "notebooks":self.notebooks
+        "notebooks": self.notebooks,
     }
