@@ -22,7 +22,15 @@ class User(db.Model, UserMixin):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
-      # Associations
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "username": self.username,
+            "email": self.email,
+            "notebooks": self.notebooks,
+        }
+
+    # Associations
     _notebooks = db.relationship(
         "Notebook", backref="users", cascade="all, delete-orphan")
 
@@ -30,12 +38,3 @@ class User(db.Model, UserMixin):
     @property
     def notebooks(self):
         return [x.to_dict() for x in self._notebooks]
-
-
-def to_dict(self):
-    return {
-        "id": self.id,
-        "username": self.username,
-        "email": self.email,
-        "notebooks": self.notebooks,
-    }
