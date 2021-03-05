@@ -1,8 +1,8 @@
 //Action constantS
-const CREATE_NOTEBOOK = "CREATE_NOTEBOOK"
-const SET_NOTEBOOK =    "SET_NOTEBOOK"
-const UPDATE_NOTEBOOK = "UPDATE_NOTEBOOK"
-const REMOVE_NOTEBOOK = "REMOVE_NOTEBOOK"
+const CREATE_NOTEBOOK = "notebook/create_notebook"
+const SET_NOTEBOOK =    "notebook/set_notebook"
+const UPDATE_NOTEBOOK = "notebook/update_notebook"
+const REMOVE_NOTEBOOK = "notebook/remove_notebook"
 
 //Action Creator
 const setNotebook = (title)=>({
