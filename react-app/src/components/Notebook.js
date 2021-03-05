@@ -1,19 +1,25 @@
 import React, {useState,useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector} from "react-redux";
 import{getNotebook,createNotebook} from "../redux-store/notebook"
+ 
 
  const Notebook = () => {
    const dispatch = useDispatch();
+   const history = useHistory()
    const [title,setTitle] = useState('')
    const currentNotebooks = useSelector(state => Object.values(state.notebook))
      
    useEffect(async () => {
      dispatch(getNotebook());
    }, [dispatch]);
+   
+   
    const handleSubmit = e =>{
      e.preventDefault()
      dispatch(createNotebook(title))
      setTitle()
+     history.push("/notebooks")
    }
    return (
      <div>

@@ -61,7 +61,6 @@ export const createNotebook =(title)=>async(dispatch)=>{
             'Content-type':'application/json'
         },
     })
-    debugger
     if(!response.ok) throw response
     const {data} = await response.json()
     
@@ -71,13 +70,13 @@ export const createNotebook =(title)=>async(dispatch)=>{
 
 //NOTEBOOK INITIAL STATE 
 const initialState = {}
+
 const reducer =(state = initialState,action) => {
         switch (action.type) {
           case SET_NOTEBOOK:
               return action.title
           case CREATE_NOTEBOOK:
-            return {...state, ...action.title}
-
+          return {...state, ...action.title}
           default:
             return state
             }
