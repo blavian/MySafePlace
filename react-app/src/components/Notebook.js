@@ -1,5 +1,5 @@
 import React, {useState,useEffect } from "react";
-import { useHistory } from "react-router-dom";
+
 import { useDispatch, useSelector} from "react-redux";
 import{getNotebook,createNotebook} from "../redux-store/notebook"
  
@@ -25,9 +25,10 @@ import{getNotebook,createNotebook} from "../redux-store/notebook"
        {currentNotebooks &&
          currentNotebooks.map((notebook) => {
            return (
-             <>    
-            <h1>{notebook.title}</h1>
-               
+             <>
+             <div>
+            {notebook.title}
+             </div>    
              </>
            );
          })}
