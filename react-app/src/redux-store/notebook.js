@@ -8,35 +8,33 @@ const REMOVE_NOTEBOOK = "REMOVE_NOTEBOOK"
 const setNotebook = (title)=>({
     type:SET_NOTEBOOK,
     title,
-// })
-// const readNotebookAction = (title)=>({
-//     type:READ_NOTEBOOK,
-//     title
-// })
-// const updateNotebookAction = (title)=>({
-//     type:UPDATE_NOTEBOOK,
-//     title
-// })
-// const DeleteNotebookAction = (title)=>({
-//     type:DELETE_NOTEBOOK,
-//     title
+ })
+
+ const updateNotebook = (title)=>({
+     type:UPDATE_NOTEBOOK,
+     title
+ })
+ const RemoveNotebook = (title)=>({
+     type:REMOVE_NOTEBOOK,
+     title
  })
 
 //THUNKS
-// export const createNotebook =(title)=>async(dispatch)=>{
-//     const res = await fetch("/api/notebooks", {
-//         method: "POST",
-//         headers: {
-//             "Content-Type": "application/json",
-//         },
-//         body: JSON.stringify({
-//             title
-//         })
-//     })
-//     const title = await res.json()
-//     dispatch(createNotebookAction(title))
-//     return title  
-// }
+export const createNotebook =(title)=>async(dispatch)=>{
+    const res = await fetch("/api/notebooks", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            title
+        })
+    })
+    if(!res.ok) throw res
+    const data = await res.json()
+    dispatch(createNotebook(data.data))
+     
+}
 
 export const getNotebook = () =>async(dispatch)=>{
     const response = await fetch("/api/notebooks",{
@@ -46,7 +44,6 @@ export const getNotebook = () =>async(dispatch)=>{
     })
     if (response.ok){
         let data = await response.json()
-        console.log(data)
         dispatch(
             setNotebook(data.data))
     }
@@ -67,10 +64,25 @@ const reducer =(state = initialState,action) => {
                }
             })
             return newState
-          default:
-            return state;
-        }
-    }
+          
+            case CREATE_NOTEBOOK:
+                return{
+                    ...state,[action.title.id]:action.title
+                }
+                default:
+                    return state
+                
+//   "data": [
+//     {
+//       "id": 9,
+//       "title": "hello",
+//       "user_id": 5
+//     }
+//   ],
+//   "message": "success"
+// }
+//         }
+//     }
 
 export default reducer
 
