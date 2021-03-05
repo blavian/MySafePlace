@@ -6,6 +6,7 @@ import { Provider } from "react-redux";
 import configureStore from './redux-store'
 
 import * as sessionActions from './redux-store/session'
+import * as notebookActions from './redux-store/notebook'
 
 //Make a store
 const store = configureStore();
@@ -14,6 +15,7 @@ const store = configureStore();
 if (process.env.NODE_ENV !== 'production') {
   window.store = store;
   window.sessionActions = sessionActions
+  window.notebookActions = notebookActions
 }
 
 

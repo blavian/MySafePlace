@@ -7,7 +7,7 @@ import React from "react"
  const MainImage = styled.div`
    background-image: url(${img});
    background-size: cover;
-   height: 60em;
+   height: 60rem;
    box-sizing: border-box;
    margin: 0;
  `;

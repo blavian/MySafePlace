@@ -19,6 +19,8 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
       }
     }
   };
+  
+
 
   const updateUsername = (e) => {
     setUsername(e.target.value);
@@ -37,7 +39,7 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
   };
 
   if (authenticated) {
-    return <Redirect to="/" />;
+    return <Redirect to="/notebooks" />;
   }
 
   return (
