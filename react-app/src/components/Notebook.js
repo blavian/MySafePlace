@@ -6,7 +6,6 @@ import{getNotebook,createNotebook} from "../redux-store/notebook"
 
  const Notebook = () => {
    const dispatch = useDispatch();
-   const history = useHistory()
    const [title,setTitle] = useState('')
    const currentNotebooks = useSelector(state => Object.values(state.notebook))
      
@@ -15,11 +14,10 @@ import{getNotebook,createNotebook} from "../redux-store/notebook"
    }, [dispatch]);
    
    
-   const handleSubmit = e =>{
+   const handleSubmit = async e =>{
      e.preventDefault()
-     dispatch(createNotebook(title))
-     setTitle()
-     history.push("/notebooks")
+     await dispatch(createNotebook(title))
+     setTitle("")
    }
    return (
      <div>

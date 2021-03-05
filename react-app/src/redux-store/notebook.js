@@ -1,12 +1,5 @@
-//normalized data
- //    newState= {}
-        //    action.title.forEach((item)=>{
-        //        newState[item.id]={
-        //            id:item.id,
-        //            title:item.title
-        //        }
-        //     })
-            // return newState
+
+    
 
 
 
@@ -72,27 +65,27 @@ export const createNotebook =(title)=>async(dispatch)=>{
 const initialState = {}
 
 const reducer =(state = initialState,action) => {
+        let newState;
         switch (action.type) {
           case SET_NOTEBOOK:
-              return action.title
+              newState= {}
+           action.title.forEach((item)=>{
+               newState[item.id]={
+                   id:item.id,
+                   title:item.title
+               }
+            })
+            return newState
           case CREATE_NOTEBOOK:
-          return {...state, ...action.title}
+              console.log(state,action.title)
+              newState = {...state,[action.title.id]:{id:action.title.id,title:action.title.title}}
+              return newState
           default:
             return state
             }
         }
                 
-//   "data": [
-//     {
-//       "id": 9,
-//       "title": "hello",
-//       "user_id": 5
-//     }
-//   ],
-//   "message": "success"
-// }
-//         }
-//     }
+
 
 export default reducer
 
