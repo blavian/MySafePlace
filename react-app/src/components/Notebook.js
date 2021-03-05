@@ -13,6 +13,7 @@ import{getNotebook,createNotebook} from "../redux-store/notebook"
    const handleSubmit = e =>{
      e.preventDefault()
      dispatch(createNotebook(title))
+     setTitle()
    }
    return (
      <div>

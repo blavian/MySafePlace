@@ -52,21 +52,20 @@ export const getNotebook = () =>async(dispatch)=>{
 }
 }
 export const createNotebook =(title)=>async(dispatch)=>{
-    console.log("calling my thunk")
-    // const response = await fetch("/api/notebooks", {
-    //     method: "POST",
-    //     body:JSON.stringify({
-    //         title
-    //     }),
-    //     headers:{
-    //         'Content-type':'application/json'
-    //     },
-    // })
-    // debugger
-    // if(!response.ok) throw response
-    // const {data} = await response.json()
+    const response = await fetch("/api/notebooks", {
+        method: "POST",
+        body:JSON.stringify({
+            title
+        }),
+        headers:{
+            'Content-type':'application/json'
+        },
+    })
+    debugger
+    if(!response.ok) throw response
+    const {data} = await response.json()
     
-    // dispatch(createNotebookActionCreator(data))
+    dispatch(createNotebookActionCreator(data))
 }
      
 
