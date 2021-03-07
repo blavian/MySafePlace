@@ -47,6 +47,7 @@ def get_notebooks():
     user_notebooks = Notebook.query.filter(Notebook.user_id == user.id)
     # return list of all the notebooks
     return {"message": "success", "data": [notebook.to_dict() for notebook in user_notebooks]}, 200
+
 # Update a user's notebook
 
 

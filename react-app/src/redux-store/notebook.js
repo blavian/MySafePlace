@@ -1,8 +1,4 @@
 
-    
-
-
-
 //Action constants
 const CREATE_NOTEBOOK = "notebook/create_notebook"
 const SET_NOTEBOOK =    "notebook/set_notebook"
@@ -15,11 +11,11 @@ const setNotebook = (title)=>({
     title,
  })
 
- const updateNotebook = (title)=>({
+ const updateNotebookActionCreator = (title)=>({
      type:UPDATE_NOTEBOOK,
      title
  })
- const RemoveNotebook = (title)=>({
+ const RemoveNotebookActionCreator = (title)=>({
      type:REMOVE_NOTEBOOK,
      title
  })
@@ -59,6 +55,24 @@ export const createNotebook =(title)=>async(dispatch)=>{
     
     dispatch(createNotebookActionCreator(data))
 }
+
+export const updateNotebook = (title, id) => async (dispatch) => {
+  const response = await fetch(`/api/notebooks/${id}`, {
+    body: JSON.stringify({
+      title,
+    }),
+    headers: {
+      "Content-type": "application/json",
+    },
+  });
+  if (!response.ok) throw response;
+  const { data } = await response.json();
+
+  dispatch(updateNotebookActionCreator(data));
+};
+
+    
+
      
 
 //NOTEBOOK INITIAL STATE 
