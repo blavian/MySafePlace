@@ -28,6 +28,7 @@ import{getNotebook,createNotebook} from "../redux-store/notebook"
            return (
              <div>
             {notebook.title}
+            <input type='text' value = {title} onChange={e=>updateTitle(e.target.value)} />
              </div>    
             
            );
