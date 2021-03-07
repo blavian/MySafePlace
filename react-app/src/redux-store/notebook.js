@@ -58,6 +58,7 @@ export const createNotebook =(title)=>async(dispatch)=>{
 
 export const updateNotebook = (title, id) => async (dispatch) => {
   const response = await fetch(`/api/notebooks/${id}`, {
+    method: "PATCH",
     body: JSON.stringify({
       title,
     }),
