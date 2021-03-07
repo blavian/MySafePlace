@@ -91,9 +91,12 @@ const reducer =(state = initialState,action) => {
             })
             return newState
           case CREATE_NOTEBOOK:
-              console.log(state,action.title)
               newState = {...state,[action.title.id]:{id:action.title.id,title:action.title.title}}
               return newState
+            case UPDATE_NOTEBOOK:
+                newState = {...state,[action.title.id]:{id:action.title.id,title:action.title.title}}
+              return newState
+
           default:
             return state
             }
