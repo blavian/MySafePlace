@@ -19,17 +19,17 @@ import{getNotebook,createNotebook} from "../redux-store/notebook"
      await dispatch(createNotebook(title))
      setTitle("")
    }
+   const updateTitle = e=>setTitle(e.target.value)
    return (
      <div>
        <p> Notebooks </p>
        {currentNotebooks &&
          currentNotebooks.map((notebook) => {
            return (
-             <>
              <div>
             {notebook.title}
              </div>    
-             </>
+            
            );
          })}
          <form onSubmit = {handleSubmit}>

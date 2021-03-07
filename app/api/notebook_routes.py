@@ -71,9 +71,8 @@ def update_notebook(id):
     db.session.commit()
     # Return a  message with the updated notebook and a 201 response
     return {"message": "success", "data": notebook.to_dict()}, 201
+
 # Delete a notebook
-
-
 @notebook_routes.route('/<int:id>', methods=["DELETE"])
 @login_required
 def delete_notebook(id):
