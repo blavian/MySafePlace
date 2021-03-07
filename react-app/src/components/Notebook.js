@@ -25,18 +25,20 @@ import{getNotebook,createNotebook} from "../redux-store/notebook"
        <p> Notebooks </p>
        {currentNotebooks &&
          currentNotebooks.map((notebook) => {
-           return (
-             <div>
-            {notebook.title}
-            <input type='text' value = {title} onChange={e=>updateTitle(e.target.value)} />
-             </div>    
-            
-           );
+           return <div>{notebook.title}</div>;
          })}
-         <form onSubmit = {handleSubmit}>
-           <input type='text' value = {title} onChange={e=>setTitle(e.target.value)} name="title" />
-           <button type="submit">Add a new Notebook</button>
-         </form>
+       <form onSubmit={handleSubmit}>
+         <input
+           type="text"
+           value={title}
+           onChange={(e) => setTitle(e.target.value)}
+           name="title"
+         />
+         <button type="submit">Add a new Notebook</button>
+         <button onClick={(evt) => updateTitle(evt)} type="button">
+           Update
+         </button>
+       </form>
      </div>
    );
  };
