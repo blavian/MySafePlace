@@ -25,8 +25,5 @@ class Notebook(db.Model):
         "user_id":self.user_id,
         "affirmations": self.affirmations
     }
-  def title_to_dict(self):
-      return{
-      "title":self.title
-      }
+ 
  
