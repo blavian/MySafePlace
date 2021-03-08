@@ -1,7 +1,9 @@
 import styled from "styled-components"
 
 const Center = styled.h1`
- text-align:center;
+font-size:30px;
+text-align:center;
+font-weight:300;
 color: #3b49df
 `;
 
