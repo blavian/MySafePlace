@@ -4,6 +4,7 @@ import { useDispatch, useSelector} from "react-redux";
 import{getNotebook,createNotebook} from "../redux-store/notebook"
 import TopRight from "../styled/top-right";
 import Button from "../styled/button"
+import Center from "../styled/center"
  
 
  const Notebook = () => {
@@ -24,7 +25,7 @@ import Button from "../styled/button"
    const updateTitle = e=>setTitle(e.target.value)
    return (
      <>
-       <p> Notebooks </p>
+       <Center> Notebooks </Center>
        {currentNotebooks &&
          currentNotebooks.map((notebook) => {
            return <div>{notebook.title}</div>;
