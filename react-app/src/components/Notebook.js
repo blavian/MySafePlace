@@ -2,6 +2,8 @@ import React, {useState,useEffect } from "react";
 
 import { useDispatch, useSelector} from "react-redux";
 import{getNotebook,createNotebook} from "../redux-store/notebook"
+import TopRight from "../styled/top-right";
+import Button from "../styled/button"
  
 
  const Notebook = () => {
@@ -21,12 +23,13 @@ import{getNotebook,createNotebook} from "../redux-store/notebook"
    }
    const updateTitle = e=>setTitle(e.target.value)
    return (
-     <div>
+     <>
        <p> Notebooks </p>
        {currentNotebooks &&
          currentNotebooks.map((notebook) => {
            return <div>{notebook.title}</div>;
          })}
+       <TopRight>
        <form onSubmit={handleSubmit}>
          <input
            type="text"
@@ -34,12 +37,13 @@ import{getNotebook,createNotebook} from "../redux-store/notebook"
            onChange={(e) => setTitle(e.target.value)}
            name="title"
          />
-         <button type="submit">Add a new Notebook</button>
-         <button onClick={(evt) => updateTitle(evt)} type="button">
+         <Button type="submit">Add a new Notebook</Button>
+         {/* <Button onClick={(evt) => updateTitle(evt)} type="button">
            Update
-         </button>
+         </Button> */}
        </form>
-     </div>
+       </TopRight>
+     </>
    );
  };
 
