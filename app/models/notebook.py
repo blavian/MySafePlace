@@ -8,12 +8,22 @@ class Notebook(db.Model):
   title = db.Column(db.String(40), nullable=False)
   user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
+  # Associations
+  _affirmations = db.relationship(
+      "Self_Affirmation", backref="notebooks", cascade="all, delete-orphan")
+  # Association properties
 
+  @property
+  def affirmations(self):
+      return [x.to_dict() for x in self._affirmations]
+
+  # Scope
   def to_dict(self):
     return {
         "id": self.id,
         "title": self.title,
-        "user_id":self.user_id
+        "user_id":self.user_id,
+        "affirmations": self.affirmations
     }
   def title_to_dict(self):
       return{

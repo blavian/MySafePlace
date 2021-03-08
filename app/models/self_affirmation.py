@@ -1,7 +1,7 @@
 from .db import db
 
 
-class Self_Affimation(db.Model):
+class Self_Affirmation(db.Model):
   __tablename__ = 'self_affirmations'
 
   id = db.Column(db.Integer, primary_key=True)
