@@ -90,24 +90,39 @@ const reducer =(state = initialState,action) => {
         let newState;
         switch (action.type) {
           case SET_NOTEBOOK:
-              newState= {}
-           action.title.forEach((item)=>{
-               newState[item.id]={
-                   id:item.id,
-                   title:item.title
-               }
-            })
-            return newState
+            newState = {};
+            action.title.forEach((item) => {
+              newState[item.id] = {
+                id: item.id,
+                title: item.title,
+              };
+            });
+            return newState;
           case CREATE_NOTEBOOK:
-              newState = {...state,[action.title.id]:{id:action.title.id,title:action.title.title}}
-              return newState
-            case UPDATE_NOTEBOOK:
-                newState = {...state,[action.title.id]:{id:action.title.id,title:action.title.title}}
-              return newState
-
+            newState = {
+              ...state,
+              [action.title.id]: {
+                id: action.title.id,
+                title: action.title.title,
+              },
+            };
+            return newState;
+          case UPDATE_NOTEBOOK:
+            newState = {
+              ...state,
+              [action.title.id]: {
+                id: action.title.id,
+                title: action.title.title,
+              },
+            };
+            return newState;
+          case REMOVE_NOTEBOOK:
+              newState = {...state}
+              delete newState[action.title.id]
+              
           default:
-            return state
-            }
+            return state;
+        }
         }
                 
 
