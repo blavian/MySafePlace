@@ -1,13 +1,10 @@
 import styled from "styled-components"
 
 export const Main = styled.div`
-max-width:1000px;
+max-width:auto;
 margin:0 auto;
 `
 export const Cards = styled.ul`
-    display: flex;
-  flex-wrap: wrap;
-  list-style: none;
   margin: 0;
   padding: 0;
 `
@@ -16,9 +13,8 @@ export const CardItems = styled.li`
   padding: 1rem;
 `;
 export const Card = styled.div`
-  background-color: white;
+    background-color #20bf55;
   border-radius: 0.25rem;
-  box-shadow: 0 20px 40px -14px rgba(0, 0, 0, 0.25);
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -31,15 +27,18 @@ export const Image = styled.div`
 
 export const CardContent = styled.div`
   padding: 1rem;
-  background: linear-gradient(to bottom left, #ef8d9c 40%, #ffc39e 100%);
+    background-color #20bf55;
+    background-image linear-gradient(315deg, #20bf55 0%, #01baef 74%);
+
 `;
 
 export const CardTitle = styled.h2`
   color: #ffffff;
-  font-size: 1.1rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: capitalize;
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-align:center;
   margin: 0px;
 `;
 export const CardButton = styled.a`
@@ -49,9 +48,7 @@ export const CardButton = styled.a`
     text-transform: uppercase;
     border-radius: 4px;
     font-weight: 400;
-    display: block;
     width: 100%;
-    cursor: pointer;
     border: 1px solid rgba(255, 255, 255, 0.2);
  
     

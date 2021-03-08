@@ -27,6 +27,17 @@ import{Main,Cards,CardItems,Card,CardContent,Image,CardTitle,CardButton} from ".
    return (
      <div>
      <Center>My Notebooks</Center>
+     <TopRight>
+       <form onSubmit={handleSubmit}>
+         <input
+           type="text"
+           value={title}
+           onChange={(e) => setTitle(e.target.value)}
+           name="title"
+         />
+         <Button type="submit">Add a new Notebook</Button>
+         </form>
+         </TopRight>
        {currentNotebooks &&
          currentNotebooks.map((notebook) => {
            return (
@@ -40,13 +51,14 @@ import{Main,Cards,CardItems,Card,CardContent,Image,CardTitle,CardButton} from ".
                        </Image>
                        <CardContent>
                          <CardTitle>{notebook.title}</CardTitle>
-                         <CardButton href={`/notebooks/${notebook.id}`}>Go to Notebook
+                         <CardButton href={`/notebooks/${notebook.id}`}>Edit Notebook
                          </CardButton>
                        </CardContent>
                      </Card>
                    </CardItems>
                  </Cards>
                </Main>
+               
              </>
            );
          })}
