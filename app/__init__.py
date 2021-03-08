@@ -10,6 +10,7 @@ from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from app.api.notebook_routes import notebook_routes
 
+
 from .seeds import seed_commands
 
 from .config import Config
