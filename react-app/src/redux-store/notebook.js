@@ -72,7 +72,14 @@ export const updateNotebook = (title, id) => async (dispatch) => {
   dispatch(updateNotebookActionCreator(data));
 };
 
-    
+export const deleteNotebook = ({ id }) => async (dispatch) => {
+  const res = await fetch(`/api/notebooks/${id}`, {
+    method: "DELETE",
+  });
+  const { data } = await res.json()
+  dispatch(RemoveNotebookActionCreator(data));
+  return data;
+};
 
      
 
