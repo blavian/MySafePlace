@@ -19,6 +19,7 @@ def new_affirmation():
     # 2. Prepare form data for validation
     form = AffirmationForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+    notebook_id = request.json['notebook_id']
 
     # 3. Validate form data; if invalid return 400 bad request to user
     if not form.validate_on_submit():
@@ -30,7 +31,8 @@ def new_affirmation():
     date = form.data['date']
 
     # 5. Create the notebook
-    affirmation = Self_Affirmation(user_id=user.id, title=title,description=description,date=date)
+    affirmation = Self_Affirmation(
+        title=title, description=description, date=date, notebook_id=notebook_id)
 
     # 6. Add and commit the notebook
     db.session.add(affirmation)
