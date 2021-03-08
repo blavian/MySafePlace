@@ -25,7 +25,7 @@ export const Card = styled.div`
 `;
 export const Image = styled.div`
   height: auto;
-  max-width: 10%;
+  max-width: 100%;
   vertical-align: middle;
 `;
 
@@ -42,3 +42,20 @@ export const CardTitle = styled.h2`
   text-transform: capitalize;
   margin: 0px;
 `;
+export const CardButton = styled.a`
+    color: blue;
+    padding: 0.8rem;
+    font-size: 14px;
+    text-transform: uppercase;
+    border-radius: 4px;
+    font-weight: 400;
+    display: block;
+    width: 100%;
+    cursor: pointer;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+ 
+    
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.12);
+  }
+`

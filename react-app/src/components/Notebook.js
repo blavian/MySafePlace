@@ -1,11 +1,11 @@
 import React, {useState,useEffect } from "react";
-
+import {NavLink} from "react-router-dom"
 import { useDispatch, useSelector} from "react-redux";
 import{getNotebook,createNotebook} from "../redux-store/notebook"
 import TopRight from "../styled/top-right";
 import Button from "../styled/button"
 import Center from "../styled/center"
-import{Main,Cards,CardItems,Card,CardContent,Image,CardTitle} from "../styled/card"
+import{Main,Cards,CardItems,Card,CardContent,Image,CardTitle,CardButton} from "../styled/card"
 
  const Notebook = () => {
    const dispatch = useDispatch();
@@ -40,6 +40,8 @@ import{Main,Cards,CardItems,Card,CardContent,Image,CardTitle} from "../styled/ca
                        </Image>
                        <CardContent>
                          <CardTitle>{notebook.title}</CardTitle>
+                         <CardButton href={`/notebooks/${notebook.id}`}>Go to Notebook
+                         </CardButton>
                        </CardContent>
                      </Card>
                    </CardItems>
