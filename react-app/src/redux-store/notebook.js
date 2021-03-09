@@ -73,14 +73,26 @@ export const updateNotebook = (title, id) => async (dispatch) => {
   dispatch(updateNotebookActionCreator(data));
 };
 
-export const deleteNotebook = ( id ) => async (dispatch) => {
-  const res = await fetch(`/api/notebooks/${id}`, {
-    method: "DELETE"
-  });
- if (res.ok){
-   dispatch(RemoveNotebookActionCreator(data)
- }
+// export const deleteNotebook = ( id ) => async (dispatch) => {
+//   const res = await fetch(`/api/notebooks/${id}`, {
+//     method: "DELETE"
+//   });
+//  if (res.ok){
+//    dispatch(RemoveNotebookActionCreator(data)
+//  }
 
+// };
+export const deleteNotebook = (id) => async (dispatch) => {
+  const response = await fetch(`/api/notebooks/${id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-type": "application/json",
+    },
+  });
+  if (!response.ok) throw response;
+  const { data } = await response.json();
+
+  dispatch(RemoveNotebookActionCreator(data));
 };
 
      
