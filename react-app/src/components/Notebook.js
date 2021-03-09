@@ -80,8 +80,7 @@ const Notebook = () => {
                         <CardTitle>
                             {notebook.title}
                         </CardTitle>
-                        <CardButton onClick={(e) => {
-                          console.log(id)
+                        <CardButton ondblClick={(e) => {
                           console.log(notebook.id)
                           setId(notebook.id)}
                         

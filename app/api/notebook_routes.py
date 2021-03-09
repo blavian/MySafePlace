@@ -51,7 +51,7 @@ def get_notebooks():
 # Update a user's notebook
 
 
-@notebook_routes.route('/<int:id>', methods=['PATCH'])
+@notebook_routes.route('/<int:id>', methods=['PUT'])
 @login_required
 def update_notebook(id):
     # create the form
