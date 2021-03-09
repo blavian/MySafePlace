@@ -74,7 +74,7 @@ export const createNotebook =(title)=>async(dispatch)=>{
     dispatch(createNotebookActionCreator(data))
 }
 
-export const updateNotebook = ({title, id}) => async (dispatch) => {
+export const updateNotebook = (title, id) => async (dispatch) => {
     console.log("hello from the thunk", title, id)
   const response = await fetch(`/api/notebooks/${id}`, {
     method: "PUT",
@@ -85,10 +85,12 @@ export const updateNotebook = ({title, id}) => async (dispatch) => {
       "Content-type": "application/json",
     },
   });
+  // debugger
   if (!response.ok) throw response;
   const { data } = await response.json();
 
   dispatch(updateNotebookActionCreator(data));
+  return data
 };
 
 // export const deleteNotebook = ( id ) => async (dispatch) => {
@@ -109,12 +111,8 @@ export const deleteNotebook = (id) => async (dispatch) => {
   });
   if (!response.ok) throw response;
   const { data } = await response.json();
-
   dispatch(RemoveNotebookActionCreator(data));
 };
-
-     
-
 //NOTEBOOK INITIAL STATE 
 const initialState = {currentNotebook:{}}
 

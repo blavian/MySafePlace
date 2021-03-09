@@ -52,18 +52,6 @@ const Notebook = () => {
         <Button onClick={(e) => addNotebook(e)} type="button">
           Add Notebook
         </Button>
-
-        {/* <form onSubmit={updateNotebooks}>
-          <input
-            type="text"
-            id={id}
-            placeholder={title}
-            // onChange={(e) => updateNotebook(e.target.value)}
-            name="title"
-          /> */}
-        {/* <Button onClick = {()=> setDisplay(true)}type="submit">Edit new Notebook</Button> */}
-        {/* </form> */}
-        {/* <Modal isOpen={display}> <editForm id= {notebook.id} /> </Modal> */}
       </TopRight>
       <Modal isOpen={display}>
         <EditForm currentNotebook={currentNotebook} />
