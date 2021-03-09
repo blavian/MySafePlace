@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import React from "react"
 
 export const Main = styled.div`
 max-width:auto;
@@ -56,3 +57,7 @@ export const CardButton = styled.a`
     background-color: rgba(255, 255, 255, 0.12);
   }
 `
+
+ export const Wrapper = ({ id}) => {
+   return <CardButton>{id}</CardButton>;
+ };

@@ -14,59 +14,64 @@ import {
   Image,
   CardTitle,
   CardButton,
+  Wrapper
 } from "../styled/card";
-
+import Modal from "react-modal"
+import EditForm from "./EditForm"
 const Notebook = () => {
   const dispatch = useDispatch();
   
   const [title, setTitle] = useState("");
-  const [id, setId] = useState("");
+   
+  const [display,setDisplay] = useState(false)
   const currentNotebooks = useSelector((state) =>
     Object.values(state.notebook)
   );
-
+ 
+  const [currentNotebook,setCurrentNotebook] = useState({id: "",title: ""})
   useEffect(async () => {
     dispatch(getNotebook());
   }, [dispatch])
 
-  const handleSubmit = async (e) => {
+  const addNotebook = async (e) => {
     e.preventDefault();
     await dispatch(createNotebook(title));
     setTitle("");
-  };
-  const updateNotebookSubmit = async (e) => {
-    e.preventDefault();
-    console.log(e.target.id, id)
-    await dispatch(updateNotebook(title, id));
   };
 
   return (
     <div>
       <Center>My Notebooks</Center>
       <TopRight>
-        <form onSubmit={handleSubmit}>
-          <input
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            name="title"
-          />
-          <Button type="submit">Add a new Notebook</Button>
-        </form>
+        <input
+          type="text"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          name="title"
+        />
+        <Button onClick={(e) => addNotebook(e)} type="button">
+          Add Notebook
+        </Button>
 
-        <form onSubmit={updateNotebookSubmit}>
+        {/* <form onSubmit={updateNotebooks}>
           <input
             type="text"
-            id = {id}
-            placeholder = {title}
+            id={id}
+            placeholder={title}
             // onChange={(e) => updateNotebook(e.target.value)}
             name="title"
-          />
-          <Button type="submit">Edit new Notebook</Button>
-       </form>
+          /> */}
+        {/* <Button onClick = {()=> setDisplay(true)}type="submit">Edit new Notebook</Button> */}
+        {/* </form> */}
+        {/* <Modal isOpen={display}> <editForm id= {notebook.id} /> </Modal> */}
       </TopRight>
+      <Modal isOpen={display}>
+        <EditForm currentNotebook={currentNotebook} />
+        <Button onClick={() => setDisplay(false)}>Close</Button>
+      </Modal>
       {currentNotebooks &&
         currentNotebooks.map((notebook) => {
+          const id = notebook.id;
           return (
             <>
               <Main>
@@ -77,15 +82,19 @@ const Notebook = () => {
                         <img src="https://cdn.pixabay.com/photo/2016/08/03/09/00/self-esteem-1566153_960_720.jpg" />
                       </Image>
                       <CardContent>
-                        <CardTitle>
-                            {notebook.title}
-                        </CardTitle>
-                        <CardButton ondblClick={(e) => {
-                          console.log(notebook.id)
-                          setId(notebook.id)}
-                        
-                        }>
-                          edit notebook
+                        <CardTitle>{notebook.title}</CardTitle>
+                        <p>{id}</p>
+                        <CardButton
+                          onClick={(e) => {
+                            console.log(notebook.id, notebook.title);
+                            setCurrentNotebook({
+                              id: notebook.id,
+                              title: notebook.title,
+                            });
+                            setDisplay(true);
+                          }}
+                        >
+                          edit title
                         </CardButton>
                       </CardContent>
                     </Card>

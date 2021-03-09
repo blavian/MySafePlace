@@ -4,11 +4,18 @@ const CREATE_NOTEBOOK = "notebook/create_notebook"
 const SET_NOTEBOOK =    "notebook/set_notebook"
 const UPDATE_NOTEBOOK = "notebook/update_notebook"
 const REMOVE_NOTEBOOK = "notebook/remove_notebook"
+const CURRENT_NOTEBOOK = "notebook/remove_notebook"
+
 
 //Action Creator
 const setNotebook = (title)=>({
     type:SET_NOTEBOOK,
     title,
+ })
+
+ const currentNotebook = (id)=>({
+     type:CURRENT_NOTEBOOK,
+    id
  })
 
  const updateNotebookActionCreator = (title)=>({
@@ -40,6 +47,17 @@ export const getNotebook = () =>async(dispatch)=>{
         )
 }
 }
+
+export const getOneNotebook = (id)=>async(dispatch)=>{
+  const response = await fetch(`/api/notebooks/{id}`)
+    if (response.ok){
+        let {data} = await response.json()
+       
+        dispatch(
+            currentNotebook(data)
+        )
+}
+}
 export const createNotebook =(title)=>async(dispatch)=>{
     const response = await fetch("/api/notebooks", {
         method: "POST",
@@ -56,10 +74,10 @@ export const createNotebook =(title)=>async(dispatch)=>{
     dispatch(createNotebookActionCreator(data))
 }
 
-export const updateNotebook = (title, id) => async (dispatch) => {
-    console.log(title,id)
+export const updateNotebook = ({title, id}) => async (dispatch) => {
+    console.log("hello from the thunk", title, id)
   const response = await fetch(`/api/notebooks/${id}`, {
-    method: "PATCH",
+    method: "PUT",
     body: JSON.stringify({
       title,
     }),
@@ -98,7 +116,7 @@ export const deleteNotebook = (id) => async (dispatch) => {
      
 
 //NOTEBOOK INITIAL STATE 
-const initialState = {}
+const initialState = {currentNotebook:{}}
 
 const reducer =(state = initialState,action) => {
         let newState;
@@ -133,6 +151,10 @@ const reducer =(state = initialState,action) => {
           case REMOVE_NOTEBOOK:
     
               delete newState[action.title.id]
+          case CURRENT_NOTEBOOK:
+            newState = Object.assign({}, state) 
+            newState.currentNotebook =action.id 
+            return newState;    
               
           default:
             return state;
