@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getNotebook, createNotebook,updateNotebook} from "../redux-store/notebook";
+import {
+  getNotebook,
+  createNotebook,
+  updateNotebook,
+} from "../redux-store/notebook";
 import TopRight from "../styled/top-right";
 import Button from "../styled/button";
 import Center from "../styled/center";
@@ -14,24 +18,24 @@ import {
   Image,
   CardTitle,
   CardButton,
-  Wrapper
 } from "../styled/card";
-import Modal from "react-modal"
-import EditForm from "./EditForm"
+import Modal from "react-modal";
+import EditForm from "./EditForm";
 const Notebook = () => {
   const dispatch = useDispatch();
-  
+
   const [title, setTitle] = useState("");
-   
-  const [display,setDisplay] = useState(false)
+
+  const [display, setDisplay] = useState(false);
   const currentNotebooks = useSelector((state) =>
     Object.values(state.notebook)
   );
- 
-  const [currentNotebook,setCurrentNotebook] = useState({id: "",title: ""})
+
+  const [currentNotebook, setCurrentNotebook] = useState({ id: "", title: "" });
+
   useEffect(async () => {
     dispatch(getNotebook());
-  }, [dispatch])
+  }, [dispatch]);
 
   const addNotebook = async (e) => {
     e.preventDefault();
@@ -71,10 +75,8 @@ const Notebook = () => {
                       </Image>
                       <CardContent>
                         <CardTitle>{notebook.title}</CardTitle>
-                        <p>{id}</p>
                         <CardButton
                           onClick={(e) => {
-                            console.log(notebook.id, notebook.title);
                             setCurrentNotebook({
                               id: notebook.id,
                               title: notebook.title,
