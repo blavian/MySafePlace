@@ -39,19 +39,20 @@ app.register_blueprint(affirmation_routes, url_prefix='/api/affirmations')
 db.init_app(app)
 Migrate(app, db)
 
-api_v1_cors_config = {
-    "origins": ["http://localhost:5000"],
-    "methods": ["OPTIONS", "GET", "POST", "PUT"],
-    "allow_headers": ["Authorization", "Content-Type"]
-}
+# api_v1_cors_config = {
+#     "origins": ["http://localhost:5000"],
+#     "methods": ["OPTIONS", "GET", "POST", "PUT","DELETE"],
+#     "allow_headers": ["Authorization", "Content-Type"]
+# }
 # Application Security
-CORS(app, resources={'/api/*': api_v1_cors_config})
+CORS(app)
 
 # Since we are deploying with Docker and Flask,
 # we won't be using a buildpack when we deploy to Heroku.
-# Therefore, we need to make sure that in production any 
+# Therefore, we need to make sure that in production any
 # request made over http is redirected to https.
 # Well.........
+
 
 @app.before_request
 def https_redirect():
