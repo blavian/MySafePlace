@@ -4,7 +4,7 @@ from flask_login import login_required, current_user
 from app.models import db, Notebook
 from app.forms.notebook_form import NotebookForm
 
-notebook_routes = Blueprint('notebook', __name__)
+notebook_routes = Blueprint('notebooks', __name__)
 
 # Create a new Notebook
 
