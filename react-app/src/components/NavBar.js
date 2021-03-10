@@ -5,10 +5,12 @@ import { Outer} from "../styled/navbar";
 
 
 
-const NavBar = ({ setAuthenticated }) => {
+const NavBar = ({ authenticated, setAuthenticated }) => {
   return (
     <Outer>
-          <NavLink to="/" exact={true} activeClassName="active">
+    {!authenticated && (
+      <>
+      <NavLink to="/" exact={true} activeClassName="active">
             Home
           </NavLink>
           <NavLink to="/login" exact={true} activeClassName="active">
@@ -17,10 +19,18 @@ const NavBar = ({ setAuthenticated }) => {
           <NavLink to="/sign-up" exact={true} activeClassName="active">
             Sign Up
           </NavLink>
+      </>
+    )}
+    {authenticated && (
+      <>
           <NavLink to="/users" exact={true} activeClassName="active">
             Users
           </NavLink>
           <LogoutButton setAuthenticated={setAuthenticated} />
+      
+      
+      </>
+    )}
     </Outer>
   );
 }
