@@ -4,7 +4,7 @@ from flask_login import login_required, current_user
 from app.models import db, Notebook
 from app.forms.notebook_form import NotebookForm
 
-notebook_routes = Blueprint('notebook', __name__)
+notebook_routes = Blueprint('notebooks', __name__)
 
 # Create a new Notebook
 
@@ -47,32 +47,22 @@ def get_notebooks():
     user_notebooks = Notebook.query.filter(Notebook.user_id == user.id)
     # return list of all the notebooks
     return {"message": "success", "data": [notebook.to_dict() for notebook in user_notebooks]}, 200
+
 # Update a user's notebook
-
-
-@notebook_routes.route('/<int:id>', methods=['PATCH'])
+@notebook_routes.route('/<int:id>', methods=['PUT'])
 @login_required
 def update_notebook(id):
-    # create the form
-    form = NotebookForm()
-    # add csrf token to the form
-    form['csrf_token'].data = request.cookies['csrf_token']
     # find notebook by its id
     notebook = Notebook.query.get(id)
-    # Validate the form's data; if invalid return 400 bad request to user
-    if not form.validate_on_submit():
-        return {"message": "validation_errors", "data": form.errors}, 400
-    # if the form is valid,grab the title from the form
-    title = form.data["title"]
-    # update the title to what the user writes
-    notebook.title = title
+    # grab the title from the request, and update the title to what the user writes
+    notebook.title = request.get_json()["title"]
     # commit the changes to the database
     db.session.commit()
     # Return a  message with the updated notebook and a 201 response
     return {"message": "success", "data": notebook.to_dict()}, 201
+   
+
 # Delete a notebook
-
-
 @notebook_routes.route('/<int:id>', methods=["DELETE"])
 @login_required
 def delete_notebook(id):
@@ -87,3 +77,14 @@ def delete_notebook(id):
         return {"message": "The notebook has been successfully deleted"}, 200
     else:
         return {"message": "The notebook with that id does not exist."}, 404
+
+
+@notebook_routes.route('/<int:id>')
+@login_required
+def get_notebook(id):
+    # get the user from the session
+    user = current_user
+    #  finds all of the user's notebooks based off of their userId
+    notebook = Notebook.query.get(id)
+    # return list of one notebook
+    return notebook.to_dict()
