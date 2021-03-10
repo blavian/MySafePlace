@@ -9,16 +9,12 @@ const EditForm = ({ currentNotebook }) => {
   const updateNotebooks = (e) => {
     e.preventDefault();
     dispatch(updateNotebook(title, currentNotebook.id));
-    console.log("hello from the edit form");
   };
   return (
     <div>
-      <p>{currentNotebook.title}</p>
-      <p>{currentNotebook.id}</p>
       <form onSubmit={updateNotebooks}>
         <input
           type="text"
-          value={title}
           placeholder={currentNotebook.title}
           onChange={(e) => setTitle(e.target.value)}
           name="title"
