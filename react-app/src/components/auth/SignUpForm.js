@@ -38,9 +38,9 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
     setRepeatPassword(e.target.value);
   };
 
-  // if (authenticated) {
-  //   return <Redirect to="/notebooks" />;
-  // }
+  if (authenticated) {
+    return <Redirect to="/notebooks" />;
+  }
 
   return (
     <form onSubmit={onSignUp}>
