@@ -3,8 +3,8 @@ FROM node:12 AS build-stage
 WORKDIR /react-app
 COPY react-app/. .
 
-
-# Build our React App
+# You have to set this because it should be set during build time.
+ENV REACT_APP_BASE_URL="https://my-safe-place.herokuapp.com/" 
 RUN npm install
 RUN npm run build
 

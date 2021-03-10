@@ -43,6 +43,23 @@ async(dispatch)=>{
   return user
 };
 
+export const demoLogin = () => async (dispatch) => {
+  const res = await fetch("/api/auth/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      email:"demo@aa.io",
+      password: "password"
+    }),
+  });
+  const user = await res.json();
+  if (!user.errors) dispatch(setSessionUser(user));
+  return user;
+};
+
+
 export const logout = () =>async (dispatch) => {
   const response = await fetch("/api/auth/logout", {
     headers: {

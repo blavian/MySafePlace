@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { login} from "../../redux-store/session"
+import { login,demoLogin} from "../../redux-store/session"
 
 
 const LoginForm = ({ authenticated,setAuthenticated}) => {
@@ -19,6 +19,17 @@ const LoginForm = ({ authenticated,setAuthenticated}) => {
       setErrors(user.errors);
     }
   };
+
+  const onDemoLogin = async (e) => {
+    e.preventDefault();
+    const user = await dispatch(demoLogin());
+    if (!user.errors) {
+      setAuthenticated(true);
+    } else {
+      setErrors(user.errors);
+    }
+  };
+
 
   const updateEmail = (e) => {
     setEmail(e.target.value);
@@ -59,6 +70,9 @@ const LoginForm = ({ authenticated,setAuthenticated}) => {
           onChange={updatePassword}
         />
         <button type="submit">Login</button>
+        <button type="submit" onClick={onDemoLogin}>
+          Demo User
+        </button>
       </div>
     </form>
   );
