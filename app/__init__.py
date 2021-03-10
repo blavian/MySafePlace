@@ -39,8 +39,13 @@ app.register_blueprint(affirmation_routes, url_prefix='/api/affirmations')
 db.init_app(app)
 Migrate(app, db)
 
+api_v1_cors_config = {
+    "origins": ["http://localhost:5000"],
+    "methods": ["OPTIONS", "GET", "POST", "PUT"],
+    "allow_headers": ["Authorization", "Content-Type"]
+}
 # Application Security
-CORS(app)
+CORS(app, resources={'/api/*': api_v1_cors_config})
 
 # Since we are deploying with Docker and Flask,
 # we won't be using a buildpack when we deploy to Heroku.

@@ -1,91 +1,145 @@
-//Action constantS
-const CREATE_NOTEBOOK = "CREATE_NOTEBOOK"
-const SET_NOTEBOOK =    "SET_NOTEBOOK"
-const UPDATE_NOTEBOOK = "UPDATE_NOTEBOOK"
-const REMOVE_NOTEBOOK = "REMOVE_NOTEBOOK"
+//Action constants
+const CREATE_NOTEBOOK = "notebook/create_notebook";
+const SET_NOTEBOOK = "notebook/set_notebook";
+const UPDATE_NOTEBOOK = "notebook/update_notebook";
+const REMOVE_NOTEBOOK = "notebook/remove_notebook";
+const CURRENT_NOTEBOOK = "notebook/remove_notebook";
 
 //Action Creator
-const setNotebook = (title)=>({
-    type:SET_NOTEBOOK,
-    title,
- })
+const setNotebook = (title) => ({
+  type: SET_NOTEBOOK,
+  title,
+});
 
- const updateNotebook = (title)=>({
-     type:UPDATE_NOTEBOOK,
-     title
- })
- const RemoveNotebook = (title)=>({
-     type:REMOVE_NOTEBOOK,
-     title
- })
+const currentNotebook = (id) => ({
+  type: CURRENT_NOTEBOOK,
+  id,
+});
+
+const updateNotebookActionCreator = (title) => ({
+  type: UPDATE_NOTEBOOK,
+  title,
+});
+const RemoveNotebookActionCreator = (title) => ({
+  type: REMOVE_NOTEBOOK,
+  title,
+});
+
+const createNotebookActionCreator = (title) => ({
+  type: CREATE_NOTEBOOK,
+  title,
+});
 
 //THUNKS
-export const createNotebook =(title)=>async(dispatch)=>{
-    const res = await fetch("/api/notebooks", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
+export const getNotebook = () => async (dispatch) => {
+  const response = await fetch("/api/notebooks", {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  if (response.ok) {
+    let { data } = await response.json();
+
+    dispatch(setNotebook(data));
+  }
+};
+
+export const getOneNotebook = (id) => async (dispatch) => {
+  const response = await fetch(`/api/notebooks/{id}`);
+  if (response.ok) {
+    let { data } = await response.json();
+
+    dispatch(currentNotebook(data));
+  }
+};
+export const createNotebook = (title) => async (dispatch) => {
+  const response = await fetch("/api/notebooks", {
+    method: "POST",
+    body: JSON.stringify({
+      title,
+    }),
+    headers: {
+      "Content-type": "application/json",
+    },
+  });
+  if (!response.ok) throw response;
+  const { data } = await response.json();
+
+  dispatch(createNotebookActionCreator(data));
+};
+
+export const updateNotebook = (title, id) => async (dispatch) => {
+  console.log("hello from the thunk", title, id);
+  const response = await fetch(`/api/notebooks/${id}`, {
+    method: "PUT",
+    body: JSON.stringify({
+      title,
+    }),
+    headers: {
+      "Content-type": "application/json",
+    },
+  });
+  if (!response.ok) throw response;
+  const { data } = await response.json();
+
+  dispatch(updateNotebookActionCreator(data));
+  return data;
+};
+
+export const deleteNotebook = (id) => async (dispatch) => {
+  const response = await fetch(`/api/notebooks/${id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-type": "application/json",
+    },
+  });
+  if (!response.ok) throw response;
+  const { data } = await response.json();
+  dispatch(RemoveNotebookActionCreator(data));
+};
+//NOTEBOOK INITIAL STATE
+const initialState = { currentNotebook: {} };
+
+const reducer = (state = initialState, action) => {
+  let newState;
+  switch (action.type) {
+    case SET_NOTEBOOK:
+      newState = {};
+      action.title.forEach((item) => {
+        newState[item.id] = {
+          id: item.id,
+          title: item.title,
+        };
+      });
+      return newState;
+    case CREATE_NOTEBOOK:
+      newState = {
+        ...state,
+        [action.title.id]: {
+          id: action.title.id,
+          title: action.title.title,
         },
-        body: JSON.stringify({
-            title
-        })
-    })
-    if(!res.ok) throw res
-    const data = await res.json()
-    dispatch(createNotebook(data.data))
-     
-}
-
-export const getNotebook = () =>async(dispatch)=>{
-    const response = await fetch("/api/notebooks",{
-        headers:{
-            "Content-Type": "application/json",
+      };
+      return newState;
+    case UPDATE_NOTEBOOK:
+      newState = {
+        ...state,
+        [action.title.id]: {
+          id: action.title.id,
+          title: action.title.title,
         },
-    })
-    if (response.ok){
-        let data = await response.json()
-        dispatch(
-            setNotebook(data.data))
-    }
-}
+      };
+      return newState;
+    case REMOVE_NOTEBOOK:
+      delete newState[action.title.id];
+    case CURRENT_NOTEBOOK:
+      newState = Object.assign({}, state);
+      newState.currentNotebook = action.id;
+      return newState;
 
-//NOTEBOOK INITIAL STATE 
-const initialState = {}
-const reducer =(state = initialState,action) => {
-        let newState;
-        switch (action.type) {
-          case SET_NOTEBOOK:
+    default:
+      return state;
+  }
+};
 
-           newState= {}
-           action.title.forEach((item)=>{
-               newState[item.id]={
-                   id:item.id,
-                   title:item.title
-               }
-            })
-            return newState
-          
-            case CREATE_NOTEBOOK:
-                return{
-                    ...state,[action.title.id]:action.title
-                }
-                default:
-                    return state
-            }
-        }
-                
-//   "data": [
-//     {
-//       "id": 9,
-//       "title": "hello",
-//       "user_id": 5
-//     }
-//   ],
-//   "message": "success"
-// }
-//         }
-//     }
-
-export default reducer
-
-
+export default reducer;

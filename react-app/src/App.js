@@ -11,11 +11,13 @@ import { authenticate } from "./redux-store/session"
 import {useDispatch} from "react-redux"
 import LandingPage from "./components/LandingPage"
 import Footer from "./components/Footer"
+import Modal from "react-modal";
 
 function App() {
   const dispatch = useDispatch()
   const [authenticated, setAuthenticated] = useState(false);
   const [loaded, setLoaded] = useState(false);
+  const [display, setDisplay] = useState(false);
 
   useEffect(() => {
     (async() => {
