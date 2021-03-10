@@ -63,7 +63,7 @@ const Notebook = () => {
       </Modal>
       {currentNotebooks &&
         currentNotebooks.map((notebook) => {
-          const id = notebook.id;
+          
           return (
             <>
               <Main>
