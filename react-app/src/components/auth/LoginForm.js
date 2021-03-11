@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { login,demoLogin} from "../../redux-store/session"
-import {H1,Container} from "../../styled/form"
 import Button from "../../styled/button"
 
 const LoginForm = ({ authenticated,setAuthenticated}) => {
@@ -45,10 +44,6 @@ const LoginForm = ({ authenticated,setAuthenticated}) => {
   }
 
   return (
-    <>
-    <Container>
-      <H1>Log in to My Safe Place</H1>
-    </Container>
     <form onSubmit={onLogin}>
       <div>
         {errors.map((error) => (
@@ -78,7 +73,7 @@ const LoginForm = ({ authenticated,setAuthenticated}) => {
           Demo User
         </Button>
     </form>
-    </>
+   
   );
 };
 
