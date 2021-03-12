@@ -25,9 +25,9 @@ const RemoveNotebookActionCreator = (id) => ({
   id,
 });
 
-const createNotebookActionCreator = (title) => ({
+const createNotebookActionCreator = (payload) => ({
   type: CREATE_NOTEBOOK,
-  title,
+  payload,
 });
 
 //THUNKS
