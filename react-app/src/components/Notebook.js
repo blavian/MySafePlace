@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getNotebook,
@@ -36,7 +35,8 @@ const Notebook = () => {
   };
 
  const deleted = async (e) => {
-   await dispatch(deleteNotebook());
+   e.preventDefault()
+   await dispatch(deleteNotebook(currentNotebook.id));
  };
 
   return (
@@ -84,11 +84,14 @@ const Notebook = () => {
                         </Card.CardButton>
                         <Card.CardButton
                           onClick={(e) => {
-                            console.log(notebook.id)
-                            deleted(notebook.id)
+                            setCurrentNotebook({
+                              id: notebook.id,
+                              title: notebook.title,
+                            });
+                            deleted(e)
                           }}
                         >
-                          Delete Notebook
+                         Delete 
                         </Card.CardButton>
                       </Card.CardContent>
                     </Card.Cards>

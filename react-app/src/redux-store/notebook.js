@@ -3,7 +3,7 @@ const CREATE_NOTEBOOK = "notebook/create_notebook";
 const SET_NOTEBOOK = "notebook/set_notebook";
 const UPDATE_NOTEBOOK = "notebook/update_notebook";
 const REMOVE_NOTEBOOK = "notebook/remove_notebook";
-const CURRENT_NOTEBOOK = "notebook/remove_notebook";
+// const CURRENT_NOTEBOOK = "notebook/remove_notebook";
 
 //Action Creator
 const setNotebook = (payload) => ({
@@ -11,10 +11,10 @@ const setNotebook = (payload) => ({
   payload,
 });
 
-const currentNotebook = (payload) => ({
-  type: CURRENT_NOTEBOOK,
-  payload,
-});
+// const currentNotebook = (payload) => ({
+//   type: CURRENT_NOTEBOOK,
+//   payload,
+// });
 
 const updateNotebookActionCreator = (payload) => ({
   type: UPDATE_NOTEBOOK,
@@ -44,14 +44,14 @@ export const getNotebook = () => async (dispatch) => {
   }
 };
 
-export const getOneNotebook = (id) => async (dispatch) => {
-  const response = await fetch(`/api/notebooks/{id}`);
-  if (response.ok) {
-    let { data } = await response.json();
+// export const getOneNotebook = (id) => async (dispatch) => {
+//   const response = await fetch(`/api/notebooks/{id}`);
+//   if (response.ok) {
+//     let { data } = await response.json();
 
-    dispatch(currentNotebook(data));
-  }
-};
+//     dispatch(currentNotebook(data));
+//   }
+// };
 export const createNotebook = (title) => async (dispatch) => {
   const response = await fetch("/api/notebooks", {
     method: "POST",
@@ -96,7 +96,7 @@ export const deleteNotebook = (id) => async (dispatch) => {
   }
 };
 //NOTEBOOK INITIAL STATE
-const initialState = { currentNotebook: {} };
+const initialState = {};
 
 const reducer = (state = initialState, action) => {
   let newState;
@@ -129,13 +129,13 @@ const reducer = (state = initialState, action) => {
       };
       return newState;
     case REMOVE_NOTEBOOK:
-      newState = Object.assign({}, state);
+      newState = {...state}
       delete newState[action.payload.id]
       return newState;
-    case CURRENT_NOTEBOOK:
-      newState = Object.assign({}, state);
-      newState.currentNotebook = action.payload;
-      return newState;
+    // case CURRENT_NOTEBOOK:
+    //   newState = Object.assign({}, state);
+    //   newState.currentNotebook = action.payload;
+    //   return newState;
 
     default:
       return state;
