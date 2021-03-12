@@ -134,7 +134,7 @@ const reducer = (state = initialState, action) => {
       return newState;
     case CURRENT_NOTEBOOK:
       newState = Object.assign({}, state);
-      newState.currentNotebook = action.id;
+      newState.currentNotebook = action.payload;
       return newState;
 
     default:
