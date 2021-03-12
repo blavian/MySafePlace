@@ -129,6 +129,7 @@ const reducer = (state = initialState, action) => {
       };
       return newState;
     case REMOVE_NOTEBOOK:
+      newState = Object.assign({}, state);
       delete newState[action.payload.id]
       return newState;
     case CURRENT_NOTEBOOK:
