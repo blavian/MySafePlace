@@ -93,9 +93,9 @@ export const deleteNotebook = (id) => async (dispatch) => {
       "Content-type": "application/json",
     },
   });
-  if (!response.ok) throw response;
   const { data } = await response.json();
   dispatch(RemoveNotebookActionCreator(data));
+  return data
 };
 //NOTEBOOK INITIAL STATE
 const initialState = { currentNotebook: {} };

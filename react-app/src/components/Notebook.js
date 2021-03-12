@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   getNotebook,
   createNotebook,
-  updateNotebook,
+  deleteNotebook
 } from "../redux-store/notebook";
 import TopRight from "../styled/top-right";
 import Button from "../styled/button";
