@@ -10,15 +10,7 @@ import TopRight from "../styled/top-right";
 import Button from "../styled/button";
 import Center from "../styled/center";
 import * as Card from "../styled/card" 
-//   Main,
-//   Cards,
-//   CardItems,
-//   Card,
-//   CardContent,
-//   Image,
-//   CardTitle,
-//   CardButton,
-// } from "../styled/card";
+
 import Modal from "react-modal";
 import EditForm from "./EditForm";
 const Notebook = () => {
@@ -85,6 +77,17 @@ const Notebook = () => {
                           }}
                         >
                           edit title
+                        </Card.CardButton>
+                        <Card.CardButton
+                          onClick={(e) => {
+                            setCurrentNotebook({
+                              id: notebook.id,
+                              title: notebook.title,
+                            });
+                            
+                          }}
+                        >
+                          Delete Notebook
                         </Card.CardButton>
                       </Card.CardContent>
                     </Card.Cards>
