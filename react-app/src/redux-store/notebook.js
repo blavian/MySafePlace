@@ -20,9 +20,9 @@ const updateNotebookActionCreator = (payload) => ({
   type: UPDATE_NOTEBOOK,
   payload,
 });
-const RemoveNotebookActionCreator = (id) => ({
+const RemoveNotebookActionCreator = (payload) => ({
   type: REMOVE_NOTEBOOK,
-  id,
+  payload,
 });
 
 const createNotebookActionCreator = (payload) => ({
