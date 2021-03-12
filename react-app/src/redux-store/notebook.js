@@ -126,7 +126,8 @@ const reducer = (state = initialState, action) => {
       };
       return newState;
     case REMOVE_NOTEBOOK:
-      delete newState[action.title.id];
+      delete newState[action.id.id]
+      return newState;
     case CURRENT_NOTEBOOK:
       newState = Object.assign({}, state);
       newState.currentNotebook = action.id;
