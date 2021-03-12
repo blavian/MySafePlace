@@ -35,7 +35,9 @@ const Notebook = () => {
     setTitle("");
   };
 
- 
+ const deleted = async (e) => {
+   await dispatch(deleteNotebook());
+ };
 
   return (
     <div>
@@ -82,11 +84,8 @@ const Notebook = () => {
                         </Card.CardButton>
                         <Card.CardButton
                           onClick={(e) => {
-                            setCurrentNotebook({
-                              id: notebook.id,
-                              title: notebook.title,
-                            });
-                            
+                            console.log(notebook.id)
+                            deleted(notebook.id)
                           }}
                         >
                           Delete Notebook

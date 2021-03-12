@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { updateNotebook } from "../redux-store/notebook";
-import Modal from "react-modal";
-
-import { Redirect } from "react-router-dom";
 
 const EditForm = ({ currentNotebook }) => {
   const dispatch = useDispatch();

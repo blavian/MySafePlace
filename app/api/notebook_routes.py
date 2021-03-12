@@ -67,14 +67,14 @@ def update_notebook(id):
 @login_required
 def delete_notebook(id):
 # find notebook by its id
-    notebook = Notebook.query.get(id)
-    if notebook:
+    deleted_notebook = Notebook.query.get(id)
+    if deleted_notebook:
         # delete the notebook
-        db.session.delete(notebook)
+        db.session.delete(deleted_notebook)
     # update the database
         db.session.commit()
     # return a message saying notebook was deleted successfully
-        return {"message": "The notebook has been successfully deleted"}, 200
+        return "The notebook has been successfully deleted"
     else:
         return {"message": "The notebook with that id does not exist."}, 404
 
