@@ -89,13 +89,8 @@ export const updateNotebook = (title, id) => async (dispatch) => {
 export const deleteNotebook = (id) => async (dispatch) => {
   const response = await fetch(`/api/notebooks/${id}`, {
     method: "DELETE",
-    headers: {
-      "Content-type": "application/json",
-    },
   });
-  const { data } = await response.json();
-  dispatch(RemoveNotebookActionCreator(data));
-  return data
+  dispatch(RemoveNotebookActionCreator(id));
 };
 //NOTEBOOK INITIAL STATE
 const initialState = { currentNotebook: {} };
