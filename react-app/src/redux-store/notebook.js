@@ -112,9 +112,9 @@ const reducer = (state = initialState, action) => {
     case CREATE_NOTEBOOK:
       newState = {
         ...state,
-        [action.title.id]: {
-          id: action.title.id,
-          title: action.title.title,
+        [action.payload.id]: {
+          id: action.payload.id,
+          title: action.payload.title,
         },
       };
       return newState;
