@@ -11,9 +11,9 @@ const setNotebook = (payload) => ({
   payload,
 });
 
-const currentNotebook = (id) => ({
+const currentNotebook = (payload) => ({
   type: CURRENT_NOTEBOOK,
-  id,
+  payload,
 });
 
 const updateNotebookActionCreator = (payload) => ({
