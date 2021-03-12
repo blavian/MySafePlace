@@ -16,9 +16,9 @@ const currentNotebook = (id) => ({
   id,
 });
 
-const updateNotebookActionCreator = (title) => ({
+const updateNotebookActionCreator = (payload) => ({
   type: UPDATE_NOTEBOOK,
-  title,
+  payload,
 });
 const RemoveNotebookActionCreator = (id) => ({
   type: REMOVE_NOTEBOOK,
@@ -121,9 +121,9 @@ const reducer = (state = initialState, action) => {
     case UPDATE_NOTEBOOK:
       newState = {
         ...state,
-        [action.title.id]: {
-          id: action.title.id,
-          title: action.title.title,
+        [action.payload.id]: {
+          id: action.payload.id,
+          title: action.payload.title,
         },
       };
       return newState;
