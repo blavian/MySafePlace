@@ -9,16 +9,16 @@ import {
 import TopRight from "../styled/top-right";
 import Button from "../styled/button";
 import Center from "../styled/center";
-import {
-  Main,
-  Cards,
-  CardItems,
-  Card,
-  CardContent,
-  Image,
-  CardTitle,
-  CardButton,
-} from "../styled/card";
+import * as Card from "../styled/card" 
+//   Main,
+//   Cards,
+//   CardItems,
+//   Card,
+//   CardContent,
+//   Image,
+//   CardTitle,
+//   CardButton,
+// } from "../styled/card";
 import Modal from "react-modal";
 import EditForm from "./EditForm";
 const Notebook = () => {
@@ -66,16 +66,16 @@ const Notebook = () => {
           
           return (
             <>
-              <Main>
-                <Cards>
-                  <CardItems>
-                    <Card>
-                      <Image>
+              <Card.Main>
+                <Card.Cards>
+                  <Card.CardItems>
+                    <Card.Cards>
+                      <Card.Image>
                         <img src="https://cdn.pixabay.com/photo/2016/08/03/09/00/self-esteem-1566153_960_720.jpg" />
-                      </Image>
-                      <CardContent>
-                        <CardTitle>{notebook.title}</CardTitle>
-                        <CardButton
+                      </Card.Image>
+                      <Card.CardContent>
+                        <Card.CardTitle>{notebook.title}</Card.CardTitle>
+                        <Card.CardButton
                           onClick={(e) => {
                             setCurrentNotebook({
                               id: notebook.id,
@@ -85,12 +85,12 @@ const Notebook = () => {
                           }}
                         >
                           edit title
-                        </CardButton>
-                      </CardContent>
-                    </Card>
-                  </CardItems>
-                </Cards>
-              </Main>
+                        </Card.CardButton>
+                      </Card.CardContent>
+                    </Card.Cards>
+                  </Card.CardItems>
+                </Card.Cards>
+              </Card.Main>
             </>
           );
         })}
