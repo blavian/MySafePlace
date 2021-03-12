@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { updateNotebook } from "../redux-store/notebook";
+import { updateNotebook,deleteNotebook } from "../redux-store/notebook";
+import Button from "../styled/button"
 
 const EditForm = ({ currentNotebook }) => {
   const dispatch = useDispatch();
@@ -13,6 +14,11 @@ const EditForm = ({ currentNotebook }) => {
     e.preventDefault();
     dispatch(updateNotebook(title, currentNotebook.id));
   };
+
+   const deleted = async (e) => {
+     e.preventDefault();
+     await dispatch(deleteNotebook(currentNotebook.id));
+   };
   return (
     <div>
       <form onSubmit={updateNotebooks}>
@@ -22,9 +28,10 @@ const EditForm = ({ currentNotebook }) => {
           onChange={(e) => setTitle(e.target.value)}
           name="title"
         />
-        <button onClick={() => setDisplay(false)}
+        <button 
           type="submit">Edit new Notebook
         </button>
+        <Button onclick = {deleted} DELETE NOTEBOOK></Button> 
       </form>
     </div>
   );

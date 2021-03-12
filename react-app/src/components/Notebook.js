@@ -34,9 +34,10 @@ const Notebook = () => {
     setTitle("");
   };
 
- const deleted = async (e) => {
-   e.preventDefault()
-   await dispatch(deleteNotebook(currentNotebook.id));
+ const deleted = async (e,notebookId) => {
+   console.log("is it here", currentNotebook)
+   await dispatch(deleteNotebook(notebookId));
+   window.location.reload()
  };
 
   return (
@@ -80,9 +81,14 @@ const Notebook = () => {
                             setDisplay(true);
                           }}
                         >
-                          Edit/Delete Your Notebook
-                        
-                        
+                          edit title
+                        </Card.CardButton>
+                        <Card.CardButton
+                          onClick={ (e)=> {
+                           deleted(e, notebook.id) 
+                          }}
+                        >
+                         Delete 
                         </Card.CardButton>
                       </Card.CardContent>
                     </Card.Cards>
