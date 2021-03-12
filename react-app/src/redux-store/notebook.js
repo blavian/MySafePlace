@@ -87,6 +87,7 @@ export const updateNotebook = (title, id) => async (dispatch) => {
 };
 
 export const deleteNotebook = (id) => async (dispatch) => {
+  console.log("hello from the thunk",id);
   const response = await fetch(`/api/notebooks/${id}`, {
     method: "DELETE",
   })
@@ -127,9 +128,9 @@ const reducer = (state = initialState, action) => {
         },
       };
       return newState;
-    // case REMOVE_NOTEBOOK:
-    //   delete newState[action.id]
-    //   return newState;
+    case REMOVE_NOTEBOOK:
+      delete newState[action.payload.id]
+      return newState;
     case CURRENT_NOTEBOOK:
       newState = Object.assign({}, state);
       newState.currentNotebook = action.id;
