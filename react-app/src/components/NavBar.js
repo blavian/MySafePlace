@@ -2,28 +2,17 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
 import { Outer} from "../styled/navbar";
+import HamburgerMenu from "./HamburgerMenu"
 
-
-
-const NavBar = ( {authenticated,setAuthenticated }) => {
+const NavBar = ({ authenticated, setAuthenticated }) => {
   return (
-        <Outer>
-          <NavLink to="/" exact={true} activeClassName="active">
-            Home
-          </NavLink>
-          {!authenticated && <><NavLink to="/login" exact={true} activeClassName="active">
-            Login
-          </NavLink>
-          <NavLink to="/sign-up" exact={true} activeClassName="active">
-            Sign Up
-          </NavLink>
-          <NavLink to="/users" exact={true} activeClassName="active">
-            Users
-          </NavLink> </>}
-          {authenticated &&
-          <LogoutButton setAuthenticated={setAuthenticated}  /> } 
-     </Outer>
+    <Outer>
+      <HamburgerMenu />
+    </Outer>
   );
-}
+};
 
-export default NavBar;
+
+export default NavBar
+
+
