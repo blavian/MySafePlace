@@ -80,18 +80,9 @@ const Notebook = () => {
                             setDisplay(true);
                           }}
                         >
-                          edit title
-                        </Card.CardButton>
-                        <Card.CardButton
-                          onClick={(e) => {
-                            setCurrentNotebook({
-                              id: notebook.id,
-                              title: notebook.title,
-                            });
-                            deleted(e)
-                          }}
-                        >
-                         Delete 
+                          Edit/Delete Your Notebook
+                        
+                        
                         </Card.CardButton>
                       </Card.CardContent>
                     </Card.Cards>
