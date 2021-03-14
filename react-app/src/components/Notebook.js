@@ -10,13 +10,8 @@ import Button from "../styled/button";
 import Center from "../styled/center";
 import * as Card from "../styled/card" 
 
-import Modal from "react-modal";
+import Modal from "styled-react-modal";
 import EditForm from "./EditForm";
-
-
-
-
-
 
 
 
@@ -24,8 +19,18 @@ const Notebook = () => {
   const dispatch = useDispatch();
 
   const [title, setTitle] = useState("");
+const StyledModal = Modal.styled`
+  width: 50rem;
+  height: 50rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+  const [isOpen, setIsOpen] = useState(false)
 
-  const [display, setDisplay] = useState(false);
+  function toggleModal(e) {
+    setIsOpen(!isOpen)
+  }
   const currentNotebooks = useSelector((state) =>
     Object.values(state.notebook)
   );
@@ -60,10 +65,13 @@ const Notebook = () => {
           Add Notebook
         </Button>
       </TopRight>
-      <Modal isOpen={display}>
+      <StyledModal 
+      isOpen={isOpen}
+      onBackgroundClick={toggleModal}
+          onEscapeKeydown={toggleModal}>
         <EditForm currentNotebook={currentNotebook} />
-        <Button onClick={() => setDisplay(false)}>Close</Button>
-      </Modal>
+        <Button onClick={toggleModal}>Close</Button>
+      </StyledModal>
       {currentNotebooks &&
         currentNotebooks.map((notebook) => {
           return (
@@ -83,7 +91,7 @@ const Notebook = () => {
                               id: notebook.id,
                               title: notebook.title,
                             });
-                            setDisplay(true);
+                            setIsOpen(true);
                           }}
                         >
                           edit title
