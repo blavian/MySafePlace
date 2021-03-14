@@ -13,10 +13,6 @@ const EditForm = ({ currentNotebook }) => {
     dispatch(updateNotebook(title, currentNotebook.id));
   };
 
-   const deleted = async (e) => {
-     e.preventDefault();
-     await dispatch(deleteNotebook(currentNotebook.id));
-   };
   return (
     <div>
       <form onSubmit={updateNotebooks}>
