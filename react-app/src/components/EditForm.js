@@ -6,8 +6,6 @@ import Button from "../styled/button"
 const EditForm = ({ currentNotebook }) => {
   const dispatch = useDispatch();
   const [title, setTitle] = useState(currentNotebook.title);
-  
-  const [display, setDisplay] = useState(false);
 
 
   const updateNotebooks = (e) => {
