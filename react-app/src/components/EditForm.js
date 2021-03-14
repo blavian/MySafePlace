@@ -28,10 +28,9 @@ const EditForm = ({ currentNotebook }) => {
           onChange={(e) => setTitle(e.target.value)}
           name="title"
         />
-        <button 
+        <Button 
           type="submit">Edit new Notebook
-        </button>
-        <Button onclick = {deleted} DELETE NOTEBOOK></Button> 
+        </Button> 
       </form>
     </div>
   );

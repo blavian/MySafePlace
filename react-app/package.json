@@ -18,7 +18,8 @@
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
-    "styled-components": "^5.2.1"
+    "styled-components": "^5.2.1",
+    "styled-react-modal": "^2.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
