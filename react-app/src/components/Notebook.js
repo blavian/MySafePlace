@@ -12,6 +12,14 @@ import * as Card from "../styled/card"
 
 import Modal from "react-modal";
 import EditForm from "./EditForm";
+
+
+
+
+
+
+
+
 const Notebook = () => {
   const dispatch = useDispatch();
 
@@ -58,7 +66,6 @@ const Notebook = () => {
       </Modal>
       {currentNotebooks &&
         currentNotebooks.map((notebook) => {
-          
           return (
             <>
               <Card.Main>
@@ -82,11 +89,11 @@ const Notebook = () => {
                           edit title
                         </Card.CardButton>
                         <Card.CardButton
-                          onClick={ (e)=> {
-                           deleted(e, notebook.id) 
+                          onClick={(e) => {
+                            deleted(e, notebook.id);
                           }}
                         >
-                         Delete 
+                          Delete
                         </Card.CardButton>
                       </Card.CardContent>
                     </Card.Cards>

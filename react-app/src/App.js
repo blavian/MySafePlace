@@ -11,7 +11,7 @@ import { authenticate } from "./redux-store/session"
 import {useDispatch} from "react-redux"
 import LandingPage from "./components/LandingPage"
 import Footer from "./components/Footer"
-import Modal from "react-modal";
+import { ModalProvider } from "styled-react-modal";
 
 function App() {
   const dispatch = useDispatch()
@@ -35,6 +35,7 @@ function App() {
 
   return (
     <BrowserRouter>
+    <ModalProvider>
       <NavBar setAuthenticated={setAuthenticated} 
               authenticated = {authenticated}
       />
@@ -62,6 +63,7 @@ function App() {
         </ProtectedRoute>
       </Switch>
       <Footer/>
+      </ModalProvider>
     </BrowserRouter>
     
   );
