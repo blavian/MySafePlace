@@ -12,6 +12,7 @@ import {useDispatch} from "react-redux"
 import LandingPage from "./components/LandingPage"
 import Footer from "./components/Footer"
 import { ModalProvider } from "styled-react-modal";
+import { PostsList } from "./features/Notebooks/notebooksList";
 
 function App() {
   const dispatch = useDispatch()
@@ -35,37 +36,55 @@ function App() {
 
   return (
     <BrowserRouter>
-    <ModalProvider>
-      <NavBar setAuthenticated={setAuthenticated} 
-              authenticated = {authenticated}
-      />
-      <Switch>
-      <Route path="/" exact={true}>
-          <LandingPage />
+      <ModalProvider>
+        <NavBar
+          setAuthenticated={setAuthenticated}
+          authenticated={authenticated}
+        />
+        <Switch>
+          <Route path="/" exact={true}>
+            <LandingPage />
           </Route>
-        <Route path="/login" exact={true}>
-          <LoginForm
+          <Route path="/login" exact={true}>
+            <LoginForm
+              authenticated={authenticated}
+              setAuthenticated={setAuthenticated}
+            />
+          </Route>
+          <Route path="/sign-up" exact={true}>
+            <SignUpForm
+              authenticated={authenticated}
+              setAuthenticated={setAuthenticated}
+            />
+          </Route>
+          <ProtectedRoute
+            path="/users"
+            exact={true}
             authenticated={authenticated}
-            setAuthenticated={setAuthenticated}
-          />
-        </Route>
-        <Route path="/sign-up" exact={true}>
-          <SignUpForm authenticated={authenticated} setAuthenticated={setAuthenticated} />
-        </Route>
-        <ProtectedRoute path="/users" exact={true} authenticated={authenticated}>
-          <UsersList/>
-        </ProtectedRoute>
-        <ProtectedRoute path="/users/:userId" exact={true} authenticated={authenticated}>
-          <User />
-        </ProtectedRoute>
-        <ProtectedRoute path="/notebooks" exact={true} authenticated={authenticated}>
-          <Notebook />
-        </ProtectedRoute>
-      </Switch>
-      <Footer/>
+          >
+            <UsersList />
+          </ProtectedRoute>
+          <ProtectedRoute
+            path="/users/:userId"
+            exact={true}
+            authenticated={authenticated}
+          >
+            <User />
+          </ProtectedRoute>
+          <ProtectedRoute
+            path="/notebooks"
+            exact={true}
+            authenticated={authenticated}
+          >
+            <Notebook />
+          </ProtectedRoute>
+          <Route path="/posts" exact={true}>
+            <PostsList />
+          </Route>
+        </Switch>
+        <Footer />
       </ModalProvider>
     </BrowserRouter>
-    
   );
 }
 
