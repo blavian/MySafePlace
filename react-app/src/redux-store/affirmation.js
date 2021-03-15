@@ -9,7 +9,7 @@ const setAffirmation = (payload) => ({
 
 //THUNKS
 export const getAffirmations = (id) => async (dispatch) => {
-  const response = await fetch("/api/affirmations", {
+  const response = await fetch("/api/affirmations/${id}", {
     headers: {
       "Content-Type": "application/json",
     },

@@ -6,7 +6,7 @@ import {
 
 import * as Card from "../styled/card";
 
-const Affirmations = () => {
+const Affirmation = () => {
   const dispatch = useDispatch();
 
   const [title, setTitle] = useState("");
@@ -15,8 +15,9 @@ const Affirmations = () => {
   
   const currentAffirmations = useSelector((state) =>
     Object.values(state.affirmation)
+    
   );
-
+console.log(currentAffirmations);
  
 
   useEffect(async () => {
@@ -26,30 +27,12 @@ const Affirmations = () => {
 
   return (
     <div>
-      <input
-        type="text"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        name="title"
-      />
-      <input
-        type="text"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-        name="description"
-        />
-        <input
-          type="text"
-          value={date}
-          onChange={(e) => setDate(e.target.value)}
-          name="date"
-        />
       {currentAffirmations &&
-        currentAffirmations.map((a) => {
+        currentAffirmations.map((affirmation) => {
           return (
             <div key={affirmation.id}>
-             <p>{a.title}</p>
-             
+             <p>{affirmation.title}</p>
+
             </div>
           );
         })}
@@ -57,4 +40,4 @@ const Affirmations = () => {
   );
 };
 
-export default Notebook;
+export default Affirmation;
