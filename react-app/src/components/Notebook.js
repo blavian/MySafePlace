@@ -33,7 +33,9 @@ const StyledModal = Modal.styled`
   }
   const currentNotebooks = useSelector((state) =>
     Object.values(state.notebook)
+    
   );
+  console.log(currentNotebooks)
 
   const [currentNotebook, setCurrentNotebook] = useState({ id: "", title: "" });
 
@@ -75,7 +77,7 @@ const StyledModal = Modal.styled`
       {currentNotebooks &&
         currentNotebooks.map((notebook) => {
           return (
-            <>
+            <div key={notebook.id}>
               <Card.Main>
                 <Card.Cards>
                   <Card.CardItems>
@@ -108,7 +110,7 @@ const StyledModal = Modal.styled`
                   </Card.CardItems>
                 </Card.Cards>
               </Card.Main>
-            </>
+            </div>
           );
         })}
     </div>
