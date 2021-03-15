@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { login,demoLogin} from "../../redux-store/session"
+import {Container,Form} from "../../styled/registration_forms"
+import Button from "../../styled/button"
+
+
 
 
 const LoginForm = ({ authenticated,setAuthenticated}) => {
@@ -44,13 +48,15 @@ const LoginForm = ({ authenticated,setAuthenticated}) => {
   }
 
   return (
-    <form onSubmit={onLogin}>
-      <div>
-        {errors.map((error) => (
-          <div>{error}</div>
-        ))}
-      </div>
-      <div>
+    <Container>
+      <Form onSubmit={onLogin}>
+        <div>
+          {errors.map((error) => (
+            <div>{error}</div>
+          ))}
+        </div>
+
+        <h1>Log in to My Safe Place</h1>
         <label htmlFor="email">Email</label>
         <input
           name="email"
@@ -59,8 +65,6 @@ const LoginForm = ({ authenticated,setAuthenticated}) => {
           value={email}
           onChange={updateEmail}
         />
-      </div>
-      <div>
         <label htmlFor="password">Password</label>
         <input
           name="password"
@@ -69,12 +73,12 @@ const LoginForm = ({ authenticated,setAuthenticated}) => {
           value={password}
           onChange={updatePassword}
         />
-        <button type="submit">Login</button>
-        <button type="submit" onClick={onDemoLogin}>
+        <Button type="submit">Login</Button>
+        <Button type="submit" onClick={onDemoLogin}>
           Demo User
-        </button>
-      </div>
-    </form>
+        </Button>
+      </Form>
+    </Container>
   );
 };
 
