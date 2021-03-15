@@ -53,4 +53,21 @@ def get_affirmation(id):
 # return list of all the affirmations
     return {"message": "success", "data": [affirmation.to_dict() for affirmation in user_affirmations]}, 200
 
+# update the affirmations
+
+
+@affirmation_routes.route('/<int:id>', methods=['PUT'])
+@login_required
+def update_affirmation(id):
+    # find affirmation by its id
+    affirmation = Self_Affirmation.query.get(id)
+    # grab the title, and description from the request, and update them
+    affirmation.title = request.get_json()["title"]
+    affirmation.description = request.get_json()["description"]
+    affirmation.date = request.get_json()["date"]
+    # commit the changes to the database
+    db.session.commit()
+    # Return a  message with the updated notebook and a 201 response
+    return {"message": "success", "data": affirmation.to_dict()}, 201
+
 
