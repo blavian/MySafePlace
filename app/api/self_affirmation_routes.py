@@ -1,15 +1,13 @@
 from flask import Blueprint, request
 from flask_login import login_required, current_user
 
-from app.models import db, Self_Affirmation
+from app.models import db, Self_Affirmation,Notebook
 
 from app.forms.affirmation_form import AffirmationForm
 
 affirmation_routes = Blueprint('affirmation', __name__)
 
 # Create a new affirmation
-
-
 @affirmation_routes.route('', methods=['POST'])
 @login_required
 def new_affirmation():
@@ -33,11 +31,26 @@ def new_affirmation():
     # 5. Create the notebook
     affirmation = Self_Affirmation(
         title=title, description=description, date=date, notebook_id=notebook_id)
-
+       
     # 6. Add and commit the notebook
     db.session.add(affirmation)
     db.session.commit()
 
     # 7. Send 201 response to the user
     return {"message": "success", "data": affirmation.to_dict()}, 201
+
+# Get all of a notebooks affirmations
+
+
+@affirmation_routes.route('/<int:id>')
+@login_required
+def get_affirmation(id):
+# get the notebook id
+    notebook = Notebook.query.get(id)
+# find the affirmation from that id
+    user_affirmations = Self_Affirmation.query.filter(Self_Affirmation.notebook_id ==notebook.id)
+    print(user_affirmations)
+# return list of all the affirmations
+    return {"message": "success", "data": [affirmation.to_dict() for affirmation in user_affirmations]}, 200
+
 
