@@ -32,7 +32,7 @@ const createNotebookActionCreator = (payload) => ({
   payload,
 });
 
-THUNKS
+
 export const getNotebook = () => async (dispatch) => {
   const response = await fetch("/api/notebooks", {
     headers: {
