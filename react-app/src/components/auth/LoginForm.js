@@ -7,14 +7,16 @@ import styled from "styled-components"
 const Container = styled.div`
   display: flex;
   justify-content: center;
+ 
 `;
 
 const Form = styled.form`
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
+
+
 
 const LoginForm = ({ authenticated,setAuthenticated}) => {
   const dispatch = useDispatch()
