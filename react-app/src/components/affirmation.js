@@ -23,15 +23,7 @@ console.log(currentAffirmations);
 
   return (
     <div>
-      {currentAffirmations &&
-        currentAffirmations.map((affirmation) => {
-          return (
-            <div key={affirmation.id}>
-             <p>{affirmation.title}</p>
-
-            </div>
-          );
-        })}
+     <h1>at least this works</h1>
     </div>
   );
 };
