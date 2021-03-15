@@ -71,3 +71,20 @@ def update_affirmation(id):
     return {"message": "success", "data": affirmation.to_dict()}, 201
 
 
+@affirmation_routes.route('/<int:id>', methods=['DELETE'])
+@login_required
+def delete_affirmation(id):
+    # find affirmation by its id
+    deleted_affirmation = Self_Affirmation.query.get(id)
+    # if it exists
+    if deleted_affirmation:
+        #delete it
+        db.session.delete(deleted_affirmation)
+        # update the database
+        db.session.commit()
+        #return a message confirming the delete
+        return"why are you deleting this???"
+        #otherwise let the user know the affirmation does not exist
+    else:
+        return "This does not exist"
+     
