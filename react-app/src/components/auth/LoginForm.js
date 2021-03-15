@@ -2,19 +2,9 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { login,demoLogin} from "../../redux-store/session"
-import styled from "styled-components"
+import {Container,Form} from "../../styled/registration_forms"
+import Button from "../../styled/button"
 
-const Container = styled.div`
-  display: flex;
-  justify-content: center;
- 
-`;
-
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-`;
 
 
 
@@ -83,10 +73,10 @@ const LoginForm = ({ authenticated,setAuthenticated}) => {
           value={password}
           onChange={updatePassword}
         />
-        <button type="submit">Login</button>
-        <button type="submit" onClick={onDemoLogin}>
+        <Button type="submit">Login</Button>
+        <Button type="submit" onClick={onDemoLogin}>
           Demo User
-        </button>
+        </Button>
       </Form>
     </Container>
   );
