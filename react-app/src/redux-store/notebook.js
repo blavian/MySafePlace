@@ -1,3 +1,5 @@
+import { createSlice,createAsyncThunk } from "@reduxjs/toolkit";
+
 //Action constants
 const CREATE_NOTEBOOK = "notebook/create_notebook";
 const SET_NOTEBOOK = "notebook/set_notebook";
@@ -30,7 +32,7 @@ const createNotebookActionCreator = (payload) => ({
   payload,
 });
 
-//THUNKS
+THUNKS
 export const getNotebook = () => async (dispatch) => {
   const response = await fetch("/api/notebooks", {
     headers: {
@@ -43,6 +45,10 @@ export const getNotebook = () => async (dispatch) => {
     dispatch(setNotebook(data));
   }
 };
+
+
+
+
 
 // export const getOneNotebook = (id) => async (dispatch) => {
 //   const response = await fetch(`/api/notebooks/{id}`);
@@ -87,11 +93,11 @@ export const updateNotebook = (title, id) => async (dispatch) => {
 };
 
 export const deleteNotebook = (id) => async (dispatch) => {
-  console.log("hello from the thunk",id);
+  console.log("hello from the thunk", id);
   const response = await fetch(`/api/notebooks/${id}`, {
     method: "DELETE",
-  })
-  if (response.ok){
+  });
+  if (response.ok) {
     dispatch(RemoveNotebookActionCreator(id));
   }
 };
@@ -130,8 +136,9 @@ const reducer = (state = initialState, action) => {
       return newState;
     case REMOVE_NOTEBOOK:
       newState = {
-        ...state}
-      delete newState[action.payload]
+        ...state,
+      };
+      delete newState[action.payload];
       return newState;
     // case CURRENT_NOTEBOOK:
     //   newState = Object.assign({}, state);
