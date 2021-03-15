@@ -8,7 +8,7 @@ const setAffirmation = (payload) => ({
 });
 
 //THUNKS
-export const getNotebook = (id) => async (dispatch) => {
+export const getAffirmations = (id) => async (dispatch) => {
   const response = await fetch("/api/affirmations", {
     headers: {
       "Content-Type": "application/json",
@@ -27,7 +27,7 @@ const initialState = {};
 const reducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
-    case SET_NOTEBOOK:
+    case SET_AFFIRMATION:
       newState = {};
       action.payload.forEach((item) => {
         newState[item.id] = {
