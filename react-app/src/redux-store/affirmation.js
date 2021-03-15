@@ -24,11 +24,21 @@ const reducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
     case SET_AFFIRMATION:
-      newState = Object.assign({}, state);
-     newState.setAffirmation = action.payload;
+      newState = {};
+      action.payload.forEach((item) => {
+        newState[item.id] = {
+          id: item.id,
+          title: item.title,
+          description: item.description,
+          date: item.date,
+        };
+      });
+      console.log(newState)
       return newState;
     default:
       return state;
   }
-};
+}; 
+
+
 export default reducer

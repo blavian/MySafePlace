@@ -4,7 +4,6 @@ import {
   getAffirmations 
 } from "../redux-store/affirmation"
 
-import * as Card from "../styled/card";
 
 const Affirmation = () => {
   const dispatch = useDispatch();
@@ -13,10 +12,7 @@ const Affirmation = () => {
   const[description,setDescription] = useState('')
   const[date,setDate] = useState('')
   
-  const currentAffirmations = useSelector((state) =>
-    Object.values(state.affirmation)
-    
-  );
+  const currentAffirmations = useSelector((state) =>state.affirmation);
 console.log(currentAffirmations);
  
 
