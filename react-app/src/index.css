@@ -1,5 +1,9 @@
 /* TODO Add site wide styles */
 body{
-    background-color: #EEF0F1;
+    margin:0px;
+    padding:0px;
+    height:100%;
+    font-size:12px;
+    background: #EEF0F1;
     font-family: Monaco;
 }
