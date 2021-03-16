@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from flask_login import login_required, current_user
 
-from app.models import db, Notebook
+from app.models import db, Notebook,Self_Affirmation
 from app.forms.notebook_form import NotebookForm
 
 notebook_routes = Blueprint('notebooks', __name__)
@@ -14,7 +14,6 @@ notebook_routes = Blueprint('notebooks', __name__)
 def new_notebook():
     # 1. Get user from session
     user = current_user
-
     # 2. Prepare form data for validation
     form = NotebookForm()
     form['csrf_token'].data = request.cookies['csrf_token']
