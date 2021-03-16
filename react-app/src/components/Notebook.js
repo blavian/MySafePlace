@@ -86,7 +86,8 @@ const StyledModal = Modal.styled`
                         <img src="https://cdn.pixabay.com/photo/2016/08/03/09/00/self-esteem-1566153_960_720.jpg" />
                       </Card.Image>
                       <Card.CardContent>
-                        <Card.CardTitle>{notebook.title}</Card.CardTitle>
+                        <Card.CardTitle>
+                        <a href="/notebooks">{notebook.title}</a></Card.CardTitle>
                         <Card.CardButton
                           onClick={(e) => {
                             setCurrentNotebook({
