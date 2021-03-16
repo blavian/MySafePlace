@@ -39,19 +39,7 @@ def new_affirmation():
     # 7. Send 201 response to the user
     return {"message": "success", "data": affirmation.to_dict()}, 201
 
-# Get all of a notebooks affirmations
 
-
-@affirmation_routes.route('/<int:id>')
-@login_required
-def get_affirmation(id):
-# get the notebook id
-    notebook = Notebook.query.get(id)
-# find the affirmation from that id
-    user_affirmations = Self_Affirmation.query.filter(Self_Affirmation.notebook_id ==notebook.id)
-    print(user_affirmations)
-# return list of all the affirmations
-    return {"message": "success", "data": [affirmation.to_dict() for affirmation in user_affirmations]}, 200
 
 # update the affirmations
 
