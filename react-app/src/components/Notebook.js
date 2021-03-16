@@ -12,7 +12,7 @@ import * as Card from "../styled/card"
 
 import Modal from "styled-react-modal";
 import EditForm from "./EditForm";
-
+import { NavLink,Link } from 'react-router-dom';
 
 
 const Notebook = () => {
@@ -87,7 +87,7 @@ const StyledModal = Modal.styled`
                       </Card.Image>
                       <Card.CardContent>
                         <Card.CardTitle>
-                        <a href="/notebooks">{notebook.title}</a></Card.CardTitle>
+                        <Link to={`/notebooks/${notebook.id}/affirmations`}>{notebook.title}</Link></Card.CardTitle>
                         <Card.CardButton
                           onClick={(e) => {
                             setCurrentNotebook({
