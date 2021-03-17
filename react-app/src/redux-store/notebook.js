@@ -3,7 +3,7 @@ const CREATE_NOTEBOOK = "notebook/create_notebook";
 const SET_NOTEBOOK = "notebook/set_notebook";
 const UPDATE_NOTEBOOK = "notebook/update_notebook";
 const REMOVE_NOTEBOOK = "notebook/remove_notebook";
-
+const GET_AFFIRMATIONS = "notebook/get_affirmations"
 
 //Action Creator
 const setNotebook = (payload) => ({
