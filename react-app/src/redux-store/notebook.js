@@ -4,12 +4,16 @@ const notebookAppState = {}
 
 const notebookSlice = createSlice({
   name:'notebooks',
-  reducers:{}
+  reducers:{
+    notebookCreated(state,action){
+      state.push(action.payload)
+    }
+  }
 })
 
 e
 //Action constants
-const CREATE_NOTEBOOK = "notebook/create_notebook";
+
 const SET_NOTEBOOK = "notebook/set_notebook";
 const UPDATE_NOTEBOOK = "notebook/update_notebook";
 const REMOVE_NOTEBOOK = "notebook/remove_notebook";
@@ -35,10 +39,6 @@ const RemoveNotebookActionCreator = (payload) => ({
   payload,
 });
 
-const createNotebookActionCreator = (payload) => ({
-  type: CREATE_NOTEBOOK,
-  payload,
-});
 
 
 export const getNotebook = () => async (dispatch) => {
