@@ -2,6 +2,11 @@ import { createSlice,createAsyncThunk } from "@reduxjs/toolkit";
 
 const notebookAppState = {}
 
+const notebookSlice = createSlice({
+  name:'notebooks',
+  reducers:{}
+})
+
 //Action constants
 const CREATE_NOTEBOOK = "notebook/create_notebook";
 const SET_NOTEBOOK = "notebook/set_notebook";
