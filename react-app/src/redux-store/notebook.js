@@ -101,7 +101,6 @@ export const user_Affirmations = (id) => async (dispatch)=>{
   });
    if (!res.ok) throw res;
    const { data } = await res.json();
-    console.log(data)
    dispatch(setAffirmationCreator(data));
    return data;
 }
@@ -144,7 +143,14 @@ const reducer = (state = initialState, action) => {
       };
       delete newState[action.payload];
       return newState;
-  
+    case GET_AFFIRMATIONS:
+         newState = {
+           ...state,
+           [action.payload.id]: {
+             id: action.payload.id,
+             title: action.payload.title,
+           },
+         }; 
 
     default:
       return state;
