@@ -154,3 +154,4 @@ const reducer = (state = initialState, action) => {
 };
 
 export default notebookSlice.reducer;
+export const { notebookCreated } = notebookSlice.actions;
