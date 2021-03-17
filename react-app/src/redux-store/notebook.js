@@ -1,5 +1,7 @@
 import { createSlice,createAsyncThunk } from "@reduxjs/toolkit";
 
+const notebookAppState = {}
+
 //Action constants
 const CREATE_NOTEBOOK = "notebook/create_notebook";
 const SET_NOTEBOOK = "notebook/set_notebook";
@@ -45,11 +47,6 @@ export const getNotebook = () => async (dispatch) => {
     dispatch(setNotebook(data));
   }
 };
-
-
-
-
-
 // export const getOneNotebook = (id) => async (dispatch) => {
 //   const response = await fetch(`/api/notebooks/{id}`);
 //   if (response.ok) {
