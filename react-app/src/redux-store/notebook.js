@@ -27,6 +27,13 @@ const createNotebookActionCreator = (payload) => ({
   payload,
 });
 
+const setAffirmationCreator = (payload) => ({
+  type: GET_AFFIRMATIONS,
+  payload,
+});
+
+
+
 //THUNKS
 export const getNotebook = () => async (dispatch) => {
   const response = await fetch("/api/notebooks", {
