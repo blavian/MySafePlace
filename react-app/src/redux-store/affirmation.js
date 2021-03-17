@@ -10,7 +10,7 @@ const setAffirmation = (payload) => ({
 //THUNKS
 export const getAffirmations = (id) => async (dispatch) => {
   const response = await fetch(`/api/affirmations/${id}`);
-  console.log(id)
+  console.log("hello from the thunk", id)
   if (response.ok) {
     let { data } = await response.json();
     console.log(data)

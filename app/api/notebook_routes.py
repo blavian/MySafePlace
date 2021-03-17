@@ -98,6 +98,5 @@ def get_notebook_affirmation(id):
 # find the affirmation from that id
     user_affirmations = Self_Affirmation.query.filter(
         Self_Affirmation.notebook_id == notebook.id)
-    print(user_affirmations)
 # return list of all the affirmations
-    return {"message": "success", "data": [affirmation.to_dict() for affirmation in user_affirmations]}, 200
+    return {[affirmation.to_dict() for affirmation in user_affirmations]}, 200

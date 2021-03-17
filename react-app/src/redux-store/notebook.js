@@ -33,7 +33,6 @@ const setAffirmationCreator = (payload) => ({
 });
 
 
-
 //THUNKS
 export const getNotebook = () => async (dispatch) => {
   const response = await fetch("/api/notebooks", {
@@ -105,9 +104,10 @@ export const user_Affirmations = (id) => async (dispatch)=>{
    return data;
 }
 //NOTEBOOK INITIAL STATE
-const initialState = {};
+const initialState = {
+};
 
-const reducer = (state = initialState, action) => {
+const reducer = (state = initialState, action,type) => {
   let newState;
   switch (action.type) {
     case SET_NOTEBOOK:
@@ -115,7 +115,7 @@ const reducer = (state = initialState, action) => {
       action.payload.forEach((item) => {
         newState[item.id] = {
           id: item.id,
-          title: item.title,
+          title: item.title
         };
       });
       return newState;
@@ -133,7 +133,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         [action.payload.id]: {
           id: action.payload.id,
-          title: action.payload.title,
+          title: action.payload.title
         },
       };
       return newState;
@@ -144,13 +144,13 @@ const reducer = (state = initialState, action) => {
       delete newState[action.payload];
       return newState;
     case GET_AFFIRMATIONS:
-         newState = {
-           ...state,
-           [action.payload.id]: {
-             id: action.payload.id,
-             title: action.payload.title,
-           },
-         }; 
+        action.payload.forEach((item) => {
+          newState[item.id] = {
+            id: item.id,
+            title: item.title,
+          };
+        });
+        return newState;
 
     default:
       return state;
