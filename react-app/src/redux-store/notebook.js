@@ -84,7 +84,6 @@ export const updateNotebook = (title, id) => async (dispatch) => {
 };
 
 export const deleteNotebook = (id) => async (dispatch) => {
-  console.log("hello from the thunk", id);
   const response = await fetch(`/api/notebooks/${id}`, {
     method: "DELETE",
   });
@@ -92,6 +91,20 @@ export const deleteNotebook = (id) => async (dispatch) => {
     dispatch(RemoveNotebookActionCreator(id));
   }
 };
+
+export const user_Affirmations = (id) => async (dispatch)=>{
+  console.log("hello from the thunk", id)
+  const res = await fetch(`/api/notebooks/${id}/affirmations`, {
+    headers: {
+      "Content-type": "application/json",
+    },
+  });
+   if (!res.ok) throw res;
+   const { data } = await res.json();
+    console.log(data)
+   dispatch(setAffirmationCreator(data));
+   return data;
+}
 //NOTEBOOK INITIAL STATE
 const initialState = {};
 
