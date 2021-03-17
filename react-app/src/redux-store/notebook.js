@@ -156,7 +156,15 @@ const reducer = (state = initialState, action) => {
     //   newState = Object.assign({}, state);
     //   newState.currentNotebook = action.payload;
     //   return newState;
-
+     case AFFIRMATION_NOTEBOOK:
+      newState = {};
+      action.payload.forEach((item) => {
+        newState[item.id] = {
+          id: item.id,
+          title: item.title,
+        };
+      });
+      return newState;
     default:
       return state;
   }
