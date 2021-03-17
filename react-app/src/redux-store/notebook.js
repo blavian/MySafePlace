@@ -3,6 +3,7 @@ const CREATE_NOTEBOOK = "notebook/create_notebook";
 const SET_NOTEBOOK = "notebook/set_notebook";
 const UPDATE_NOTEBOOK = "notebook/update_notebook";
 const REMOVE_NOTEBOOK = "notebook/remove_notebook";
+const AFFIRMATION_NOTEBOOK = "notebook/affirmation_notebook"
 // const CURRENT_NOTEBOOK = "notebook/remove_notebook";
 
 //Action Creator
@@ -30,6 +31,11 @@ const createNotebookActionCreator = (payload) => ({
   payload,
 });
 
+
+const affirmationNNotebookActionCreator = (payload)=>({
+  type:AFFIRMATION_NOTEBOOK,
+  payload
+})
 //THUNKS
 export const getNotebook = () => async (dispatch) => {
   const response = await fetch("/api/notebooks", {
@@ -44,6 +50,19 @@ export const getNotebook = () => async (dispatch) => {
   }
 };
 
+export const affirmationNotebook = (id) => async (dispatch) => {
+  console.log("hello from the thunk",id);
+  const response = await fetch(`/api/notebooks/${id}`/affirmations, {
+    headers: {
+      "Content-type": "application/json",
+    },
+  });
+  if (!response.ok) throw response;
+  const { data } = await response.json();
+
+  dispatch(affirmationNNotebookActionCreator(data));
+  return data;
+};
 // export const getOneNotebook = (id) => async (dispatch) => {
 //   const response = await fetch(`/api/notebooks/{id}`);
 //   if (response.ok) {
@@ -53,7 +72,7 @@ export const getNotebook = () => async (dispatch) => {
 //   }
 // };
 export const createNotebook = (title) => async (dispatch) => {
-  const response = await fetch("/api/notebooks", {
+  const response = await fetch(`/api/notebooks/${id}/affirmations` {
     method: "POST",
     body: JSON.stringify({
       title,
