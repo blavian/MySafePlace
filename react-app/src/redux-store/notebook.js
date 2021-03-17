@@ -7,6 +7,7 @@ const notebookSlice = createSlice({
   reducers:{}
 })
 
+e
 //Action constants
 const CREATE_NOTEBOOK = "notebook/create_notebook";
 const SET_NOTEBOOK = "notebook/set_notebook";
@@ -152,4 +153,4 @@ const reducer = (state = initialState, action) => {
   }
 };
 
-export default reducer;
+export default notebookSlice.reducer;
