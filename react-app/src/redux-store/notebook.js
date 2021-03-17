@@ -3,8 +3,7 @@ const CREATE_NOTEBOOK = "notebook/create_notebook";
 const SET_NOTEBOOK = "notebook/set_notebook";
 const UPDATE_NOTEBOOK = "notebook/update_notebook";
 const REMOVE_NOTEBOOK = "notebook/remove_notebook";
-const AFFIRMATION_NOTEBOOK = "notebook/affirmation_notebook"
-// const CURRENT_NOTEBOOK = "notebook/remove_notebook";
+
 
 //Action Creator
 const setNotebook = (payload) => ({
@@ -12,10 +11,7 @@ const setNotebook = (payload) => ({
   payload,
 });
 
-// const currentNotebook = (payload) => ({
-//   type: CURRENT_NOTEBOOK,
-//   payload,
-// });
+
 
 const updateNotebookActionCreator = (payload) => ({
   type: UPDATE_NOTEBOOK,
@@ -31,11 +27,6 @@ const createNotebookActionCreator = (payload) => ({
   payload,
 });
 
-
-const affirmationNNotebookActionCreator = (payload)=>({
-  type:AFFIRMATION_NOTEBOOK,
-  payload
-})
 //THUNKS
 export const getNotebook = () => async (dispatch) => {
   const response = await fetch("/api/notebooks", {
@@ -50,29 +41,9 @@ export const getNotebook = () => async (dispatch) => {
   }
 };
 
-export const affirmationNotebook = (id) => async (dispatch) => {
-  console.log("hello from the thunk",id);
-  const response = await fetch(`/api/notebooks/${id}`/affirmations, {
-    headers: {
-      "Content-type": "application/json",
-    },
-  });
-  if (!response.ok) throw response;
-  const { data } = await response.json();
 
-  dispatch(affirmationNNotebookActionCreator(data));
-  return data;
-};
-// export const getOneNotebook = (id) => async (dispatch) => {
-//   const response = await fetch(`/api/notebooks/{id}`);
-//   if (response.ok) {
-//     let { data } = await response.json();
-
-//     dispatch(currentNotebook(data));
-//   }
-// };
 export const createNotebook = (title) => async (dispatch) => {
-  const response = await fetch(`/api/notebooks/${id}/affirmations` {
+  const response = await fetch("/api/notebooks", {
     method: "POST",
     body: JSON.stringify({
       title,
@@ -106,11 +77,11 @@ export const updateNotebook = (title, id) => async (dispatch) => {
 };
 
 export const deleteNotebook = (id) => async (dispatch) => {
-  console.log(id);
+  console.log("hello from the thunk", id);
   const response = await fetch(`/api/notebooks/${id}`, {
     method: "DELETE",
-  })
-  if (response.ok){
+  });
+  if (response.ok) {
     dispatch(RemoveNotebookActionCreator(id));
   }
 };
@@ -149,22 +120,12 @@ const reducer = (state = initialState, action) => {
       return newState;
     case REMOVE_NOTEBOOK:
       newState = {
-        ...state}
-      delete newState[action.payload]
+        ...state,
+      };
+      delete newState[action.payload];
       return newState;
-    // case CURRENT_NOTEBOOK:
-    //   newState = Object.assign({}, state);
-    //   newState.currentNotebook = action.payload;
-    //   return newState;
-     case AFFIRMATION_NOTEBOOK:
-      newState = {};
-      action.payload.forEach((item) => {
-        newState[item.id] = {
-          id: item.id,
-          title: item.title,
-        };
-      });
-      return newState;
+  
+
     default:
       return state;
   }

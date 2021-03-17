@@ -11,16 +11,6 @@ const Affirmation = () => {
   const [title, setTitle] = useState("");
   const[description,setDescription] = useState('')
   const[date,setDate] = useState('')
-  
-  const currentAffirmations = useSelector((state) =>state.affirmation);
-console.log(currentAffirmations);
- 
-
-  useEffect(async () => {
-    dispatch(getAffirmations());
-  }, [dispatch]);
-
-
   return (
     <div>
      <h1>at least this works</h1>

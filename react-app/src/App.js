@@ -78,7 +78,7 @@ function App() {
             <Notebook />
           </ProtectedRoute>
           <ProtectedRoute
-            path="/affirmations/:id"
+            path="/notebooks/:id/affirmations"
             exact={true}
             authenticated={authenticated}
           >
