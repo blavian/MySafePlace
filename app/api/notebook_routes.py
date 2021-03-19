@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from flask_login import login_required, current_user
 
-from app.models import db, Notebook
+from app.models import db, Notebook,Self_Affirmation
 from app.forms.notebook_form import NotebookForm
 
 notebook_routes = Blueprint('notebooks', __name__)
@@ -14,7 +14,6 @@ notebook_routes = Blueprint('notebooks', __name__)
 def new_notebook():
     # 1. Get user from session
     user = current_user
-
     # 2. Prepare form data for validation
     form = NotebookForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -79,12 +78,17 @@ def delete_notebook(id):
         return {"message": "The notebook with that id does not exist."}, 404
 
 
-@notebook_routes.route('/<int:id>')
+
+
+
+# Get all of a notebooks affirmations
+@notebook_routes.route("/<int:notebookId>")
 @login_required
-def get_notebook(id):
-    # get the user from the session
-    user = current_user
-    #  finds all of the user's notebooks based off of their userId
-    notebook = Notebook.query.get(id)
-    # return list of one notebook
-    return notebook.to_dict()
+def get_notebook_affirmation(notebookId):
+    # get the notebook id
+    notebook = Notebook.query.get(notebookId)
+# find the affirmation from that id
+    user_affirmations = Self_Affirmation.query.filter(
+        Self_Affirmation.notebook_id == notebook.id)
+# return list of all the affirmations
+    return {"message": "success", "data": [affirmation.to_dict() for affirmation in user_affirmations]}, 200

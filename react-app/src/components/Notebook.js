@@ -5,6 +5,8 @@ import {
   createNotebook,
   deleteNotebook
 } from "../redux-store/notebook";
+
+import { getAffirmations } from "../redux-store/affirmation";
 import TopRight from "../styled/top-right";
 import Button from "../styled/button";
 import Center from "../styled/center";
@@ -12,7 +14,7 @@ import * as Card from "../styled/card"
 
 import Modal from "styled-react-modal";
 import EditForm from "./EditForm";
-
+import { NavLink,Link } from 'react-router-dom';
 
 
 const Notebook = () => {
@@ -33,6 +35,7 @@ const StyledModal = Modal.styled`
   }
   const currentNotebooks = useSelector((state) =>
     Object.values(state.notebook)
+    
   );
 
   const [currentNotebook, setCurrentNotebook] = useState({ id: "", title: "" });
@@ -40,6 +43,13 @@ const StyledModal = Modal.styled`
   useEffect(async () => {
     dispatch(getNotebook());
   }, [dispatch]);
+
+  useEffect(
+    async (notebookId) => {
+      dispatch(getAffirmations(notebookId));
+    },
+    [dispatch]
+  );
 
   const addNotebook = async (e) => {
     e.preventDefault();
@@ -60,6 +70,7 @@ const StyledModal = Modal.styled`
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           name="title"
+          
         />
         <Button onClick={(e) => addNotebook(e)} type="button">
           Add Notebook
@@ -75,7 +86,7 @@ const StyledModal = Modal.styled`
       {currentNotebooks &&
         currentNotebooks.map((notebook) => {
           return (
-            <>
+            <div key={notebook.id}>
               <Card.Main>
                 <Card.Cards>
                   <Card.CardItems>
@@ -84,7 +95,8 @@ const StyledModal = Modal.styled`
                         <img src="https://cdn.pixabay.com/photo/2016/08/03/09/00/self-esteem-1566153_960_720.jpg" />
                       </Card.Image>
                       <Card.CardContent>
-                        <Card.CardTitle>{notebook.title}</Card.CardTitle>
+                        <Card.CardTitle>
+                        <Link to={`/notebooks/${notebook.id}`}>{notebook.title}</Link></Card.CardTitle>
                         <Card.CardButton
                           onClick={(e) => {
                             setCurrentNotebook({
@@ -108,7 +120,7 @@ const StyledModal = Modal.styled`
                   </Card.CardItems>
                 </Card.Cards>
               </Card.Main>
-            </>
+            </div>
           );
         })}
     </div>

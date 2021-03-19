@@ -11,13 +11,13 @@ import { authenticate } from "./redux-store/session"
 import {useDispatch} from "react-redux"
 import LandingPage from "./components/LandingPage"
 import Footer from "./components/Footer"
+import Affirmation from "./components/Affirmation"
 import { ModalProvider } from "styled-react-modal";
 
 function App() {
   const dispatch = useDispatch()
   const [authenticated, setAuthenticated] = useState(false);
   const [loaded, setLoaded] = useState(false);
-  const [display, setDisplay] = useState(false);
 
   useEffect(() => {
     (async() => {
@@ -35,37 +35,59 @@ function App() {
 
   return (
     <BrowserRouter>
-    <ModalProvider>
-      <NavBar setAuthenticated={setAuthenticated} 
-              authenticated = {authenticated}
-      />
-      <Switch>
-      <Route path="/" exact={true}>
-          <LandingPage />
+      <ModalProvider>
+        <NavBar
+          setAuthenticated={setAuthenticated}
+          authenticated={authenticated}
+        />
+        <Switch>
+          <Route path="/" exact={true}>
+            <LandingPage />
           </Route>
-        <Route path="/login" exact={true}>
-          <LoginForm
+          <Route path="/login" exact={true}>
+            <LoginForm
+              authenticated={authenticated}
+              setAuthenticated={setAuthenticated}
+            />
+          </Route>
+          <Route path="/sign-up" exact={true}>
+            <SignUpForm
+              authenticated={authenticated}
+              setAuthenticated={setAuthenticated}
+            />
+          </Route>
+          <ProtectedRoute
+            path="/users"
+            exact={true}
             authenticated={authenticated}
-            setAuthenticated={setAuthenticated}
-          />
-        </Route>
-        <Route path="/sign-up" exact={true}>
-          <SignUpForm authenticated={authenticated} setAuthenticated={setAuthenticated} />
-        </Route>
-        <ProtectedRoute path="/users" exact={true} authenticated={authenticated}>
-          <UsersList/>
-        </ProtectedRoute>
-        <ProtectedRoute path="/users/:userId" exact={true} authenticated={authenticated}>
-          <User />
-        </ProtectedRoute>
-        <ProtectedRoute path="/notebooks" exact={true} authenticated={authenticated}>
-          <Notebook />
-        </ProtectedRoute>
-      </Switch>
-      <Footer/>
+          >
+            <UsersList />
+          </ProtectedRoute>
+          <ProtectedRoute
+            path="/users/:userId"
+            exact={true}
+            authenticated={authenticated}
+          >
+            <User />
+          </ProtectedRoute>
+          <ProtectedRoute
+            path="/notebooks"
+            exact={true}
+            authenticated={authenticated}
+          >
+            <Notebook />
+          </ProtectedRoute>
+          <ProtectedRoute
+            path="/notebooks/:notebookId/"
+            exact={true}
+            authenticated={authenticated}
+          >
+            <Affirmation />
+          </ProtectedRoute>
+        </Switch>
+        <Footer />
       </ModalProvider>
     </BrowserRouter>
-    
   );
 }
 
