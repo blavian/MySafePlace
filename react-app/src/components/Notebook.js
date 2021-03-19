@@ -37,7 +37,6 @@ const StyledModal = Modal.styled`
     Object.values(state.notebook)
     
   );
-  console.log(currentNotebooks)
 
   const [currentNotebook, setCurrentNotebook] = useState({ id: "", title: "" });
 
@@ -97,7 +96,7 @@ const StyledModal = Modal.styled`
                       </Card.Image>
                       <Card.CardContent>
                         <Card.CardTitle>
-                        <Link to={`/notebooks/${notebook.id}/affirmations`}>{notebook.title}</Link></Card.CardTitle>
+                        <Link to={`/notebooks/${notebook.id}`}>{notebook.title}</Link></Card.CardTitle>
                         <Card.CardButton
                           onClick={(e) => {
                             setCurrentNotebook({

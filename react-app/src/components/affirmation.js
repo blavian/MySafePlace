@@ -1,27 +1,39 @@
-import React, { useState, useEffect } from "react";
+import React, {useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAffirmations } from "../redux-store/affirmation";
+import { useParams } from "react-router-dom";
 
 
-const Affirmation = () => {
-  const dispatch = useDispatch();
  
-  const [title, setTitle] = useState("");
-  const[description,setDescription] = useState('')
-  const[date,setDate] = useState('')
-  const affirmations = useSelector((state) =>
-   (state.affirmation)
-  )
-  console.log(affirmations)
- useEffect(async (notebookId) => {
-   dispatch(getAffirmations(notebookId));
- }, [dispatch]);
-  return (
-  <div>
-   <h1> {affirmations.title}</h1>
-    </div>
-   );
-};
+  const Affirmation = ()=>{
+    const { notebookId } = useParams();
+    const dispatch = useDispatch();
+    const currentAffirmation = useSelector((state) => {
+      return Object.values(state.affirmation);
+    });
+    console.log(currentAffirmation)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    useEffect(async () => {
+      dispatch(getAffirmations(notebookId));
+    }, [dispatch,notebookId]);
+
+    return (
+      <div>
+        <h1>My Affirmations</h1>
+        {!!currentAffirmation && currentAffirmation.map((affirmation)=>{
+          return(
+            <>
+            <l1>{affirmation.title}</l1>
+            <l1>{affirmation.description}</l1>
+            <l1>{affirmation.date}</l1>
+            </>
+          )
+        }) }
+      </div>
+    )
+  }
+
+
     
 
       

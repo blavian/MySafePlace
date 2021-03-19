@@ -26,10 +26,7 @@ const createNotebookActionCreator = (payload) => ({
   payload,
 });
 
-const setAffirmationCreator = (payload) => ({
-  type: GET_AFFIRMATIONS,
-  payload,
-});
+
 
 
 //THUNKS
