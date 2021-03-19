@@ -82,11 +82,11 @@ def delete_notebook(id):
 
 
 # Get all of a notebooks affirmations
-@notebook_routes.route('/<int:id>')
+@notebook_routes.route("/<int:notebookId>")
 @login_required
-def get_notebook_affirmation(id):
+def get_notebook_affirmation(notebookId):
     # get the notebook id
-    notebook = Notebook.query.get(id)
+    notebook = Notebook.query.get(notebookId)
 # find the affirmation from that id
     user_affirmations = Self_Affirmation.query.filter(
         Self_Affirmation.notebook_id == notebook.id)
