@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from flask_login import login_required, current_user
 
-from app.models import db, Notebook
+from app.models import db, Notebook, Self_Affirmation
 from app.forms.notebook_form import NotebookForm
 
 notebook_routes = Blueprint('notebooks', __name__)
@@ -81,10 +81,11 @@ def delete_notebook(id):
 
 @notebook_routes.route('/<int:id>')
 @login_required
-def get_notebook(id):
-    # get the user from the session
-    user = current_user
-    #  finds all of the user's notebooks based off of their userId
+def get_notebook_affirmation(id):
+    # get the notebook id
     notebook = Notebook.query.get(id)
-    # return list of one notebook
-    return notebook.to_dict()
+# find the affirmation from that id
+    user_affirmations = Self_Affirmation.query.filter(
+        Self_Affirmation.notebook_id == notebook.id)
+# return list of all the affirmations
+    return {"message": "success", "data": [affirmation.to_dict() for affirmation in user_affirmations]}, 200
