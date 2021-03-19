@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { updateNotebook} from "../redux-store/notebook";
+import { updateNotebook} from "../redux-store/notebookSlice";
 import Button from "../styled/button"
 
 const EditForm = ({ currentNotebook }) => {

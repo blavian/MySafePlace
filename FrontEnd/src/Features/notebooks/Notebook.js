@@ -4,16 +4,16 @@ import {
   getNotebook,
   createNotebook,
   deleteNotebook
-} from "../redux-store/notebook";
+} from "../../redux-store/notebook";
 
-import { getAffirmations } from "../redux-store/affirmation";
-import TopRight from "../styled/top-right";
-import Button from "../styled/button";
-import Center from "../styled/center";
-import * as Card from "../styled/card" 
+import { getAffirmations } from "../../redux-store/affirmation";
+import TopRight from "../../styled/top-right";
+import Button from "../../styled/button";
+import Center from "../../styled/center";
+import * as Card from "../../styled/card" 
 
 import Modal from "styled-react-modal";
-import EditForm from "./EditForm";
+import EditForm from "../EditForm";
 import { NavLink,Link } from 'react-router-dom';
 
 
