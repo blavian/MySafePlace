@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { user_Affirmations } from "../redux-store/notebook";
+import { getAffirmations } from "../redux-store/affirmation";
 
 
 const Affirmation = () => {
@@ -10,28 +10,22 @@ const Affirmation = () => {
   const[description,setDescription] = useState('')
   const[date,setDate] = useState('')
   const affirmations = useSelector((state) =>
-  Object.values(state.notebook)
+   (state.affirmation)
   )
   console.log(affirmations)
- useEffect(async () => {
-   dispatch(user_Affirmations());
+ useEffect(async (notebookId) => {
+   dispatch(getAffirmations(notebookId));
  }, [dispatch]);
   return (
-    <div>
-      
-      {affirmations &&
-        affirmations.map((affirmation) => {
-          return (
-            <div key={affirmation.id}>
-              <li>
-                {affirmation.title}
-              </li>
-            </div>
-          );
-        })}
+  <div>
+   <h1> {affirmations.title}</h1>
     </div>
-  );
+   );
 };
+    
+
+      
+     
 
 
 

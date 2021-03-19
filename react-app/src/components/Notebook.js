@@ -5,6 +5,8 @@ import {
   createNotebook,
   deleteNotebook
 } from "../redux-store/notebook";
+
+import { getAffirmations } from "../redux-store/affirmation";
 import TopRight from "../styled/top-right";
 import Button from "../styled/button";
 import Center from "../styled/center";
@@ -43,6 +45,13 @@ const StyledModal = Modal.styled`
     dispatch(getNotebook());
   }, [dispatch]);
 
+  useEffect(
+    async (notebookId) => {
+      dispatch(getAffirmations(notebookId));
+    },
+    [dispatch]
+  );
+
   const addNotebook = async (e) => {
     e.preventDefault();
     await dispatch(createNotebook(title));
@@ -62,6 +71,7 @@ const StyledModal = Modal.styled`
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           name="title"
+          
         />
         <Button onClick={(e) => addNotebook(e)} type="button">
           Add Notebook

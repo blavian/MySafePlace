@@ -3,7 +3,6 @@ const CREATE_NOTEBOOK = "notebook/create_notebook";
 const SET_NOTEBOOK = "notebook/set_notebook";
 const UPDATE_NOTEBOOK = "notebook/update_notebook";
 const REMOVE_NOTEBOOK = "notebook/remove_notebook";
-const GET_AFFIRMATIONS = "notebook/get_affirmations"
 
 //Action Creator
 const setNotebook = (payload) => ({
@@ -91,18 +90,7 @@ export const deleteNotebook = (id) => async (dispatch) => {
   }
 };
 
-export const user_Affirmations = (id) => async (dispatch)=>{
-  console.log("hello from the thunk", id)
-  const res = await fetch(`/api/notebooks/${id}/affirmations`, {
-    headers: {
-      "Content-type": "application/json",
-    },
-  });
-   if (!res.ok) throw res;
-   const { data } = await res.json();
-   dispatch(setAffirmationCreator(data));
-   return data;
-}
+
 //NOTEBOOK INITIAL STATE
 const initialState = {
 };
@@ -143,15 +131,6 @@ const reducer = (state = initialState, action,type) => {
       };
       delete newState[action.payload];
       return newState;
-    case GET_AFFIRMATIONS:
-        action.payload.forEach((item) => {
-          newState[item.id] = {
-            id: item.id,
-            title: item.title,
-          };
-        });
-        return newState;
-
     default:
       return state;
   }

@@ -8,9 +8,9 @@ const setAffirmation = (payload) => ({
 });
 
 //THUNKS
-export const getAffirmations = (id) => async (dispatch) => {
-  const response = await fetch(`/api/affirmations/${id}`);
-  console.log("hello from the thunk", id)
+export const getAffirmations = () => async (dispatch) => {
+  const response = await fetch(`/api/notebooks/${id}/affirmations`);
+  console.log("hello from the thunk", notebookId)
   if (response.ok) {
     let { data } = await response.json();
     console.log(data)
