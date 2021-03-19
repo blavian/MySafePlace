@@ -92,7 +92,7 @@ export const deleteNotebook = (id) => async (dispatch) => {
 const initialState = {
 };
 
-const reducer = (state = initialState, action,type) => {
+const reducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
     case SET_NOTEBOOK:
