@@ -78,19 +78,11 @@ def delete_notebook(id):
         return {"message": "The notebook with that id does not exist."}, 404
 
 
-@notebook_routes.route('/<int:id>')
-@login_required
-def get_notebook(id):
-    # get the user from the session
-    user = current_user
-    #  finds all of the user's notebooks based off of their userId
-    notebook = Notebook.query.get(id)
-    # return list of one notebook
-    return notebook.to_dict()
+
 
 
 # Get all of a notebooks affirmations
-@notebook_routes.route('/<int:id>/affirmations')
+@notebook_routes.route('/<int:id>')
 @login_required
 def get_notebook_affirmation(id):
     # get the notebook id
@@ -99,4 +91,4 @@ def get_notebook_affirmation(id):
     user_affirmations = Self_Affirmation.query.filter(
         Self_Affirmation.notebook_id == notebook.id)
 # return list of all the affirmations
-    return {[affirmation.to_dict() for affirmation in user_affirmations]}, 200
+    return {"message": "success", "data": [affirmation.to_dict() for affirmation in user_affirmations]}, 200
