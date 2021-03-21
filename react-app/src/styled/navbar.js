@@ -16,10 +16,10 @@ export const StyledLink = styled(NavLink)`
   color: black;
   text-decoration: none;
   &:hover {
-    background-color: #9d6bed;
+    background-color: #85589C;
     color: #ffff;
     border-style: solid;
-    border-color: #9d6bed;
+    border-color: #85589C;
   }
 `;
 
