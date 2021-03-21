@@ -1,29 +1,29 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
-import { Outer} from "../styled/navbar";
+import { Outer, StyledLink } from "../styled/navbar"
 
 
 
 const NavBar = ( {authenticated,setAuthenticated }) => {
   return (
         <Outer>
-          <NavLink to="/" exact={true} activeClassName="active">
+          <StyledLink to="/" exact={true} activeClassName="active">
             Home
-          </NavLink>
-          {!authenticated && <><NavLink to="/login" exact={true} activeClassName="active">
+          </StyledLink>
+          {!authenticated && <><StyledLink to="/login" exact={true} activeClassName="active">
             Login
-          </NavLink>
-          <NavLink to="/sign-up" exact={true} activeClassName="active">
+          </StyledLink>
+          <StyledLink to="/sign-up" exact={true} activeClassName="active">
             Sign Up
-          </NavLink>
-          <NavLink to="/users" exact={true} activeClassName="active">
+          </StyledLink>
+          <StyledLink to="/users" exact={true} activeClassName="active">
             Users
-          </NavLink> </>}
+          </StyledLink> </>}
           {authenticated && <>
-          <NavLink to="/notebooks" exact={true} activeClassName="active">
+          <StyledLink to="/notebooks" exact={true} activeClassName="active">
             Notebooks
-          </NavLink>
+          </StyledLink>
           <LogoutButton setAuthenticated={setAuthenticated}  /> </>} 
      </Outer>
   );
