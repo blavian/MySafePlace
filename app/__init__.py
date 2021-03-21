@@ -78,6 +78,6 @@ def inject_csrf_token(response):
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def react_root(path):
-    if path in ('favicon.ico', 'manifest.json', 'self_esteem.jpg'):
+    if path in ('favicon.ico', 'manifest.json', 'self-esteem.jpg'):
         return app.send_static_file(path)
     return app.send_static_file('index.html')
