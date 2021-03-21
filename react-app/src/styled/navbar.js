@@ -18,6 +18,8 @@ export const StyledLink = styled(NavLink)`
   &:hover {
     background-color: #9d6bed;
     color: #ffff;
+    border-style: solid;
+    border-color: #9d6bed;
   }
 `;
 
