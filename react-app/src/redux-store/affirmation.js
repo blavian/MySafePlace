@@ -3,6 +3,9 @@ const SET_AFFIRMATION = "affirmation/set_affirmation";
 const CREATE_AFFIRMATION = "affirmation/create_affirmation"
 const REMOVE_AFFIRMATION = "affirmation/remove_notebook";
 
+const UPDATE_AFFIRMATION = "notebook/update_affirmation";
+
+
 //Action Creator
 const setAffirmation = (payload) => ({
   type: SET_AFFIRMATION,
