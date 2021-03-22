@@ -103,6 +103,18 @@ const reducer = (state = initialState, action) => {
           description: action.payload.description,
         },
       };
+
+      return newState;
+
+    case UPDATE_AFFIRMATION:
+      newState = {
+        ...state,
+        [action.payload.id]: {
+          id: action.payload.id,
+          description: action.payload.description,
+        },
+      };
+
       return newState;
     case REMOVE_AFFIRMATION:
       newState = {
