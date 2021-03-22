@@ -6,7 +6,7 @@ import {
   deleteNotebook
 } from "../redux-store/notebook";
 
-import { getAffirmations } from "../redux-store/affirmation";
+
 import TopRight from "../styled/top-right";
 import Button from "../styled/button";
 import Center from "../styled/center";
