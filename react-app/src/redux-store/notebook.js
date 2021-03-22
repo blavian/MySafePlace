@@ -61,7 +61,7 @@ export const createNotebook = (title) => async (dispatch) => {
 };
 
 export const updateNotebook = (title, id) => async (dispatch) => {
-  console.log("hello from the thunk", title, id);
+  
   const response = await fetch(`/api/notebooks/${id}`, {
     method: "PUT",
     body: JSON.stringify({

@@ -52,6 +52,25 @@ export const createAffirmations = (description,notebook_id) => async (dispatch) 
   }
 };
 
+export const updateAffirmations = (description, id) => async (
+  dispatch
+) => {
+  const response = await fetch("/api/affirmations", {
+    method: "PUT",
+    body: JSON.stringify({
+      description,
+      
+    }),
+    headers: {
+      "Content-type": "application/json",
+    },
+  });
+  if (response.ok) {
+    let { data } = await response.json();
+    dispatch(UpdateAffirmationActionCreator(data));
+  }
+};
+
 export const deleteAffirmation = (id) => async (dispatch) => {
   const response = await fetch(`/api/affirmations/${id}`, {
     method: "DELETE",
