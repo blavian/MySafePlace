@@ -1,6 +1,7 @@
 //Action constants
-const SET_AFFIRMATION = "notebook/set_affirmation";
+const SET_AFFIRMATION = "affirmation/set_affirmation";
 const CREATE_AFFIRMATION = "affirmation/create_affirmation"
+const REMOVE_AFFIRMATION = "affirmation/remove_notebook";
 
 //Action Creator
 const setAffirmation = (payload) => ({
