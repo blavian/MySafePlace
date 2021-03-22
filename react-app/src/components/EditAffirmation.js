@@ -3,13 +3,13 @@ import { useDispatch } from "react-redux";
 import { updateAffirmations} from "../redux-store/affirmation"
 import Button from "../styled/button";
 
-const EditAffirmationForm = ({ currentAffirmation }) => {
+const EditAffirmationForm = ({ currentAffirmations }) => {
   const dispatch = useDispatch();
-  const [description, setDescription] = useState(currentAffirmation.title);
+  const [description, setDescription] = useState(currentAffirmations.title);
 
   const updateAffirmation = (e) => {
     e.preventDefault();
-    dispatch(updateAffirmations(description, currentAffirmation.id));
+    dispatch(updateAffirmations(description, currentAffirmations.id));
   };
 
   return (
@@ -17,7 +17,7 @@ const EditAffirmationForm = ({ currentAffirmation }) => {
       <form onSubmit={updateAffirmation}>
         <input
           type="text"
-          placeholder={currentAffirmation.description}
+          placeholder={currentAffirmations.description}
           onChange={(e) => setDescription(e.target.value)}
           name="description"
         />
