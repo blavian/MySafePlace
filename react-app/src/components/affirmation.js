@@ -60,6 +60,16 @@ const StyledModal = Modal.styled`
         <Button onClick={(e) => addAffirmation(e)} type="button">
           Add Affirmation
         </Button>
+
+        <StyledModal
+          isOpen={isOpen}
+          onBackgroundClick={toggleModal}
+          onEscapeKeydown={toggleModal}
+        >
+          <EditAffirmationForm currentAffirmations={currentAffirmations} />
+          <Button onClick={toggleModal}>Close</Button>
+        </StyledModal>
+
         {!!currentAffirmation &&
           currentAffirmation.map((affirmation) => {
             return (
