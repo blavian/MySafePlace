@@ -20,8 +20,7 @@ def affirmation_exists(form, field):
 
 
 class AffirmationForm(FlaskForm):
-    title = StringField('title', validators=[DataRequired(), affirmation_exists])
     description = StringField('description', validators=[DataRequired()])
-    date = DateField('date', validators=[DataRequired()])
+   
 
 
