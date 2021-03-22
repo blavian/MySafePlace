@@ -1,13 +1,12 @@
 from flask import Blueprint, request
-from flask_login import login_required
+from flask_login import login_required, current_user
 
-from app.models import db, Self_Affirmation
+from app.models import db, Self_Affirmation,Notebook
 
 from app.forms.affirmation_form import AffirmationForm
 
 affirmation_routes = Blueprint('affirmations', __name__)
 
-# Create a new affirmation
 @affirmation_routes.route('', methods=['POST'])
 @login_required
 def new_affirmation():
