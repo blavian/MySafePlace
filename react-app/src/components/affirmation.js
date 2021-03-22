@@ -2,6 +2,7 @@ import React, {useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAffirmations } from "../redux-store/affirmation";
 import { useParams } from "react-router-dom";
+import Center from "../styled/center"
 
 
  
@@ -19,13 +20,13 @@ import { useParams } from "react-router-dom";
 
     return (
       <div>
-        <h1>My Affirmations</h1>
+        <Center>My Affirmations</Center>
         {!!currentAffirmation && currentAffirmation.map((affirmation)=>{
           return(
             <>
-            <l1>{affirmation.title}</l1>
+            <ol>
             <l1>{affirmation.description}</l1>
-            <l1>{affirmation.date}</l1>
+            </ol>
             </>
           )
         }) }

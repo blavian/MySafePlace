@@ -28,12 +28,9 @@ const reducer = (state = initialState, action) => {
       action.payload.forEach((item) => {
         newState[item.id] = {
           id: item.id,
-          title: item.title,
           description: item.description,
-          date: item.date,
         };
       });
-      console.log(newState)
       return newState;
     default:
       return state;
