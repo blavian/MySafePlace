@@ -14,7 +14,7 @@ const createAffirmationCreator = (payload) => ({
   payload
 });
 const RemoveAffirmationActionCreator = (payload) => ({
-  type: REMOVE_Affirmation,
+  type: REMOVE_AFFIRMATION,
   payload,
 });
 
@@ -89,6 +89,4 @@ const reducer = (state = initialState, action) => {
       return state;
   }
 }; 
-
-
 export default reducer

@@ -44,12 +44,7 @@ const StyledModal = Modal.styled`
     dispatch(getNotebook());
   }, [dispatch]);
 
-  useEffect(
-    async (notebookId) => {
-      dispatch(getAffirmations(notebookId));
-    },
-    [dispatch]
-  );
+ 
 
   const addNotebook = async (e) => {
     e.preventDefault();
