@@ -42,6 +42,12 @@ const StyledModal = Modal.styled`
       setIsOpen(!isOpen);
     }
 
+    const [currentAffirmations, setCurrentAffirmations] = useState({
+      id: "",
+      description: "",
+    });
+
+
     return (
       <div>
         <Center>My Affirmations</Center>
