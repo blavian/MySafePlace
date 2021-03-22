@@ -13,6 +13,11 @@ const createAffirmationCreator = (payload) => ({
   type: CREATE_AFFIRMATION,
   payload
 });
+const RemoveAffirmationActionCreator = (payload) => ({
+  type: REMOVE_Affirmation,
+  payload,
+});
+
 
 //THUNKS
 export const getAffirmations = (notebookId) => async (dispatch) => {
