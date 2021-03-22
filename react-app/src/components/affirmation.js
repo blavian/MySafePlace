@@ -23,9 +23,9 @@ import { useParams } from "react-router-dom";
         {!!currentAffirmation && currentAffirmation.map((affirmation)=>{
           return(
             <>
-            <l1>{affirmation.title}</l1>
+            <ol>
             <l1>{affirmation.description}</l1>
-            <l1>{affirmation.date}</l1>
+            </ol>
             </>
           )
         }) }
