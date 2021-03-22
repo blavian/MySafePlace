@@ -11,7 +11,7 @@ import { authenticate } from "./redux-store/session"
 import {useDispatch} from "react-redux"
 import LandingPage from "./components/LandingPage"
 import Footer from "./components/Footer"
-import Affirmation from "./components/Affirmation"
+import Affirmation from "./components/affirmation"
 import { ModalProvider } from "styled-react-modal";
 
 function App() {
