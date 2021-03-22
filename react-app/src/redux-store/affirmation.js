@@ -1,6 +1,7 @@
 //Action constants
-const SET_AFFIRMATION = "notebook/set_affirmation";
+const SET_AFFIRMATION = "affirmation/set_affirmation";
 const CREATE_AFFIRMATION = "affirmation/create_affirmation"
+const REMOVE_AFFIRMATION = "affirmation/remove_notebook";
 
 //Action Creator
 const setAffirmation = (payload) => ({
@@ -12,6 +13,11 @@ const createAffirmationCreator = (payload) => ({
   type: CREATE_AFFIRMATION,
   payload
 });
+const RemoveAffirmationActionCreator = (payload) => ({
+  type: REMOVE_AFFIRMATION,
+  payload,
+});
+
 
 //THUNKS
 export const getAffirmations = (notebookId) => async (dispatch) => {
@@ -39,6 +45,15 @@ export const createAffirmations = (description,notebook_id) => async (dispatch) 
   }
 };
 
+export const deleteAffirmation = (id) => async (dispatch) => {
+  const response = await fetch(`/api/affirmations/${id}`, {
+    method: "DELETE",
+  });
+  if (response.ok) {
+    dispatch(RemoveAffirmationActionCreator(id));
+  }
+};
+
 //Reducers
 const initialState = {};
 
@@ -59,15 +74,19 @@ const reducer = (state = initialState, action) => {
         ...state,
         [action.payload.id]: {
           id: action.payload.id,
-          description: action.payload.description
+          description: action.payload.description,
         },
       };
+      return newState;
+    case REMOVE_AFFIRMATION:
+      newState = {
+        ...state,
+      };
+      delete newState[action.payload];
       return newState;
 
     default:
       return state;
   }
 }; 
-
-
 export default reducer

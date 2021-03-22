@@ -1,6 +1,6 @@
 import React, {useEffect,useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAffirmations,createAffirmations } from "../redux-store/affirmation";
+import { getAffirmations,createAffirmations,deleteAffirmation } from "../redux-store/affirmation";
 import { useParams } from "react-router-dom";
 import Center from "../styled/center"
 import Button from "../styled/button";
@@ -25,6 +25,10 @@ import Button from "../styled/button";
       setDescription("")
     }
 
+    const deleted = async (e, affirmationId) => {
+      await dispatch(deleteAffirmation(affirmationId));
+    };
+
     return (
       <div>
         <Center>My Affirmations</Center>
@@ -44,6 +48,13 @@ import Button from "../styled/button";
                 <ol>
                   <li>{affirmation.description}</li>
                 </ol>
+                <Button
+                  onClick={(e) => {
+                    deleted(e, affirmation.id);
+                  }}
+                >
+                  Delete
+                </Button>
               </>
             );
           })}
