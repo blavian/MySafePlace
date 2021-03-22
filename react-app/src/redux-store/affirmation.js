@@ -22,11 +22,12 @@ export const getAffirmations = (notebookId) => async (dispatch) => {
   }
 };
 
-export const createAffirmations = (description) => async (dispatch) => {
+export const createAffirmations = (description,notebook_id) => async (dispatch) => {
   const response = await fetch("/api/affirmations", {
     method: "POST",
     body: JSON.stringify({
       description,
+      notebook_id
     }),
     headers: {
       "Content-type": "application/json",

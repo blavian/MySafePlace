@@ -21,7 +21,7 @@ import Button from "../styled/button";
 
     const addAffirmation = async(e)=>{
       e.preventDefault();
-      await dispatch(createAffirmations(description))
+      await dispatch(createAffirmations(description,notebookId))
       setDescription("")
     }
 
