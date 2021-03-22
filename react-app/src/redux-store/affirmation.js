@@ -45,6 +45,15 @@ export const createAffirmations = (description,notebook_id) => async (dispatch) 
   }
 };
 
+export const deleteAffirmation = (id) => async (dispatch) => {
+  const response = await fetch(`/api/affirmations/${id}`, {
+    method: "DELETE",
+  });
+  if (response.ok) {
+    dispatch(RemoveAffirmationActionCreator(id));
+  }
+};
+
 //Reducers
 const initialState = {};
 
