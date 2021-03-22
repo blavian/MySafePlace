@@ -84,6 +84,17 @@ const StyledModal = Modal.styled`
                 >
                   Delete
                 </Button>
+                <Button
+                  onClick={(e) => {
+                    setCurrentAffirmations({
+                      id: affirmation.id,
+                      description: affirmation.description,
+                    });
+                    setIsOpen(true);
+                  }}
+                >
+                  Edit
+                </Button>
               </>
             );
           })}
