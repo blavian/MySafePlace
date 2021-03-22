@@ -55,7 +55,7 @@ export const createAffirmations = (description,notebook_id) => async (dispatch) 
 export const updateAffirmations = (description, id) => async (
   dispatch
 ) => {
-  const response = await fetch("/api/affirmations", {
+  const response = await fetch(`/api/affirmations/${id}`, {
     method: "PUT",
     body: JSON.stringify({
       description,
