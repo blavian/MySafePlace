@@ -3,6 +3,9 @@ const SET_AFFIRMATION = "affirmation/set_affirmation";
 const CREATE_AFFIRMATION = "affirmation/create_affirmation"
 const REMOVE_AFFIRMATION = "affirmation/remove_notebook";
 
+const UPDATE_AFFIRMATION = "notebook/update_affirmation";
+
+
 //Action Creator
 const setAffirmation = (payload) => ({
   type: SET_AFFIRMATION,
@@ -18,6 +21,10 @@ const RemoveAffirmationActionCreator = (payload) => ({
   payload,
 });
 
+const UpdateAffirmationActionCreator = (payload) => ({
+  type: UPDATE_AFFIRMATION,
+  payload,
+});
 
 //THUNKS
 export const getAffirmations = (notebookId) => async (dispatch) => {
@@ -42,6 +49,25 @@ export const createAffirmations = (description,notebook_id) => async (dispatch) 
   if (response.ok) {
     let { data } = await response.json();
     dispatch(createAffirmationCreator(data));
+  }
+};
+
+export const updateAffirmations = (description, id) => async (
+  dispatch
+) => {
+  const response = await fetch(`/api/affirmations/${id}`, {
+    method: "PUT",
+    body: JSON.stringify({
+      description,
+      
+    }),
+    headers: {
+      "Content-type": "application/json",
+    },
+  });
+  if (response.ok) {
+    let { data } = await response.json();
+    dispatch(UpdateAffirmationActionCreator(data));
   }
 };
 
@@ -77,6 +103,18 @@ const reducer = (state = initialState, action) => {
           description: action.payload.description,
         },
       };
+
+      return newState;
+
+    case UPDATE_AFFIRMATION:
+      newState = {
+        ...state,
+        [action.payload.id]: {
+          id: action.payload.id,
+          description: action.payload.description,
+        },
+      };
+
       return newState;
     case REMOVE_AFFIRMATION:
       newState = {
