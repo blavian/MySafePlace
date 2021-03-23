@@ -4,10 +4,12 @@ const GlobalStyle = createGlobalStyle`
 body {
     margin:0;
    padding:0;
-   height:100%;
+   min-height: 100vh;
    font-size:13px;
    background: #EEF0F1;
    font-family: Monaco;
+   position: relative;
+  padding-bottom: 65px;
   }
 `;
 
