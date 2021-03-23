@@ -1,11 +1,9 @@
 import styled from "styled-components";
 
 export const Box = styled.div`
-  margin-top: 0;
   background-color: #20bf55;
   background-image: linear-gradient(315deg, #20bf55 0%, #01baef 74%);
-
-  position: fixed;
+  position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
