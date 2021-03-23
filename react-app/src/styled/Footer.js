@@ -2,9 +2,19 @@ import styled from "styled-components";
 
 export const Box = styled.div`
   margin-top: 0;
-  background-color: #ffff;
+  background-color: #20bf55;
+  background-image: linear-gradient(315deg, #20bf55 0%, #01baef 74%);
+
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
+`;
+export const Content = styled.div`
+  max-width: 1350px;
+  margin: auto;
+  padding: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 `;
