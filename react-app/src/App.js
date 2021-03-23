@@ -13,7 +13,7 @@ import LandingPage from "./components/LandingPage"
 import Footer from "./components/Footer"
 import Affirmation from "./components/affirmation"
 import { ModalProvider } from "styled-react-modal";
-
+import GlobalStyle from "./globalStyles";
 function App() {
   const dispatch = useDispatch()
   const [authenticated, setAuthenticated] = useState(false);
@@ -36,6 +36,7 @@ function App() {
   return (
     <BrowserRouter>
       <ModalProvider>
+        <GlobalStyle />
         <NavBar
           setAuthenticated={setAuthenticated}
           authenticated={authenticated}
