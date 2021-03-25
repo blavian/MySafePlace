@@ -7,19 +7,24 @@ import Button from "../styled/button";
 import EditAffirmationForm from "./EditAffirmation"
 
 
+
+
   const Affirmation = ()=>{
     const { notebookId } = useParams();
     const dispatch = useDispatch();
     const [description, setDescription] = useState("");
-    const {id} = useParams()
 
     const currentAffirmation = useSelector((state) => {
       return Object.values(state.affirmation);
     });
+
+    
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(async () => {
       dispatch(getAffirmations(notebookId));
     }, [dispatch,notebookId]);
+
 
     const handleSubmit = async(e)=>{
       e.preventDefault();
@@ -34,35 +39,36 @@ import EditAffirmationForm from "./EditAffirmation"
     const handleEdit = async(id,description)=>{
       await dispatch(updateAffirmations(description,id))
     }
+    const user = useSelector((state) => state.session.user);
+    
 
     return (
       <div>
-      <form onSubmit={handleSubmit} className="new-form">
-        <Center>My Affirmations</Center>
-        <input
-          type="text"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          name="Description"
-        />
-        <Button type="submit"> 
-          Add Affirmation
-        </Button>
+        <form onSubmit={handleSubmit} className="new-form">
+          <Center> My Affirmations!</Center>
+          <input
+            type="text"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            name="Description"
+          />
+          <Button type="submit">Add Affirmation</Button>
         </form>
         {!!currentAffirmation &&
           currentAffirmation.map((affirmation) => {
             return (
               <ul>
-              <EditAffirmationForm
-      key={affirmation.id}
-      value={affirmation.description}
-      handleEdit={description => handleEdit(affirmation.id, description)}
-      handleDelete={() => handleDelete(affirmation.id)}
-    />
+                <EditAffirmationForm
+                  key={affirmation.id}
+                  value={affirmation.description}
+                  handleEdit={(description) =>
+                    handleEdit(affirmation.id, description)
+                  }
+                  handleDelete={() => handleDelete(affirmation.id)}
+                />
               </ul>
-            )
+            );
           })}
-          
       </div>
     );
   }
