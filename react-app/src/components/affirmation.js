@@ -69,14 +69,15 @@ const StyledModal = Modal.styled`
           <EditAffirmationForm currentAffirmations={currentAffirmations} />
           <Button onClick={toggleModal}>Close</Button>
         </StyledModal>
-
+      
         {!!currentAffirmation &&
           currentAffirmation.map((affirmation) => {
             return (
               <>
-                <ol>
-                  <li>{affirmation.description}</li>
-                </ol>
+              <ul>
+              <li key={affirmation.id}>
+                  {affirmation.description}</li>
+                </ul>
                 <Button
                   onClick={(e) => {
                     deleted(e, affirmation.id);
