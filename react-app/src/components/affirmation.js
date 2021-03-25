@@ -27,7 +27,7 @@ const StyledModal = Modal.styled`
       dispatch(getAffirmations(notebookId));
     }, [dispatch,notebookId]);
 
-    const addAffirmation = async(e)=>{
+    const handleSubmit = async(e)=>{
       e.preventDefault();
       await dispatch(createAffirmations(description,notebookId))
       setDescription("")
@@ -50,6 +50,7 @@ const StyledModal = Modal.styled`
 
     return (
       <div>
+      <form onSubmit={handleSubmit} className="new-form">
         <Center>My Affirmations</Center>
         <input
           type="text"
@@ -57,9 +58,10 @@ const StyledModal = Modal.styled`
           onChange={(e) => setDescription(e.target.value)}
           name="Description"
         />
-        <Button onClick={(e) => addAffirmation(e)} type="button">
+        <Button type="submit"> 
           Add Affirmation
         </Button>
+        </form>
 
         <StyledModal
           isOpen={isOpen}
