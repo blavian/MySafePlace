@@ -6,11 +6,13 @@ import { Outer, StyledLink } from "../styled/navbar"
 
 const NavBar = ( {authenticated,setAuthenticated }) => {
   return (
-        <Outer>
-          <StyledLink to="/" exact={true} activeClassName="active">
-            Home
-          </StyledLink>
-          {!authenticated && <><StyledLink to="/login" exact={true} activeClassName="active">
+    <Outer>
+      <StyledLink to="/" exact={true} activeClassName="active">
+        Home
+      </StyledLink>
+      {!authenticated && (
+        <>
+          <StyledLink to="/login" exact={true} activeClassName="active">
             Login
           </StyledLink>
           <StyledLink to="/sign-up" exact={true} activeClassName="active">
@@ -18,13 +20,21 @@ const NavBar = ( {authenticated,setAuthenticated }) => {
           </StyledLink>
           <StyledLink to="/users" exact={true} activeClassName="active">
             Users
-          </StyledLink> </>}
-          {authenticated && <>
+          </StyledLink>{" "}
+        </>
+      )}
+      {authenticated && (
+        <>
           <StyledLink to="/notebooks" exact={true} activeClassName="active">
             Notebooks
           </StyledLink>
-          <LogoutButton setAuthenticated={setAuthenticated}  /> </>} 
-     </Outer>
+          <StyledLink to="/profile" exact={true} activeClassName="active">
+            Profile
+          </StyledLink>
+          <LogoutButton setAuthenticated={setAuthenticated} />{" "}
+        </>
+      )}
+    </Outer>
   );
 }
 
