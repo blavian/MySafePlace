@@ -3,28 +3,66 @@ import { useDispatch } from "react-redux";
 import { updateAffirmations} from "../redux-store/affirmation"
 import Button from "../styled/button";
 
-const EditAffirmationForm = ({ currentAffirmations }) => {
-  const dispatch = useDispatch();
-  const [description, setDescription] = useState(currentAffirmations.title);
+const EditAffirmationForm =  props => {
+  
+  const [description, setDescription] = useState(props.value);
 
-  const updateAffirmation = (e) => {
-    e.preventDefault();
-    dispatch(updateAffirmations(description, currentAffirmations.id));
-  };
+  const [edit, setEdit] = useState(false);
 
-  return (
-    <div>
-      <form onSubmit={updateAffirmation}>
-        <input
-          type="text"
-          placeholder={currentAffirmations.description}
-          onChange={(e) => setDescription(e.target.value)}
-          name="description"
-        />
-        <Button type="submit">Edit</Button>
-      </form>
-    </div>
-  );
+
+  const allowEdit = () => setEdit(!edit);
+  
+  const handleEdit = ()=>{
+    props.handleEdit(description)
+   allowEdit();
+  }
+
+   const handleCancel = () => {
+     setDescription(props.description)
+     allowEdit();
+   };
+
+   const handleDelete = () => {
+    props.handleDelete();
+  }
+  
+  
+ const children = edit ? (
+    <form
+      onSubmit={event => {
+        event.preventDefault();
+        handleEdit();
+      }}
+    >
+      <textarea
+        value={description}
+        onChange={event => setDescription(event.target.value)}
+        type="text"
+      />
+      <div>
+        <button onClick={handleCancel}>
+          Cancel
+        </button>
+        <button type="submit">
+          Save
+        </button>
+      </div>
+    </form>
+  ) : (
+    <>
+      <p>{description}</p>
+        <button onClick={allowEdit}>
+          Edit
+        </button>
+        <button
+          onClick={handleDelete}
+        >
+           Delete
+        </button>
+    </>
+  );return <span>{children}</span>;
+  
 };
+
 
 export default EditAffirmationForm;
