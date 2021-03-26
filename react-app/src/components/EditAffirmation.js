@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { updateAffirmations} from "../redux-store/affirmation"
 import Button from "../styled/button";
 
 const EditAffirmationForm =  props => {
@@ -27,7 +25,7 @@ const EditAffirmationForm =  props => {
   }
   
   
- const children = edit ? (
+ const editable = edit ? (
     <form
       onSubmit={event => {
         event.preventDefault();
@@ -40,27 +38,27 @@ const EditAffirmationForm =  props => {
         type="text"
       />
       <div>
-        <button onClick={handleCancel}>
+        <Button onClick={handleCancel}>
           Cancel
-        </button>
-        <button type="submit">
+        </Button>
+        <Button type="submit">
           Save
-        </button>
+        </Button>
       </div>
     </form>
   ) : (
     <>
       <p>{description}</p>
-        <button onClick={allowEdit}>
+        <Button onClick={allowEdit}>
           Edit
-        </button>
-        <button
+        </Button>
+        <Button
           onClick={handleDelete}
         >
            Delete
-        </button>
+        </Button>
     </>
-  );return <span>{children}</span>;
+  );return <span>{editable}</span>;
   
 };
 
