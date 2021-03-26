@@ -12,6 +12,7 @@ import {useDispatch} from "react-redux"
 import LandingPage from "./components/LandingPage"
 import Footer from "./components/Footer"
 import Affirmation from "./components/affirmation"
+import WordCloud from "./components/WordCloud"
 import { ModalProvider } from "styled-react-modal";
 import GlobalStyle from "./globalStyles";
 function App() {
@@ -84,6 +85,13 @@ function App() {
             authenticated={authenticated}
           >
             <Affirmation />
+          </ProtectedRoute>
+          <ProtectedRoute
+            path="/profile"
+            exact={true}
+            authenticated={authenticated}
+          >
+            <WordCloud />
           </ProtectedRoute>
         </Switch>
         <Footer />

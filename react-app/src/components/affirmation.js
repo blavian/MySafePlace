@@ -40,7 +40,6 @@ import EditAffirmationForm from "./EditAffirmation"
       await dispatch(updateAffirmations(description,id))
     }
     const user = useSelector((state) => state.session.user);
-    
 
     return (
       <div>
