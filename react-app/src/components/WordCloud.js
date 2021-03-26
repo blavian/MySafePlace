@@ -1,3 +1,4 @@
+import React from 'react'
 import ReactWordcloud from 'react-wordcloud';
 import { Resizable } from "re-resizable";
 import words from "./words";
