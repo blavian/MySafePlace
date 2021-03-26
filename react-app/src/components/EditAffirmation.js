@@ -5,72 +5,63 @@ import Button from "../styled/button";
 
 const EditAffirmationForm =  props => {
   
-  const [value, setValue] = useState(props.value);
+  const [description, setDescription] = useState(props.value);
 
-  const [editMode, setEditMode] = useState(false);
-  const[confirmed,setConfirmed] = useState(false)
+  const [edit, setEdit] = useState(false);
 
-  const toggleEditMode = () => setEditMode(!editMode);
+
+  const allowEdit = () => setEdit(!edit);
   
   const handleEdit = ()=>{
-    props.handleEdit(value)
-   toggleEditMode();
+    props.handleEdit(description)
+   allowEdit();
   }
 
    const handleCancel = () => {
-     setValue(props.value)
-     toggleEditMode();
+     setDescription(props.description)
+     allowEdit();
    };
 
    const handleDelete = () => {
-    if (!confirmed) {
-      setConfirmed(true);
-      return;
-    }
-    setConfirmed(false);
     props.handleDelete();
   }
   
   
- const children = editMode ? (
+ const children = edit ? (
     <form
       onSubmit={event => {
         event.preventDefault();
         handleEdit();
       }}
     >
-      <input
-        value={value}
-        className="item-input"
-        onChange={event => setValue(event.target.value)}
+      <textarea
+        value={description}
+        onChange={event => setDescription(event.target.value)}
         type="text"
       />
-      <div className="button-container">
-        <button className="button secondary-button" onClick={handleCancel}>
+      <div>
+        <button onClick={handleCancel}>
           Cancel
         </button>
-        <button type="submit" className="button primary-button">
+        <button type="submit">
           Save
         </button>
       </div>
     </form>
   ) : (
     <>
-      <span className="item-text">{value}</span>
-      <div className="left button-container">
-        <button className="button edit-button" onClick={toggleEditMode}>
+      <p>{description}</p>
+        <button onClick={allowEdit}>
           Edit
         </button>
         <button
-          className="button edit-button"
           onClick={handleDelete}
-          style={confirmed ? { color: "red" } : {}}
         >
-          {!confirmed ? "Delete" : "Confirm?"}
+           Delete
         </button>
-      </div>
     </>
-  );return <li className="item-container">{children}</li>;
+  );return <span>{children}</span>;
+  
 };
 
 
