@@ -13,3 +13,8 @@ export const Form = styled.form`
   justify-content: center;
 `;
 
+export const Input = styled.input`
+  font-size: 14px;
+  padding: 10px 10px;
+  border: 1px solid green;
+`;

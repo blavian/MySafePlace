@@ -2,14 +2,10 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { login,demoLogin} from "../../redux-store/session"
-import {Container,Form} from "../../styled/registration_forms"
+import {Container,Form,Input} from "../../styled/registration_forms"
 import Button from "../../styled/button"
-import styled from "styled-components"
-const Input = styled.input`
-  font-size: 14px;
-  padding: 10px 10px;
-  border: 1px solid green;
-`;
+
+
   
 
 
