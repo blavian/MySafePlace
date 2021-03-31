@@ -10,6 +10,7 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
+  const [errors, setErrors] = useState([]);
 
   const onSignUp = async (e) => {
     e.preventDefault();
@@ -17,6 +18,8 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
       const user = await dispatch(signUp(username, email, password));
       if (!user.errors) {
         setAuthenticated(true);
+      }else{
+        setErrors(user.errors);
       }
     }
   };
@@ -45,8 +48,13 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
 
   return (
     <Container>
-    <Form onSubmit={onSignUp}>
-    <h1>Sign up to My Safe Place</h1>
+      <Form onSubmit={onSignUp}>
+        <h1>Sign up to My Safe Place</h1>
+        <div>
+          {errors.map((error) => (
+            <div>{error}</div>
+          ))}
+        </div>
         <label>User Name</label>
         <input
           type="text"
@@ -76,9 +84,9 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
           value={repeatPassword}
           required={true}
         ></input>
-    
-      <Button type="submit">Sign Up</Button>
-    </Form>
+
+        <Button type="submit">Sign Up</Button>
+      </Form>
     </Container>
   );
 };
