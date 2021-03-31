@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Redirect } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 import{signUp} from "../../redux-store/session"
-import{Container,Form,Input} from "../../styled/registration_forms"
+import{Container,Form,Input,Label} from "../../styled/registration_forms"
 import Button from "../../styled/button"
 const SignUpForm = ({authenticated, setAuthenticated}) => {
   const dispatch = useDispatch()
@@ -55,28 +55,28 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
             <div>{error}</div>
           ))}
         </div>
-        <label>User Name</label>
+        <Label>User Name</Label>
         <Input
           type="text"
           name="username"
           onChange={updateUsername}
           value={username}
         ></Input>
-        <label>Email</label>
+        <Label>Email</Label>
         <Input
           type="text"
           name="email"
           onChange={updateEmail}
           value={email}
         ></Input>
-        <label>Password</label>
+        <Label>Password</Label>
         <Input
           type="password"
           name="password"
           onChange={updatePassword}
           value={password}
         ></Input>
-        <label>Confirm Password</label>
+        <Label>Confirm Password</Label>
         <Input
           type="password"
           name="repeat_password"

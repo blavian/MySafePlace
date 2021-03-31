@@ -18,3 +18,6 @@ export const Input = styled.input`
   padding: 10px 10px;
   border: 1px solid green;
 `;
+export const Label = styled.label`
+padding:4px 4px;
+`;
