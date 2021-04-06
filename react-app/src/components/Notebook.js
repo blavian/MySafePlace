@@ -5,6 +5,7 @@ import {
   createNotebook,
   deleteNotebook
 } from "../redux-store/notebook";
+import EditForm from "./EditForm"
 
 
 import TopRight from "../styled/top-right";
