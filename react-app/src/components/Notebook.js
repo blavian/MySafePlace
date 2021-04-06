@@ -22,18 +22,7 @@ const Notebook = () => {
   const dispatch = useDispatch();
 
   const [title, setTitle] = useState("");
-const StyledModal = Modal.styled`
-  width: 50rem;
-  height: 50rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`
-  const [isOpen, setIsOpen] = useState(false)
 
-  function toggleModal(e) {
-    setIsOpen(!isOpen)
-  }
   const currentNotebooks = useSelector((state) =>
     Object.values(state.notebook)
     
