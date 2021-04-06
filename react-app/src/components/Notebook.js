@@ -20,7 +20,7 @@ import { NavLink,Link } from 'react-router-dom';
 
 const Notebook = () => {
   const dispatch = useDispatch();
-
+ const { id} = useParams();
   const [title, setTitle] = useState("");
 
   const currentNotebooks = useSelector((state) =>
@@ -28,11 +28,10 @@ const Notebook = () => {
     
   );
 
-  const [currentNotebook, setCurrentNotebook] = useState({ id: "", title: "" });
 
   useEffect(async () => {
-    dispatch(getNotebook());
-  }, [dispatch]);
+    dispatch(getNotebook(id));
+  }, [dispatch,id]);
 
  
 
