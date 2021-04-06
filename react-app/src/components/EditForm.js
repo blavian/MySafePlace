@@ -3,31 +3,52 @@ import { useDispatch } from "react-redux";
 import { updateNotebook} from "../redux-store/notebook";
 import Button from "../styled/button"
 
-const EditForm = ({ currentNotebook }) => {
-  const dispatch = useDispatch();
-  const [title, setTitle] = useState(currentNotebook.title);
+const EditForm = (props) => {
+  const [title, setTitle] = useState(props.title);
 
+  const [edit, setEdit] = useState(false);
 
-  const updateNotebooks = (e) => {
-    e.preventDefault();
-    dispatch(updateNotebook(title, currentNotebook.id));
+  const allowEdit = () => setEdit(!edit);
+
+  const handleEdit = () => {
+    props.handleEdit(description);
+    allowEdit();
   };
 
-  return (
-    <div>
-      <form onSubmit={updateNotebooks}>
-        <input
-          type="text"
-          placeholder={currentNotebook.title}
-          onChange={(e) => setTitle(e.target.value)}
-          name="title"
-        />
-        <Button 
-          type="submit">Edit new Notebook
-        </Button> 
-      </form>
-    </div>
+  const handleCancel = () => {
+    setDescription(props.description);
+    allowEdit();
+  };
+
+  const handleDelete = () => {
+    props.handleDelete();
+  };
+
+  const editable = edit ? (
+    <form
+      onSubmit={(event) => {
+        event.preventDefault();
+        handleEdit();
+      }}
+    >
+      <textarea
+        value={title}
+        onChange={(event) => setDescription(event.target.value)}
+        type="text"
+      />
+      <div>
+        <Button onClick={handleCancel}>Cancel</Button>
+        <Button type="submit">Save</Button>
+      </div>
+    </form>
+  ) : (
+    <>
+      <p>{description}</p>
+      <Button onClick={allowEdit}>Edit</Button>
+      <Button onClick={handleDelete}>Delete</Button>
+    </>
   );
+  return <span>{editable}</span>;
 };
 
 export default EditForm;
