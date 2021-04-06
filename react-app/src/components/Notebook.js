@@ -41,8 +41,12 @@ const Notebook = () => {
     setTitle("");
   };
 
- const deleted = async (e,notebookId) => {
-   await dispatch(deleteNotebook(notebookId));
+ const deleted = async (id) => {
+   await dispatch(deleteNotebook(id));
+ };
+
+ const handleEdit = async (id, title) => {
+   await dispatch(updateAffirmations(title, id));
  };
 
   return (
