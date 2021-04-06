@@ -64,13 +64,7 @@ const Notebook = () => {
           Add Notebook
         </Button>
       </TopRight>
-      <StyledModal 
-      isOpen={isOpen}
-      onBackgroundClick={toggleModal}
-          onEscapeKeydown={toggleModal}>
-        <EditForm currentNotebook={currentNotebook} />
-        <Button onClick={toggleModal}>Close</Button>
-      </StyledModal>
+      
       {currentNotebooks &&
         currentNotebooks.map((notebook) => {
           return (
