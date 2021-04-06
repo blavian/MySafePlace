@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { login,demoLogin} from "../../redux-store/session"
-import {Container,Form} from "../../styled/registration_forms"
+import {Container,Form,Input} from "../../styled/registration_forms"
 import Button from "../../styled/button"
 
+
+  
 
 
 
@@ -58,7 +60,7 @@ const LoginForm = ({ authenticated,setAuthenticated}) => {
 
         <h1>Log in to My Safe Place</h1>
         <label htmlFor="email">Email</label>
-        <input
+        <Input
           name="email"
           type="text"
           placeholder="Email"
@@ -66,7 +68,7 @@ const LoginForm = ({ authenticated,setAuthenticated}) => {
           onChange={updateEmail}
         />
         <label htmlFor="password">Password</label>
-        <input
+        <Input
           name="password"
           type="password"
           placeholder="Password"
