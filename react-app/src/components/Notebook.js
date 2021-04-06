@@ -37,7 +37,7 @@ const Notebook = () => {
 
   const addNotebook = async (e) => {
     e.preventDefault();
-    await dispatch(createNotebook(title));
+    await dispatch(createNotebook(title,id));
     setTitle("");
   };
 
