@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   getNotebook,
   createNotebook,
-  deleteNotebook
+  deleteNotebook,
+  updateNotebook
 } from "../redux-store/notebook";
-
+import { useParams } from "react-router-dom";
 
 
 import TopRight from "../styled/top-right";
@@ -46,7 +47,7 @@ const Notebook = () => {
  };
 
  const handleEdit = async (id, title) => {
-   await dispatch(updateAffirmations(title, id));
+   await dispatch(updateNotebook(title, id));
  };
 
   return (
@@ -69,14 +70,6 @@ const Notebook = () => {
         currentNotebooks.map((notebook) => {
           return (
             <div>
-              <EditForm
-                key={notebook.id}
-                value={notebook.title}
-                handleEdit={(title) =>
-                  handleEdit(notebook.id, title)
-                }
-                handleDelete={() => handleDelete(anotebook.id)}
-              />
               
               <Card.Main>
                 <Card.Cards>
@@ -91,24 +84,14 @@ const Notebook = () => {
                             {notebook.title}
                           </Link>
                         </Card.CardTitle>
-                        <Card.CardButton
-                          onClick={(e) => {
-                            setCurrentNotebook({
-                              id: notebook.id,
-                              title: notebook.title,
-                            });
-                            setIsOpen(true);
-                          }}
-                        >
-                          edit title
-                        </Card.CardButton>
-                        <Card.CardButton
-                          onClick={(e) => {
-                            deleted(e, notebook.id);
-                          }}
-                        >
-                          Delete
-                        </Card.CardButton>
+                        <EditForm
+                key={notebook.id}
+                value={notebook.title}
+                handleEdit={(title) =>
+                  handleEdit(notebook.id, title)
+                }
+                deleted={() => deleted(notebook.id)}
+                />
                       </Card.CardContent>
                     </Card.Cards>
                   </Card.CardItems>
