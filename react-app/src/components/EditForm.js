@@ -11,12 +11,12 @@ const EditForm = (props) => {
   const allowEdit = () => setEdit(!edit);
 
   const handleEdit = () => {
-    props.handleEdit(description);
+    props.handleEdit(title);
     allowEdit();
   };
 
   const handleCancel = () => {
-    setDescription(props.description);
+    setTitle(props.title);
     allowEdit();
   };
 
@@ -33,7 +33,7 @@ const EditForm = (props) => {
     >
       <textarea
         value={title}
-        onChange={(event) => setDescription(event.target.value)}
+        onChange={(event) => setTitle(event.target.value)}
         type="text"
       />
       <div>
@@ -43,7 +43,7 @@ const EditForm = (props) => {
     </form>
   ) : (
     <>
-      <p>{description}</p>
+      <p>{title}</p>
       <Button onClick={allowEdit}>Edit</Button>
       <Button onClick={handleDelete}>Delete</Button>
     </>

@@ -5,7 +5,7 @@ import {
   createNotebook,
   deleteNotebook
 } from "../redux-store/notebook";
-import EditForm from "./EditForm"
+
 
 
 import TopRight from "../styled/top-right";
@@ -65,10 +65,19 @@ const Notebook = () => {
         </Button>
       </TopRight>
       
-      {currentNotebooks &&
+      {!!currentNotebooks &&
         currentNotebooks.map((notebook) => {
           return (
-            <div key={notebook.id}>
+            <div>
+              <EditForm
+                key={notebook.id}
+                value={notebook.title}
+                handleEdit={(title) =>
+                  handleEdit(notebook.id, title)
+                }
+                handleDelete={() => handleDelete(anotebook.id)}
+              />
+              
               <Card.Main>
                 <Card.Cards>
                   <Card.CardItems>
@@ -78,7 +87,10 @@ const Notebook = () => {
                       </Card.Image>
                       <Card.CardContent>
                         <Card.CardTitle>
-                        <Link to={`/notebooks/${notebook.id}`}>{notebook.title}</Link></Card.CardTitle>
+                          <Link to={`/notebooks/${notebook.id}`}>
+                            {notebook.title}
+                          </Link>
+                        </Card.CardTitle>
                         <Card.CardButton
                           onClick={(e) => {
                             setCurrentNotebook({
