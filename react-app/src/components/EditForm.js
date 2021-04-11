@@ -60,7 +60,24 @@ const EditForm = props => {
     </form>
   ) : (
     <>
-      <p>{title}</p>
+      <div>
+        <Card.Main>
+          <Card.Cards>
+            <Card.CardItems>
+              <Card.Cards>
+                <Card.Image>
+                  <img src="https://cdn.pixabay.com/photo/2016/08/03/09/00/self-esteem-1566153_960_720.jpg" />
+                </Card.Image>
+                <Card.CardContent>
+                  <Card.CardTitle>
+                    <p>{title}</p>
+                  </Card.CardTitle>
+                </Card.CardContent>
+              </Card.Cards>
+            </Card.CardItems>
+          </Card.Cards>
+        </Card.Main>
+      </div>
       <Button onClick={allowEdit}>Edit</Button>
       <Button onClick={handleDelete}>Delete</Button>
     </>
