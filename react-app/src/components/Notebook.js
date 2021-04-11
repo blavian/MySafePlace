@@ -12,7 +12,7 @@ import { useParams } from "react-router-dom";
 import TopRight from "../styled/top-right";
 import Button from "../styled/button";
 import Center from "../styled/center";
-import * as Card from "../styled/card" 
+
 
 import EditForm from "./EditForm";
 import {Link } from 'react-router-dom';
@@ -68,22 +68,7 @@ const Notebook = () => {
       {!!currentNotebooks &&
         currentNotebooks.map((notebook) => {
           return (
-            <div>
-              
-              <Card.Main>
-                <Card.Cards>
-                  <Card.CardItems>
-                    <Card.Cards>
-                      <Card.Image>
-                        <img src="https://cdn.pixabay.com/photo/2016/08/03/09/00/self-esteem-1566153_960_720.jpg" />
-                      </Card.Image>
-                      <Card.CardContent>
-                        <Card.CardTitle>
-                          <Link to={`/notebooks/${notebook.id}`}>
-                            {notebook.title}
-                          </Link>
-                        </Card.CardTitle>
-                        <EditForm
+                <EditForm
                 key={notebook.id}
                 value={notebook.title}
                 handleEdit={(title) =>
@@ -91,12 +76,7 @@ const Notebook = () => {
                 }
                 handleDelete={() => handleDelete(notebook.id)}
                 />
-                      </Card.CardContent>
-                    </Card.Cards>
-                  </Card.CardItems>
-                </Card.Cards>
-              </Card.Main>
-            </div>
+                 
           );
         })}
     </div>

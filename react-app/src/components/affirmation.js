@@ -41,10 +41,11 @@ import EditAffirmationForm from "./EditAffirmation"
     }
     const user = useSelector((state) => state.session.user);
 
+
     return (
       <div>
         <form onSubmit={handleSubmit} className="new-form">
-          <Center> My Affirmations!</Center>
+          <Center>My Affirmations!</Center>
           <textarea
             type="text"
             value={description}
