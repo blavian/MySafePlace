@@ -14,9 +14,8 @@ import Button from "../styled/button";
 import Center from "../styled/center";
 import * as Card from "../styled/card" 
 
-import Modal from "styled-react-modal";
 import EditForm from "./EditForm";
-import { NavLink,Link } from 'react-router-dom';
+import {Link } from 'react-router-dom';
 
 
 const Notebook = () => {
@@ -42,7 +41,7 @@ const Notebook = () => {
     setTitle("");
   };
 
- const deleted = async (id) => {
+ const handleDelete = async (id) => {
    await dispatch(deleteNotebook(id));
  };
 
@@ -90,7 +89,7 @@ const Notebook = () => {
                 handleEdit={(title) =>
                   handleEdit(notebook.id, title)
                 }
-                deleted={() => deleted(notebook.id)}
+                handleDelete={() => handleDelete(notebook.id)}
                 />
                       </Card.CardContent>
                     </Card.Cards>

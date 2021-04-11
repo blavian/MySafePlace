@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { updateNotebook} from "../redux-store/notebook";
 import Button from "../styled/button"
 
-const EditForm = (props) => {
-  const [title, setTitle] = useState(props.title);
+const EditForm = props => {
+  const [title, setTitle] = useState(props.value);
 
   const [edit, setEdit] = useState(false);
 
@@ -31,7 +29,7 @@ const EditForm = (props) => {
         handleEdit();
       }}
     >
-      <textarea
+      <p
         value={title}
         onChange={(event) => setTitle(event.target.value)}
         type="text"
