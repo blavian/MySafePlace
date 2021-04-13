@@ -16,7 +16,6 @@ const EditAffirmationForm =  props => {
   }
 
    const handleCancel = () => {
-     setDescription(props.description)
      allowEdit();
    };
 
