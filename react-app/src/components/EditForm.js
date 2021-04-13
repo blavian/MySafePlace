@@ -69,14 +69,14 @@ const EditForm = props => {
                   <Card.CardTitle>
                     <p>{title}</p>
                   </Card.CardTitle>
+      <Button onClick={allowEdit}>Edit</Button>
+      <Button onClick={handleDelete}>Delete</Button>
                 </Card.CardContent>
               </Card.Cards>
             </Card.CardItems>
           </Card.Cards>
         </Card.Main>
       </div>
-      <Button onClick={allowEdit}>Edit</Button>
-      <Button onClick={handleDelete}>Delete</Button>
     </>
   );
   return <span>{editable}</span>;
