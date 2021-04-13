@@ -45,16 +45,14 @@ const EditForm = props => {
                       type="text"
                     />
                   </Card.CardTitle>
+                    <Card.CardButton
+                      onClick={handleCancel}>Cancel</Card.CardButton>
+                    <Card.CardButton type="submit">Save</Card.CardButton>
                 </Card.CardContent>
               </Card.Cards>
             </Card.CardItems>
           </Card.Cards>
         </Card.Main>
-      </div>
-
-      <div>
-        <Button onClick={handleCancel}>Cancel</Button>
-        <Button type="submit">Save</Button>
       </div>
     </form>
   ) : (

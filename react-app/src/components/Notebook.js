@@ -35,7 +35,7 @@ const Notebook = () => {
 
  
 
-  const addNotebook = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     await dispatch(createNotebook(title,id));
     setTitle("");
@@ -51,6 +51,7 @@ const Notebook = () => {
 
   return (
     <div>
+    <form onSubmit={handleSubmit}>
       <Center>My Notebooks</Center>
       <TopRight>
         <input
@@ -60,10 +61,11 @@ const Notebook = () => {
           name="title"
           
         />
-        <Button onClick={(e) => addNotebook(e)} type="button">
+        <Button type="submit">
           Add Notebook
         </Button>
       </TopRight>
+      </form>
       
       {!!currentNotebooks &&
         currentNotebooks.map((notebook) => {
