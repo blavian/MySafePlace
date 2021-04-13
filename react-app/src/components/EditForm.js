@@ -45,9 +45,9 @@ const EditForm = props => {
                       type="text"
                     />
                   </Card.CardTitle>
-                    <Card.CardButton
-                      onClick={handleCancel}>Cancel</Card.CardButton>
-                    <Card.CardButton type="submit">Save</Card.CardButton>
+                    <Button
+                      onClick={handleCancel}>Cancel</Button>
+                    <Button type="submit">Save</Button>
                 </Card.CardContent>
               </Card.Cards>
             </Card.CardItems>

@@ -42,18 +42,4 @@ export const CardTitle = styled.h2`
   text-align:center;
   margin: 0px;
 `;
-export const CardButton = styled.a`
-    color: blue;
-    padding: 0.8rem;
-    font-size: 14px;
-    text-transform: uppercase;
-    border-radius: 4px;
-    font-weight: 400;
-    width: 100%;
-    border: 1px solid rgba(255, 255, 255, 0.2);
- 
-    
-  &:hover {
-    background-color: rgba(255, 255, 255, 0.12);
-  }
-`
+
