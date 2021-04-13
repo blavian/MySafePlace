@@ -15,7 +15,6 @@ const EditForm = props => {
   };
 
   const handleCancel = () => {
-    setTitle(props.title);
     allowEdit();
   };
 
