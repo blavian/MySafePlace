@@ -39,7 +39,7 @@ import EditAffirmationForm from "./EditAffirmation"
     const handleEdit = async(id,description)=>{
       await dispatch(updateAffirmations(description,id))
     }
-    const user = useSelector((state) => state.session.user);
+  
 
 
     return (
