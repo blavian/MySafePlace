@@ -15,7 +15,7 @@ import Center from "../styled/center";
 
 
 import EditForm from "./EditForm";
-import {Link } from 'react-router-dom';
+
 
 
 const Notebook = () => {
