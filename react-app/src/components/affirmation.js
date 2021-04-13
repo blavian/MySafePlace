@@ -5,8 +5,14 @@ import { useParams } from "react-router-dom";
 import Center from "../styled/center"
 import Button from "../styled/button";
 import EditAffirmationForm from "./EditAffirmation"
+import styled from "styled-components"
 
-
+const Textarea = styled.textarea`
+margin-left:90px;
+`
+const Ul = styled.ul`
+margin-left:50px;
+`
 
 
   const Affirmation = ()=>{
@@ -43,9 +49,9 @@ import EditAffirmationForm from "./EditAffirmation"
 
     return (
       <div>
-        <form onSubmit={handleSubmit} className="new-form">
+        <form onSubmit={handleSubmit}>
           <Center> My Affirmations!</Center>
-          <textarea
+          <Textarea
             type="text"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
@@ -56,7 +62,7 @@ import EditAffirmationForm from "./EditAffirmation"
         {!!currentAffirmation &&
           currentAffirmation.map((affirmation) => {
             return (
-              <ul>
+              <Ul>
                 <EditAffirmationForm
                   key={affirmation.id}
                   value={affirmation.description}
@@ -65,7 +71,7 @@ import EditAffirmationForm from "./EditAffirmation"
                   }
                   handleDelete={() => handleDelete(affirmation.id)}
                 />
-              </ul>
+              </Ul>
             );
           })}
       </div>
