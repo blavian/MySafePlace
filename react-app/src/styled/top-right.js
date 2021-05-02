@@ -5,7 +5,6 @@ const TopRight = styled.div`
   top: 5em;
   right: 0;
   padding: 1rem;
-  color: #fff;
   font-size: 1.4em;
 `;
 
