@@ -16,7 +16,7 @@ export const Form = styled.form`
 export const Input = styled.input`
   font-size: 14px;
   padding: 10px 10px;
-  border: 1px solid green;
+  border: 1px solid hsl(120, 50%, 75%);
 `;
 export const Label = styled.label`
 padding:4px 4px;

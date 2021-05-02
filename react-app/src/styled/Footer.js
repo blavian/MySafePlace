@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Box = styled.div`
-  background-color: #20bf55;
+  background-color: hsl(140, 100%, 44%);
   background-image: linear-gradient(315deg, #20bf55 0%, #01baef 74%);
   position: absolute;
   bottom: 0;
