@@ -27,12 +27,12 @@ export const Image = styled.div`
 
 export const CardContent = styled.div`
   padding: 1rem;
-    background-color #20bf55;
-    background-image linear-gradient(315deg, #20bf55 0%, #01baef 74%);
+    background-color: #20bf55;
+    background-image: linear-gradient(315deg, #20bf55 0%, #01baef 74%);
 `;
 
 export const CardTitle = styled.h2`
-  color: #ffffff;
+  color: hsl(0, 0%, 100%);
   font-size: 2rem;
   font-weight: 600;
   letter-spacing: 2px;
@@ -41,7 +41,7 @@ export const CardTitle = styled.h2`
   margin: 0px;
 `;
 export const CardButton = styled.a`
-  color: blue;
+  color: hsl(240, 82%, 57%);
   padding: 0.8rem;
   font-size: 14px;
   text-transform: uppercase;

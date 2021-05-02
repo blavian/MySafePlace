@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
 export const Outer = styled.div`
-  background-color: #ffff;
+  background-color: hsl(0, 0%, 100%);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -13,13 +13,13 @@ export const Outer = styled.div`
 `;
 
 export const StyledLink = styled(NavLink)`
-  color: black;
+  color: hsl(0, 0%, 0%);
   text-decoration: none;
   &:hover {
-    background-color: #85589C;
-    color: #ffff;
+    background-color: hsl(280, 58%, 48%);
+    color: hsl(0, 0%, 100%);
     border-style: solid;
-    border-color: #85589C;
+    border-color: hsl(280, 58%, 48%);
   }
 `;
 

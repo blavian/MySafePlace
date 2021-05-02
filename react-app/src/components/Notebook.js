@@ -3,39 +3,36 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   getNotebook,
   createNotebook,
-  deleteNotebook
+  deleteNotebook,
 } from "../redux-store/notebook";
-
 
 import TopRight from "../styled/top-right";
 import Button from "../styled/button";
 import Center from "../styled/center";
-import * as Card from "../styled/card" 
+import * as Card from "../styled/card";
 
 import Modal from "styled-react-modal";
 import EditForm from "./EditForm";
-import { NavLink,Link } from 'react-router-dom';
-
+import { NavLink, Link } from "react-router-dom";
 
 const Notebook = () => {
   const dispatch = useDispatch();
 
   const [title, setTitle] = useState("");
-const StyledModal = Modal.styled`
+  const StyledModal = Modal.styled`
   width: 50rem;
   height: 50rem;
   display: flex;
   align-items: center;
   justify-content: center;
-`
-  const [isOpen, setIsOpen] = useState(false)
+`;
+  const [isOpen, setIsOpen] = useState(false);
 
   function toggleModal(e) {
-    setIsOpen(!isOpen)
+    setIsOpen(!isOpen);
   }
   const currentNotebooks = useSelector((state) =>
     Object.values(state.notebook)
-    
   );
 
   const [currentNotebook, setCurrentNotebook] = useState({ id: "", title: "" });
@@ -44,17 +41,15 @@ const StyledModal = Modal.styled`
     dispatch(getNotebook());
   }, [dispatch]);
 
- 
-
   const addNotebook = async (e) => {
     e.preventDefault();
     await dispatch(createNotebook(title));
     setTitle("");
   };
 
- const deleted = async (e,notebookId) => {
-   await dispatch(deleteNotebook(notebookId));
- };
+  const deleted = async (e, notebookId) => {
+    await dispatch(deleteNotebook(notebookId));
+  };
 
   return (
     <div>
@@ -65,16 +60,16 @@ const StyledModal = Modal.styled`
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           name="title"
-          
         />
         <Button onClick={(e) => addNotebook(e)} type="button">
           Add Notebook
         </Button>
       </TopRight>
-      <StyledModal 
-      isOpen={isOpen}
-      onBackgroundClick={toggleModal}
-          onEscapeKeydown={toggleModal}>
+      <StyledModal
+        isOpen={isOpen}
+        onBackgroundClick={toggleModal}
+        onEscapeKeydown={toggleModal}
+      >
         <EditForm currentNotebook={currentNotebook} />
         <Button onClick={toggleModal}>Close</Button>
       </StyledModal>
@@ -91,7 +86,10 @@ const StyledModal = Modal.styled`
                       </Card.Image>
                       <Card.CardContent>
                         <Card.CardTitle>
-                        <Link to={`/notebooks/${notebook.id}`}>{notebook.title}</Link></Card.CardTitle>
+                          <Link to={`/notebooks/${notebook.id}`}>
+                            {notebook.title}
+                          </Link>
+                        </Card.CardTitle>
                         <Card.CardButton
                           onClick={(e) => {
                             setCurrentNotebook({
