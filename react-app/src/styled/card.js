@@ -14,7 +14,7 @@ export const CardItems = styled.li`
   padding: 1rem;
 `;
 export const Card = styled.div`
-    background-color #20bf55;
+  background-color: #20bf55;
   border-radius: 0.25rem;
   display: flex;
   flex-direction: column;
@@ -43,17 +43,16 @@ export const CardTitle = styled.h2`
   margin: 0px;
 `;
 export const CardButton = styled.a`
-    color: blue;
-    padding: 0.8rem;
-    font-size: 14px;
-    text-transform: uppercase;
-    border-radius: 4px;
-    font-weight: 400;
-    width: 100%;
-    border: 1px solid rgba(255, 255, 255, 0.2);
- 
-    
+   color: hsl(240, 92%, 65%);
+  padding: 0.8rem;
+  font-size: 1em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  font-weight: 400;
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
   &:hover {
     background-color: rgba(255, 255, 255, 0.12);
   }
-`
+`;
