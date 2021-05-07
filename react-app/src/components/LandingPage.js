@@ -1,23 +1,27 @@
  import React from "react"
  import styled from "styled-components";
- import img from "../images/self-esteem.jpg"
 
 
 
-const MainImage = styled.div`
-  background-image: url(${img});
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-  height: 60rem;
-  box-sizing: border-box;
+
+
+const MainImage = styled.img`
+  padding: 10px;
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
 `;
 
 function LandingPage(){
     return (
-        <MainImage></MainImage>
-        )
+     
+        <MainImage
+          src="https://cdn.pixabay.com/photo/2016/08/03/09/00/self-esteem-1566153_960_720.jpg"
+          alt="No image found"
+        ></MainImage>
+           
+      
+    );
     }
 
 export default LandingPage

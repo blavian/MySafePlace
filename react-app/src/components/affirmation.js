@@ -45,8 +45,7 @@ margin-left:50px;
     const handleEdit = async(id,description)=>{
       await dispatch(updateAffirmations(description,id))
     }
-    const user = useSelector((state) => state.session.user);
-
+   
     return (
       <div>
         <form onSubmit={handleSubmit}>
