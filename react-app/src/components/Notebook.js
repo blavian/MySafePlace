@@ -37,7 +37,7 @@ const Notebook = () => {
 
   const [currentNotebook, setCurrentNotebook] = useState({ id: "", title: "" });
 
-  useEffect(async () => {
+  useEffect( () => { 
     dispatch(getNotebook());
   }, [dispatch]);
 
