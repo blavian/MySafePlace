@@ -13,7 +13,7 @@ import * as Card from "../styled/card";
 
 import Modal from "styled-react-modal";
 import EditForm from "./EditForm";
-import { NavLink, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Notebook = () => {
   const dispatch = useDispatch();
