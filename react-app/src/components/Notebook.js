@@ -82,7 +82,7 @@ const Notebook = () => {
                   <Card.CardItems>
                     <Card.Cards>
                       <Card.Image>
-                        <img src="https://cdn.pixabay.com/photo/2016/08/03/09/00/self-esteem-1566153_960_720.jpg" />
+                        <img src="https://cdn.pixabay.com/photo/2016/08/03/09/00/self-esteem-1566153_960_720.jpg" alt="" />
                       </Card.Image>
                       <Card.CardContent>
                         <Card.CardTitle>
