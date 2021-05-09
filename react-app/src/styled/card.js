@@ -1,31 +1,23 @@
 import styled from "styled-components";
 
-export const Main = styled.div`
-  margin: 1rem;
-  padding: 1rem;
-  border-radius: 0.4rem; ;
+
+
+
+export const Container = styled.div`
+  background-color #20bf55;
+  border-radius: 0.25rem;
 `;
 
-export const CardItems = styled.li`
-  display: flex;
-  padding: 1rem;
-`;
-export const Card = styled.div`
-    background-color #20bf55;
-  border-radius: 0.25rem;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-`;
 export const Image = styled.div`
   width: 100%;
   border-radius: 0.2rem;
 `;
-
+export const Wrapper = styled.div`
+display:flex;
+flex-direction:column;
+`
 export const CardContent = styled.div`
-  padding: 1rem;
-    background-color: #20bf55;
-    background-image: linear-gradient(315deg, #20bf55 0%, #01baef 74%);
+  padding: 1rem;;
 `;
 
 export const CardTitle = styled.a`
