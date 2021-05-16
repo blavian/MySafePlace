@@ -77,17 +77,17 @@ const Notebook = () => {
         currentNotebooks.map((notebook) => {
           return (
             <div key={notebook.id}>
-              <Card.Top>
-              <Card.Main>
+              <div>
+              <div>
                 <Card.Container>
-                   <img src="https://cdn.pixabay.com/photo/2016/08/03/09/00/self-esteem-1566153_960_720.jpg" alt="" />
-                   <Card.Content>
-                     <Card.CardTitle>
+                   <Card.Image src="https://cdn.pixabay.com/photo/2016/08/03/09/00/self-esteem-1566153_960_720.jpg" alt="" />
+                   <div>
+                     <Card.Title>
                         <Link to={`/notebooks/${notebook.id}`}>
                             {notebook.title}
                           </Link>
-                     </Card.CardTitle>
-                     <Card.CardButton
+                     </Card.Title>
+                     <Card.Button
                           onClick={(e) => {
                             setCurrentNotebook({
                               id: notebook.id,
@@ -97,28 +97,21 @@ const Notebook = () => {
                           }}
                         >
                           edit title
-                        </Card.CardButton>
-                        <Card.CardButton
+                        </Card.Button>
+                        <Card.Button
                           onClick={(e) => {
                             deleted(e, notebook.id);
                           }}
                         >
                           Delete
-                        </Card.CardButton>
+                        </Card.Button>
 
-                   </Card.Content>
+                   </div>
                 </Card.Container>
-              </Card.Main>
-              </Card.Top>
-
-                
-                    
-                      
-                      
-                        
-                    
-                    
-              </Card.Main>
+              </div>
+              </div>
+       
+              
             </div>
           );
         })}
