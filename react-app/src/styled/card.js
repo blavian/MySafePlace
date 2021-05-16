@@ -38,6 +38,7 @@ export const CardTitle = styled.h2`
   letter-spacing: 2px;
   text-transform: uppercase;
   text-align: center;
+  text-decoration:none;
   margin: 0px;
 `;
 export const CardButton = styled.a`

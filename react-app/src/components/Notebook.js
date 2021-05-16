@@ -77,20 +77,17 @@ const Notebook = () => {
         currentNotebooks.map((notebook) => {
           return (
             <div key={notebook.id}>
+              <Card.Top>
               <Card.Main>
-                <Card.Cards>
-                  <Card.CardItems>
-                    <Card.Cards>
-                      <Card.Image>
-                        <img src="https://cdn.pixabay.com/photo/2016/08/03/09/00/self-esteem-1566153_960_720.jpg" alt="" />
-                      </Card.Image>
-                      <Card.CardContent>
-                        <Card.CardTitle>
-                          <Link to={`/notebooks/${notebook.id}`}>
+                <Card.Container>
+                   <img src="https://cdn.pixabay.com/photo/2016/08/03/09/00/self-esteem-1566153_960_720.jpg" alt="" />
+                   <Card.Content>
+                     <Card.CardTitle>
+                        <Link to={`/notebooks/${notebook.id}`}>
                             {notebook.title}
                           </Link>
-                        </Card.CardTitle>
-                        <Card.CardButton
+                     </Card.CardTitle>
+                     <Card.CardButton
                           onClick={(e) => {
                             setCurrentNotebook({
                               id: notebook.id,
@@ -108,10 +105,19 @@ const Notebook = () => {
                         >
                           Delete
                         </Card.CardButton>
-                      </Card.CardContent>
-                    </Card.Cards>
-                  </Card.CardItems>
-                </Card.Cards>
+
+                   </Card.Content>
+                </Card.Container>
+              </Card.Main>
+              </Card.Top>
+
+                
+                    
+                      
+                      
+                        
+                    
+                    
               </Card.Main>
             </div>
           );
