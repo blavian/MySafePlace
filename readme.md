@@ -71,7 +71,16 @@ create positive self affirmations to help them see how great they really are.
 
 3. Create a **.env** file based on the example with proper settings for your
    development environment
+      ```bash
+      cp .env.example .env
+      ```
+
 4. Setup your PostgreSQL user, password and database and make sure it matches your **.env** file
+   ```bash
+   CREATE DATABASE safe_place_db;
+   CREATE USER safe_place WITH PASSWORD 'password'SUPERUSER;
+   ```
+
 
 5. Get into your pipenv, migrate your database, seed your database, and run your flask app
 
