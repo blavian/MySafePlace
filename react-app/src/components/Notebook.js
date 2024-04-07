@@ -51,6 +51,13 @@ const Notebook = () => {
     await dispatch(deleteNotebook(notebookId));
   };
 
+const handleKeyDown = async (e)=>{
+  if(e.key==='Enter'){
+    addNotebook(e)
+    setTitle("")
+  }
+}
+
   return (
     <div>
       <Center>My Notebooks</Center>
@@ -59,6 +66,7 @@ const Notebook = () => {
           type="text"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
+          onKeyDown={handleKeyDown}
           name="title"
         />
         <Button onClick={(e) => addNotebook(e)} type="button">
