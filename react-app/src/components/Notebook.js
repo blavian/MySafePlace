@@ -4,6 +4,7 @@ import {
   getNotebook,
   createNotebook,
   deleteNotebook,
+  updateNotebook
 } from "../redux-store/notebook";
 
 import TopRight from "../styled/top-right";
@@ -36,6 +37,7 @@ const Notebook = () => {
   );
 
   const [currentNotebook, setCurrentNotebook] = useState({ id: "", title: "" });
+  const [editable, setEditable] = useState(false)
 
   useEffect( () => { 
     dispatch(getNotebook());
@@ -57,6 +59,13 @@ const handleKeyDown = async (e)=>{
     setTitle("")
   }
 }
+const updateNotebooks = (e) => {
+  if (e.key === 'Enter'){
+    e.preventDefault();
+    dispatch(updateNotebook(title, currentNotebook.id));
+  }
+ 
+};
 
   return (
     <div>
@@ -94,9 +103,20 @@ const handleKeyDown = async (e)=>{
                       </Card.Image>
                       <Card.CardContent>
                         <Card.CardTitle>
-                          <Link to={`/notebooks/${notebook.id}`}>
-                            {notebook.title}
-                          </Link>
+                          {editable ? (
+                            <div>
+                               <input
+          type="text"
+          placeholder={currentNotebook.title}
+          name="notebook"
+        />
+                            </div>
+                            
+                          ):(
+                            <Link to={`/notebooks/${notebook.id}`}>
+                                 {notebook.title}
+                               </Link>
+                          )}
                         </Card.CardTitle>
                         <Card.CardButton
                           onClick={(e) => {
@@ -104,7 +124,9 @@ const handleKeyDown = async (e)=>{
                               id: notebook.id,
                               title: notebook.title,
                             });
-                            setIsOpen(true);
+                            setIsOpen(true)
+                            setEditable(false)
+                            ;
                           }}
                         >
                           edit title
