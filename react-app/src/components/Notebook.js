@@ -11,32 +11,20 @@ import TopRight from "../styled/top-right";
 import Button from "../styled/button";
 import Center from "../styled/center";
 import * as Card from "../styled/card";
-
-import Modal from "styled-react-modal";
-import EditForm from "./EditForm";
 import { Link } from "react-router-dom";
 
 const Notebook = () => {
   const dispatch = useDispatch();
 
   const [title, setTitle] = useState("");
-  const StyledModal = Modal.styled`
-  width: 50rem;
-  height: 50rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-  const [isOpen, setIsOpen] = useState(false);
-
-  function toggleModal(e) {
-    setIsOpen(!isOpen);
-  }
+  
+  
   const currentNotebooks = useSelector((state) =>
     Object.values(state.notebook)
   );
 
   const [currentNotebook, setCurrentNotebook] = useState({ id: "", title: "" });
+  const [newTitle, setNewTitle] = useState(currentNotebook.title);
   const [editable, setEditable] = useState(false)
 
   useEffect( () => { 
@@ -60,11 +48,11 @@ const handleKeyDown = async (e)=>{
   }
 }
 const updateNotebooks = (e) => {
-  if (e.key === 'Enter'){
+  if(e.key === 'Enter'){
     e.preventDefault();
-    dispatch(updateNotebook(title, currentNotebook.id));
-  }
- 
+    dispatch(updateNotebook(newTitle, currentNotebook.id));
+    setEditable(false)
+  }    
 };
 
   return (
@@ -82,14 +70,6 @@ const updateNotebooks = (e) => {
           Add Notebook
         </Button>
       </TopRight>
-      <StyledModal
-        isOpen={isOpen}
-        onBackgroundClick={toggleModal}
-        onEscapeKeydown={toggleModal}
-      >
-        <EditForm currentNotebook={currentNotebook} />
-        <Button onClick={toggleModal}>Close</Button>
-      </StyledModal>
       {currentNotebooks &&
         currentNotebooks.map((notebook) => {
           return (
@@ -105,10 +85,12 @@ const updateNotebooks = (e) => {
                         <Card.CardTitle>
                           {editable ? (
                             <div>
-                               <input
+           <input
           type="text"
           placeholder={currentNotebook.title}
-          name="notebook"
+          name="title"
+          onChange={(e) => setNewTitle(e.target.value)}
+          onKeyDown={updateNotebooks}
         />
                             </div>
                             
@@ -124,8 +106,7 @@ const updateNotebooks = (e) => {
                               id: notebook.id,
                               title: notebook.title,
                             });
-                            setIsOpen(true)
-                            setEditable(false)
+                            setEditable(true)
                             ;
                           }}
                         >
