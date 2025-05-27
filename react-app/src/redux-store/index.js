@@ -1,8 +1,10 @@
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
-import thunk from "redux-thunk";
+import { thunk } from 'redux-thunk';
+
 import session from "./session";
-import notebook from "./notebook"
-import affirmation from "./affirmation"
+import notebook from "./notebook";
+import affirmation from "./affirmation";
+
 const rootReducer = combineReducers({
   session,
   notebook,
@@ -16,7 +18,7 @@ if (process.env.NODE_ENV === "production") {
 } else {
   const logger = require("redux-logger").default;
   const composeEnhancers =
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+    (typeof window !== "undefined" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
   enhancer = composeEnhancers(applyMiddleware(thunk, logger));
 }
 
@@ -25,3 +27,4 @@ const configureStore = (preloadedState) => {
 };
 
 export default configureStore;
+
