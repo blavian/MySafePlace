@@ -27,9 +27,12 @@ margin-left:50px;
     
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    useEffect(async () => {
-      dispatch(getAffirmations(notebookId));
-    }, [dispatch,notebookId]);
+    useEffect(() => {
+      const fetchAffirmations = async () => {
+        await dispatch(getAffirmations(notebookId));
+      };
+      fetchAffirmations();
+    }, [dispatch, notebookId]);
 
 
     const handleSubmit = async(e)=>{

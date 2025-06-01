@@ -4,38 +4,29 @@ import {
   getNotebook,
   createNotebook,
   deleteNotebook,
+  updateNotebook
 } from "../redux-store/notebook";
 
 import TopRight from "../styled/top-right";
 import Button from "../styled/button";
 import Center from "../styled/center";
 import * as Card from "../styled/card";
-
-import Modal from "styled-react-modal";
-import EditForm from "./EditForm";
 import { Link } from "react-router-dom";
 
 const Notebook = () => {
   const dispatch = useDispatch();
 
   const [title, setTitle] = useState("");
-  const StyledModal = Modal.styled`
-  width: 50rem;
-  height: 50rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-  const [isOpen, setIsOpen] = useState(false);
-
-  function toggleModal(e) {
-    setIsOpen(!isOpen);
-  }
+  
+  
   const currentNotebooks = useSelector((state) =>
     Object.values(state.notebook)
   );
 
   const [currentNotebook, setCurrentNotebook] = useState({ id: "", title: "" });
+  const [newTitle, setNewTitle] = useState(currentNotebook.title);
+  const [editable, setEditable] = useState(false)
+  const [editableNotebooks, setEditableNotebooks] = useState({});
 
   useEffect( () => { 
     dispatch(getNotebook());
@@ -51,12 +42,30 @@ const Notebook = () => {
     await dispatch(deleteNotebook(notebookId));
   };
 
-const handleKeyDown = async (e)=>{
-  if(e.key==='Enter'){
-    addNotebook(e)
-    setTitle("")
-  }
-}
+  const handleKeyDown = async (e, currentNotebook, isEditable) => {
+    if (e.key === "Enter") {
+      if (isEditable) {
+        updateNotebooks(e);
+        setEditableNotebooks((prevEditableNotebooks) => ({
+          ...prevEditableNotebooks,
+          [currentNotebook.id]: false,
+        }));
+      } else {
+        addNotebook(e);
+        setTitle("");
+      }
+    }
+  };
+const updateNotebooks = (e) => {
+  if(e.key === 'Enter'){
+    e.preventDefault();
+    dispatch(updateNotebook(newTitle, currentNotebook.id));
+    setEditable(false)
+  }    
+};
+
+
+
 
   return (
     <div>
@@ -73,57 +82,80 @@ const handleKeyDown = async (e)=>{
           Add Notebook
         </Button>
       </TopRight>
-      <StyledModal
-        isOpen={isOpen}
-        onBackgroundClick={toggleModal}
-        onEscapeKeydown={toggleModal}
-      >
-        <EditForm currentNotebook={currentNotebook} />
-        <Button onClick={toggleModal}>Close</Button>
-      </StyledModal>
-      {currentNotebooks &&
-        currentNotebooks.map((notebook) => {
-          return (
-            <div key={notebook.id}>
-              <Card.Main>
-                <Card.Cards>
-                  <Card.CardItems>
-                    <Card.Cards>
-                      <Card.Image>
-                        <img src="https://cdn.pixabay.com/photo/2016/08/03/09/00/self-esteem-1566153_960_720.jpg" alt="" />
-                      </Card.Image>
-                      <Card.CardContent>
-                        <Card.CardTitle>
-                          <Link to={`/notebooks/${notebook.id}`}>
-                            {notebook.title}
-                          </Link>
-                        </Card.CardTitle>
+
+{currentNotebooks &&
+  currentNotebooks.map((notebook) => {
+    const isEditable = editableNotebooks[notebook.id] || false;
+
+    return (
+      <div key={notebook.id}>
+        <Card.Main>
+          <Card.Cards>
+            <Card.CardItems>
+              <Card.Cards>
+                <Card.Image>
+                  <img src="https://cdn.pixabay.com/photo/2016/08/03/09/00/self-esteem-1566153_960_720.jpg" alt="" />
+                </Card.Image>
+                <Card.CardContent>
+                  <Card.CardTitle>
+                    {isEditable ? (
+                      <div>
+                        <input
+                          type="text"
+                          placeholder={notebook.title}
+                          name="title"
+                          onChange={(e) => setNewTitle(e.target.value)}
+                          onKeyDown={(e) => handleKeyDown(e, currentNotebook, isEditable)}
+                        />
                         <Card.CardButton
                           onClick={(e) => {
-                            setCurrentNotebook({
-                              id: notebook.id,
-                              title: notebook.title,
-                            });
-                            setIsOpen(true);
+                            setEditableNotebooks((prevEditableNotebooks) => ({
+                              ...prevEditableNotebooks,
+                              [notebook.id]: false,
+                            }));
                           }}
                         >
-                          edit title
+                          Cancel
                         </Card.CardButton>
-                        <Card.CardButton
-                          onClick={(e) => {
-                            deleted(e, notebook.id);
-                          }}
-                        >
-                          Delete
-                        </Card.CardButton>
-                      </Card.CardContent>
-                    </Card.Cards>
-                  </Card.CardItems>
-                </Card.Cards>
-              </Card.Main>
-            </div>
-          );
-        })}
+                      </div>
+                    ) : (
+                      <Link to={`/notebooks/${notebook.id}`}>
+                        {notebook.title}
+                      </Link>
+                    )}
+                  </Card.CardTitle>
+                  {isEditable ? null : (
+                    <Card.CardButton
+                      onClick={(e) => {
+                        setCurrentNotebook({
+                          id: notebook.id,
+                          title: notebook.title,
+                        });
+                        setEditableNotebooks((prevEditableNotebooks) => ({
+                          ...prevEditableNotebooks,
+                          [notebook.id]: true,
+                        }));
+                      }}
+                    >
+                      edit title
+                    </Card.CardButton>
+                  )}
+                  <Card.CardButton
+                    onClick={(e) => {
+                      deleted(e, notebook.id);
+                    }}
+                  >
+                    Delete
+                  </Card.CardButton>
+                </Card.CardContent>
+              </Card.Cards>
+            </Card.CardItems>
+          </Card.Cards>
+        </Card.Main>
+      </div>
+    );
+  })}
+  
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Redirect } from 'react-router-dom';
+import { Routes } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 import{signUp} from "../../redux-store/session"
 import{Container,Form,Input,Label} from "../../styled/registration_forms"
@@ -43,7 +43,7 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
   };
 
   if (authenticated) {
-    return <Redirect to="/notebooks" />;
+    return <Routes to="/notebooks" />;
   }
 
   return (
